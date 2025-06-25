@@ -379,10 +379,7 @@ body {
 }
 
 .rank-change {
-  font-size: 11px;
-  font-weight: 600;
-  padding: 2px 6px;
-  border-radius: 12px;
+  display: none;
 }
 
 .rank-change.up {
@@ -707,3 +704,5 @@ body {
 #standingsSection{margin:32px 0;}
 
 .logo{width:80px;height:auto;display:block;margin:0 auto 16px}
+
+#prevDayHeader, .gained-cell{display:none;}
