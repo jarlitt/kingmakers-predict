@@ -1,6 +1,6 @@
 /* Modern Linear-inspired design with Sofascore touches */
 :root {
-  --bg-primary: #fafbfc;
+  --bg-primary: #ffffff;
   --bg-secondary: #ffffff;
   --bg-accent: #f6f8fa;
   --text-primary: #1f2328;
@@ -193,8 +193,10 @@ body {
 
 /* Predictions Section */
 .predictions-section {
-  margin-bottom: 40px;
+  margin-bottom: 0;
 }
+
+.section-total{margin-left:auto;font-weight:600;background:var(--accent-primary);color:#fff;padding:4px 8px;border-radius:var(--radius-sm);}
 
 /* Table Container */
 .table-container {
@@ -218,7 +220,7 @@ body {
 .leaderboard-table th,
 .group-table th {
   background: var(--bg-accent);
-  padding: 12px 16px;
+  padding: 12px 12px;
   text-align: left;
   font-weight: 600;
   color: var(--text-primary);
@@ -231,7 +233,7 @@ body {
 .predictions-table td,
 .leaderboard-table td,
 .group-table td {
-  padding: 12px 16px;
+  padding: 12px 12px;
   border-bottom: 1px solid var(--border-muted);
   vertical-align: middle;
 }
@@ -288,21 +290,33 @@ body {
 }
 
 .points-badge {
-  background: var(--accent-primary);
-  color: white;
+  background: transparent;
+  color: var(--accent-primary);
   padding: 4px 8px;
   border-radius: var(--radius-sm);
   font-size: 12px;
-  font-weight: 500;
-  margin-left: auto;
+  font-weight: 400 !important;
+  margin-left: auto !important;
 }
 
 .points-badge.earned {
-  background: var(--accent-success);
+  background: transparent !important;
+  color: var(--accent-success);
+}
+
+.points-badge.zero {
+  background: transparent !important;
+  color: var(--accent-danger);
 }
 
 .points-badge.none {
-  background: var(--text-muted);
+  background: transparent !important;
+  color: var(--text-muted);
+}
+
+.points-badge.none {
+  background: transparent !important;
+  color: var(--text-muted);
 }
 
 /* Match Rows */
@@ -322,15 +336,36 @@ body {
   width: 120px;
 }
 
-.match-cell {
-  font-weight: 500;
-  min-width: 200px;
+.match-cell,
+.score-cell.result,
+.score-cell.prediction {
+  width: auto;
+  min-width: 0;
+  max-width: 150px;
+  white-space: normal;
+  text-align: center;
+}
+
+.match-cell .home-team,
+.match-cell .away-team {
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.score-cell .home-score,
+.score-cell .away-score {
+  display: inline-block;
+  min-width: 20px;
+  margin: 0 4px;
 }
 
 .score-cell {
-  font-weight: 600;
-  text-align: center;
-  width: 80px;
+  width: 60px !important;
+  min-width: 60px !important;
+  max-width: 60px !important;
+  padding: 12px 4px;
 }
 
 .score-cell.prediction {
@@ -342,7 +377,8 @@ body {
 }
 
 .points-cell {
-  text-align: center;
+  font-weight: 600;
+  text-align: left;
   width: 60px;
 }
 
@@ -448,10 +484,20 @@ body {
 }
 
 .group-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 20px;
   color: var(--text-primary);
+}
+
+.group-title .points-badge {
+  margin-left: 8px;
+  font-size: 12px;
+  padding: 2px 6px;
+  font-weight: 400 !important;
 }
 
 .group-tables {
@@ -474,9 +520,26 @@ body {
 
 .points-column {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 120px;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  text-align: left;
+}
+
+.points-column .table-subtitle {
+  margin-right: 6px;
+  margin-bottom: 0;
+}
+
+.points-column .points-display {
+  margin-bottom: 0;
+}
+
+.points-column .points-description {
+  width: 100%;
+  margin-top: 4px;
+  text-align: left;
 }
 
 .points-display {
@@ -563,10 +626,8 @@ body {
   .points-column {
     order: -1;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
-    min-width: 0;
-    margin-bottom: 16px;
+    justify-content: flex-start;
   }
 
   .points-display {
@@ -601,9 +662,28 @@ body {
     overflow-x: auto;
   }
 
-  .predictions-table,
-  .leaderboard-table {
-    min-width: 600px;
+  .predictions-table {
+    min-width: 100% !important;
+    width: 100% !important;
+    table-layout: auto !important;
+  }
+
+  .match-cell,
+  .score-cell.result,
+  .score-cell.prediction {
+    max-width: 120px;
+    padding: 8px;
+  }
+
+  .match-cell .home-team,
+  .match-cell .away-team {
+    display: block;
+    white-space: nowrap;
+  }
+
+  .score-cell .home-score,
+  .score-cell .away-score {
+    display: inline;
   }
 
   .day-header-content {
@@ -614,6 +694,68 @@ body {
   .points-badge {
     margin-left: 0;
   }
+
+  /* Ajustar leaderboard para móvil */
+  .leaderboard-table{table-layout:fixed;width:100%;}
+  .leaderboard-table th:nth-child(1),
+  .leaderboard-table td:nth-child(1),
+  .leaderboard-table th:nth-child(2),
+  .leaderboard-table td:nth-child(2){
+    width:1%;
+    white-space:nowrap;
+  }
+  .leaderboard-table th:nth-child(3),
+  .leaderboard-table td:nth-child(3){
+    width:auto;
+    white-space:normal;
+  }
+  .leaderboard-table .participant-cell{max-width:none;}
+
+  .score-cell {
+    width: 50px !important;
+    min-width: 50px !important;
+    max-width: 50px !important;
+    padding: 8px 2px;
+  }
+
+  /* Ocultar columnas GF y GA en tablas de clasificación de grupos */
+  .group-table th:nth-child(5),
+  .group-table td:nth-child(5),
+  .group-table th:nth-child(6),
+  .group-table td:nth-child(6) {
+    display: none;
+  }
+
+  /* Ajuste de columna de puntos en móvil */
+  .points-column {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    text-align: left;
+  }
+  .points-column .table-subtitle {
+    margin-right: 6px;
+    margin-bottom: 0;
+  }
+  .points-column .points-display {
+    margin-bottom: 0;
+  }
+  .points-column .points-number {
+    font-size: 14px;
+  }
+  .points-column .points-description {
+    width: 100%;
+    margin-top: 4px;
+    text-align: left;
+  }
+
+  /* Ajuste de alineaciones globales */
+  .match-cell { text-align: left !important; }
+  .points-cell { text-align: right !important; }
+
+  /* Ajustar alineación del round-cell */
+  .round-cell { text-align: center !important; }
 }
 
 @media (max-width: 480px) {
@@ -638,14 +780,41 @@ body {
   }
 
   .predictions-table th,
-  .predictions-table td,
-  .leaderboard-table th,
-  .leaderboard-table td {
-    padding: 8px 12px;
+  .predictions-table td {
+    padding: 6px 8px;
   }
 
   .group-card {
     padding: 16px;
+  }
+
+  .match-cell,
+  .score-cell.result,
+  .score-cell.prediction {
+    max-width: 100px;
+    font-size: 12px;
+  }
+
+  .match-cell .home-team::after,
+  .score-cell .home-score::after {
+    content: '';
+  }
+  .match-cell .home-team,
+  .match-cell .away-team,
+  .score-cell .home-score,
+  .score-cell .away-score {
+    display: block;
+  }
+  .match-cell .away-team,
+  .score-cell .away-score {
+    margin-top: 2px;
+  }
+
+  .score-cell {
+    width: 40px !important;
+    min-width: 40px !important;
+    max-width: 40px !important;
+    font-size: 11px;
   }
 }
 
@@ -703,6 +872,302 @@ body {
 /* Espacio antes y después del bloque de clasificaciones de grupos */
 #standingsSection{margin:32px 0;}
 
-.logo{width:80px;height:auto;display:block;margin:0 auto 16px}
+.logo{width:64px;height:auto;display:block;margin:0 auto 16px}
 
 #prevDayHeader, .gained-cell{display:none;}
+
+/* Para la tabla de leaderboard restringimos el ancho para evitar scroll */
+.leaderboard-table .participant-cell{ min-width: 120px; }
+
+.leaderboard-table{table-layout:auto;width:100%;}
+.leaderboard-table .rank-cell{width:60px;}
+.leaderboard-table .points-cell{width:80px;}
+.leaderboard-table .participant-cell{
+  max-width:160px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+/* Eliminar pseudo contenido ya no necesario */
+.match-cell .home-team::after { content: none; }
+.score-cell .home-score::after { content: none; }
+
+/* Separadores explícitos */
+.vs-sep, .score-sep { margin: 0 4px; display: inline-block; }
+@media (max-width: 768px){
+  .vs-sep, .score-sep { display: none; }
+}
+
+/* Ajustar ancho para equipos, marcadores y celdas específicas */
+.home-team,
+.away-team,
+.home-score,
+.away-score,
+.round-cell,
+.time-cell,
+.points-cell
+.score-cell.result
+.score-cell.prediction {
+  width: auto;
+}
+
+/* Celdas estrechas en la tabla de predicciones */
+.predictions-table .time-cell,
+.predictions-table .round-cell,
+.predictions-table .points-cell {
+  width: 1%;
+  min-width: 60px;
+  white-space: nowrap;
+}
+
+/* La tabla de predicciones debe abrazar su contenido */
+.predictions-table {
+  width: 100% !important;
+  display: table !important;
+  table-layout: auto !important;
+}
+
+/* === Ajuste definitivo de score-cell y match-cell para móvil y desktop === */
+
+/* Base para celdas de marcador */
+.score-cell {
+  font-weight: 600;
+  text-align: center;
+  width: auto;        /* ancho natural */
+  min-width: 0;       /* evita expansión innecesaria */
+  max-width: 80px;    /* tope en desktop */
+  padding: 12px 8px;  /* compacidad */
+}
+
+.score-cell.prediction { color: var(--accent-primary); }
+.score-cell.result     { color: var(--text-primary); }
+
+/* Spans internos de marcador */
+.score-cell .home-score,
+.score-cell .away-score {
+  display: inline-block;
+  min-width: 20px;   /* legibilidad */
+  margin: 0 4px;
+  text-align: center;
+}
+
+/* Match cell: nombres de equipos */
+.match-cell {
+  width: auto;
+  min-width: 0;
+  max-width: 150px;
+  white-space: normal;  /* permite salto */
+  text-align: left;
+}
+
+.match-cell .home-team,
+.match-cell .away-team {
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Sobrescribir ancho auto para elementos que antes tenían max-content */
+.home-team,
+.away-team,
+.home-score,
+.away-score,
+.round-cell,
+.time-cell,
+.points-cell {
+  width: auto;
+}
+
+/* Columnas estrechas en la tabla de predicciones */
+.predictions-table .time-cell,
+.predictions-table .round-cell,
+.predictions-table .points-cell {
+  width: 1%;
+  min-width: 60px;
+  white-space: nowrap;
+}
+
+/* Tabla de predicciones: ocupar contenedor y comportarse como tabla clásica */
+.predictions-table {
+  width: 100% !important;
+  display: table !important;
+  table-layout: auto !important;
+}
+
+/* ===== MEDIA QUERIES ===== */
+@media (max-width: 768px) {
+  .table-container { overflow-x: auto; }
+
+  .score-cell {
+    max-width: 60px;
+    padding: 8px 4px;
+    font-size: 12px;
+  }
+  .score-cell .home-score,
+  .score-cell .away-score {
+    display: inline;
+    margin: 0 2px;
+  }
+
+  .match-cell {
+    max-width: 100px;
+    padding: 8px 4px;
+  }
+  .match-cell .home-team,
+  .match-cell .away-team {
+    display: block;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .predictions-table th,
+  .predictions-table td { padding: 6px 4px; }
+
+  .score-cell {
+    max-width: 50px;
+    font-size: 11px;
+  }
+  .match-cell {
+    max-width: 80px;
+    font-size: 11px;
+  }
+  .match-cell .home-team,
+  .match-cell .away-team,
+  .score-cell .home-score,
+  .score-cell .away-score {
+    display: block;
+    margin: 2px 0;
+  }
+}
+
+/* Forzamos tabla fixed layout para coherencia en columnas */
+.predictions-table {
+  table-layout: fixed !important;
+}
+
+.round-mobile{display:none;}
+.round-desktop{display:inline;}
+@media (max-width:768px){
+  .round-desktop{display:none;}
+  .round-mobile{display:inline-block;white-space:nowrap;}
+}
+
+/* Tamaño de puntos ganados */
+.points-display.points-earned .points-number {
+  font-size: 14px;
+}
+
+/* Centrado de nombres en desktop, alineación izquierda en móvil */
+.match-cell { text-align: center; }
+@media (max-width: 768px){
+  .match-cell { text-align: left; }
+}
+
+/* Espacio alrededor de 'vs' y '-' */
+.match-cell .home-team::after { margin: 0 4px; }
+.score-cell .home-score::after { margin: 0 2px; }
+
+/* Alinear verticalmente equipos y separadores */
+.home-team, .away-team, .vs-sep, .score-sep { vertical-align: middle; }
+.vs-sep { margin: 0 6px; font-size: 12px; color: var(--text-muted); }
+.score-sep { margin: 0 4px; font-size: 12px; color: var(--text-muted); }
+
+.sub-header td{background:var(--bg-accent);font-weight:600;font-size:11px;text-transform:uppercase;padding:12px 12px;border-bottom:1px solid var(--border-muted);}
+
+/* Alineación específica para celdas del sub-header */
+#groupPredictionsTable .sub-header td:nth-child(4),
+#groupPredictionsTable .sub-header td:nth-child(5),
+#koPredictionsTable .sub-header td:nth-child(5),
+#koPredictionsTable .sub-header td:nth-child(6) {
+  text-align: center;
+}
+
+#groupPredictionsTable .sub-header td:nth-child(6),
+#koPredictionsTable .sub-header td:nth-child(7) {
+  text-align: right;
+}
+
+/* Layout para group-tables en desktop */
+@media (min-width: 992px){
+  .group-tables{
+    display:grid;
+    grid-template-columns: 1fr;
+    gap:24px;
+  }
+  .tables-wrap{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:24px;
+  }
+}
+
+@media (max-width: 991px){
+  .tables-wrap .table-column { margin-bottom: 24px; }
+  .tables-wrap .table-column:last-child { margin-bottom: 0; }
+}
+
+/* --- Alineaciones puntos según contexto --- */
+@media (min-width: 769px){
+  .predictions-table .points-cell { text-align: right; }
+}
+@media (max-width: 768px){
+  .group-table .points-cell { text-align: left !important; }
+}
+
+.collapsible-header{cursor:pointer;display:flex;align-items:center;gap:8px;}
+.collapse-arrow{font-size:12px;color:var(--text-secondary);transition:transform .2s;}
+
+.live-badge{background:var(--accent-danger);color:#fff;font-size:10px;font-weight:600;padding:2px 6px;border-radius:12px;text-transform:uppercase;margin-left:6px;}
+
+.match-cell { text-align: left !important; }
+
+/* Forzar alineación izquierda de match-cell en desktop (override final) */
+@media (min-width: 769px){
+  .predictions-table .match-cell{ text-align: left !important; }
+}
+
+/* === NUEVO: Ajuste para rango 768-481px (tipo tablet) === */
+@media (max-width: 768px) and (min-width: 481px){
+  /* Apilar elementos igual que en móvil */
+  .match-cell .home-team,
+  .match-cell .away-team,
+  .score-cell .home-score,
+  .score-cell .away-score {
+    display: block;
+  }
+  .match-cell .away-team,
+  .score-cell .away-score {
+    margin-top: 2px;
+  }
+  /* Alinear ronda a la izquierda y permitir salto de línea */
+  .round-cell { text-align: left !important; }
+}
+
+/* Separación extra entre fechas desplegables */
+.predictions-table .day-header:not(:first-child) td {
+  border-top: 2px solid var(--border-default) #a3a3a3;
+  padding-top: 12px;
+}
+
+/* Forzar minúsculas para la etiqueta pts en el sub-header */
+.sub-header .pts-text { text-transform: none !important; }
+
+.pts-header-cell { text-transform: none !important; }
+
+.group-title .points-badge{margin-left:8px;font-size:12px;padding:2px 6px;font-weight:600 !important;}
+
+.group-header{margin-bottom:20px;}
+.header-top{display:flex;align-items:center;justify-content:space-between;}
+.group-title{margin:0;}
+.group-header .points-description{text-align:right;margin-top:4px;font-size:12px;color:var(--text-secondary);}
+
+.day-total.points-badge{font-size:11px;padding:4px;}
+
+/* Forzar peso normal en todos los badges, sin importar contexto */
+.points-badge, .points-badge.earned, .points-badge.zero, .points-badge.none, .day-header-content .points-badge, .pts-header-cell .points-badge { font-weight: 600 !important; }
+
+/* Color de fondo específico para la celda de fecha (day-header) */
+.predictions-table .day-header td{ background:#edeff1 !important; }
