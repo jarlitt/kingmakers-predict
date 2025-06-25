@@ -404,6 +404,18 @@ body {
   font-size: 14px;
 }
 
+.participant-link {
+  font-weight: 500;
+  font-size: 14px;
+  text-decoration: underline;
+  text-decoration-color: #999;
+  color: inherit;
+}
+
+.participant-link:hover {
+  text-decoration-color: #666;
+}
+
 .total-points {
   font-weight: 700;
   font-size: 16px;

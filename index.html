@@ -707,8 +707,8 @@
             const prevRank=prevRankMap[entry.userId]||currentRankNum;
             const diffRank=prevRank-currentRankNum; // positivo si sube
             let deltaHtml='';
-            if(diffRank>0){ deltaHtml=`<span class="rank-change up">+${diffRank}</span>`; }
-            else if(diffRank<0){ deltaHtml=`<span class="rank-change down">-${Math.abs(diffRank)}</span>`; }
+            if(diffRank>0){ deltaHtml=`<span class="rank-change up">↑${diffRank}</span>`; }
+            else if(diffRank<0){ deltaHtml=`<span class="rank-change down">↓${Math.abs(diffRank)}</span>`; }
 
             // Medal icons for top 3
             let rankDisplay = posDisplay;
@@ -724,7 +724,7 @@
                 </div>
               </td>
               <td class="participant-cell">
-                <div class="participant-name">${entry.displayName}</div>
+                <a href="#pred" class="participant-link" data-userid="${entry.userId}">${entry.displayName}</a>
               </td>
               <td class="points-cell">
                 <span class="total-points">${entry.points}</span>
@@ -849,6 +849,18 @@
         regs.forEach(r=> r.unregister());
       });
     }
+
+    // Delegación de clic en links de participantes para navegar a Predicciones
+    document.getElementById('leaderboardTable').addEventListener('click',e=>{
+      const link=e.target.closest('.participant-link');
+      if(link){
+        e.preventDefault();
+        const uid=link.dataset.userid;
+        participantSelect.value=uid;
+        localStorage.setItem('lastParticipant',uid);
+        showTab('pred');
+      }
+    });
   </script>
 </body>
 </html>
