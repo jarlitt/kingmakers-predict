@@ -136,7 +136,7 @@
           fetch('teams.json')
         ]);
 
-        participants = (await participantsRes.json()).filter(p => !(p.displayName==='Asier' || p.userId==='asier'));
+        participants = await participantsRes.json();
         const matchesArray = await matchesRes.json();
         predictions = await predictionsRes.json();
         groupStandings = await standingsRes.json();
@@ -236,7 +236,7 @@
           });
         });
 
-        leaderboard = Object.entries(pointsByUser).filter(([userId])=>userId!=='asier').map(([userId, pts]) => {
+        leaderboard = Object.entries(pointsByUser).map(([userId, pts]) => {
           const p = participants.find(pr => pr.userId === userId);
           return { userId, displayName: p ? p.displayName : userId, points: pts };
         }).sort((a, b) => b.points - a.points);

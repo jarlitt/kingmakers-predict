@@ -678,63 +678,63 @@
   "asier": {
     "A": [
       {
-        "teamId": "AHL",
-        "teamName": "Al Ahly",
-        "points": 3,
-        "goalsFor": 0,
-        "goalsAgainst": 0,
-        "goalDifference": 0,
+        "teamId": "MIA",
+        "teamName": "Inter Miami",
+        "points": 7,
+        "goalsFor": 4,
+        "goalsAgainst": 2,
+        "goalDifference": 2,
         "matchesPlayed": 3,
         "position": 1
       },
       {
-        "teamId": "MIA",
-        "teamName": "Inter Miami",
-        "points": 3,
-        "goalsFor": 0,
-        "goalsAgainst": 0,
-        "goalDifference": 0,
+        "teamId": "POR",
+        "teamName": "Porto",
+        "points": 5,
+        "goalsFor": 4,
+        "goalsAgainst": 3,
+        "goalDifference": 1,
         "matchesPlayed": 3,
         "position": 2
+      },
+      {
+        "teamId": "AHL",
+        "teamName": "Al Ahly",
+        "points": 2,
+        "goalsFor": 2,
+        "goalsAgainst": 3,
+        "goalDifference": -1,
+        "matchesPlayed": 3,
+        "position": 3
       },
       {
         "teamId": "PAL",
         "teamName": "Palmeiras",
         "points": 3,
-        "goalsFor": 0,
-        "goalsAgainst": 0,
-        "goalDifference": 0,
-        "matchesPlayed": 3,
-        "position": 3
-      },
-      {
-        "teamId": "POR",
-        "teamName": "Porto",
-        "points": 3,
-        "goalsFor": 0,
-        "goalsAgainst": 0,
-        "goalDifference": 0,
+        "goalsFor": 3,
+        "goalsAgainst": 5,
+        "goalDifference": -2,
         "matchesPlayed": 3,
         "position": 4
       }
     ],
     "B": [
       {
-        "teamId": "ATM",
-        "teamName": "At. Madrid",
-        "points": 3,
-        "goalsFor": 0,
-        "goalsAgainst": 0,
-        "goalDifference": 0,
+        "teamId": "BOT",
+        "teamName": "Botafogo",
+        "points": 7,
+        "goalsFor": 4,
+        "goalsAgainst": 2,
+        "goalDifference": 2,
         "matchesPlayed": 3,
         "position": 1
       },
       {
-        "teamId": "BOT",
-        "teamName": "Botafogo",
+        "teamId": "ATM",
+        "teamName": "At. Madrid",
         "points": 3,
-        "goalsFor": 0,
-        "goalsAgainst": 0,
+        "goalsFor": 4,
+        "goalsAgainst": 4,
         "goalDifference": 0,
         "matchesPlayed": 3,
         "position": 2
@@ -742,10 +742,10 @@
       {
         "teamId": "PSG",
         "teamName": "PSG",
-        "points": 3,
-        "goalsFor": 0,
-        "goalsAgainst": 0,
-        "goalDifference": 0,
+        "points": 2,
+        "goalsFor": 4,
+        "goalsAgainst": 5,
+        "goalDifference": 1,
         "matchesPlayed": 3,
         "position": 3
       },
@@ -753,93 +753,93 @@
         "teamId": "SEA",
         "teamName": "Seattle Sounders",
         "points": 3,
-        "goalsFor": 0,
-        "goalsAgainst": 0,
-        "goalDifference": 0,
+        "goalsFor": 2,
+        "goalsAgainst": 3,
+        "goalDifference": -1,
         "matchesPlayed": 3,
         "position": 4
       }
     ],
     "C": [
       {
-        "teamId": "AUC",
-        "teamName": "Auckland City",
-        "points": 3,
-        "goalsFor": 0,
-        "goalsAgainst": 0,
-        "goalDifference": 0,
-        "matchesPlayed": 3,
-        "position": 1
-      },
-      {
         "teamId": "BAY",
         "teamName": "Bayern Munich",
         "points": 3,
-        "goalsFor": 0,
-        "goalsAgainst": 0,
-        "goalDifference": 0,
+        "goalsFor": 5,
+        "goalsAgainst": 2,
+        "goalDifference": 3,
         "matchesPlayed": 3,
-        "position": 2
+        "position": 1
       },
       {
         "teamId": "BEN",
         "teamName": "Benfica",
         "points": 3,
-        "goalsFor": 0,
-        "goalsAgainst": 0,
-        "goalDifference": 0,
-        "matchesPlayed": 3,
-        "position": 3
-      },
-      {
-        "teamId": "BOC",
-        "teamName": "Boca Juniors",
-        "points": 3,
-        "goalsFor": 0,
-        "goalsAgainst": 0,
-        "goalDifference": 0,
-        "matchesPlayed": 3,
-        "position": 4
-      }
-    ],
-    "D": [
-      {
-        "teamId": "CHE",
-        "teamName": "Chelsea",
-        "points": 3,
-        "goalsFor": 0,
-        "goalsAgainst": 0,
-        "goalDifference": 0,
-        "matchesPlayed": 3,
-        "position": 1
-      },
-      {
-        "teamId": "EST",
-        "teamName": "ES Tunis",
-        "points": 3,
-        "goalsFor": 0,
-        "goalsAgainst": 0,
+        "goalsFor": 3,
+        "goalsAgainst": 3,
         "goalDifference": 0,
         "matchesPlayed": 3,
         "position": 2
       },
       {
+        "teamId": "BOC",
+        "teamName": "Boca Juniors",
+        "points": 3,
+        "goalsFor": 2,
+        "goalsAgainst": 3,
+        "goalDifference": -1,
+        "matchesPlayed": 3,
+        "position": 3
+      },
+      {
+      "teamId": "AUC",
+      "teamName": "Auckland City",
+      "points": 3,
+      "goalsFor": 0,
+      "goalsAgainst": 2,
+      "goalDifference": -2,
+      "matchesPlayed": 3,
+      "position": 4
+    }
+    ],
+    "D": [
+      {
+        "teamId": "CHE",
+        "teamName": "Chelsea",
+        "points": 7,
+        "goalsFor": 4,
+        "goalsAgainst": 2,
+        "goalDifference": 2,
+        "matchesPlayed": 3,
+        "position": 1
+      },
+      {
         "teamId": "FLA",
         "teamName": "Flamengo",
         "points": 3,
-        "goalsFor": 0,
-        "goalsAgainst": 0,
+        "goalsFor": 3,
+        "goalsAgainst": 3,
         "goalDifference": 0,
         "matchesPlayed": 3,
-        "position": 3
+        "position": 2
       },
       {
         "teamId": "LAF",
         "teamName": "LAFC",
         "points": 3,
-        "goalsFor": 0,
-        "goalsAgainst": 0,
+        "goalsFor": 2,
+        "goalsAgainst": 2,
         "goalDifference": 0,
+        "matchesPlayed": 3,
+        "position": 3
+      },
+      {
+        "teamId": "EST",
+        "teamName": "ES Tunis",
+        "points": 1,
+        "goalsFor": 0,
+        "goalsAgainst": 2,
+        "goalDifference": -2,
         "matchesPlayed": 3,
         "position": 4
       }
@@ -849,28 +849,28 @@
         "teamId": "INT",
         "teamName": "Inter Milan",
         "points": 3,
-        "goalsFor": 0,
-        "goalsAgainst": 0,
-        "goalDifference": 0,
+        "goalsFor": 5,
+        "goalsAgainst": 3,
+        "goalDifference": 2,
         "matchesPlayed": 3,
         "position": 1
-      },
-      {
-        "teamId": "MON",
-        "teamName": "Monterrey",
-        "points": 3,
-        "goalsFor": 0,
-        "goalsAgainst": 0,
-        "goalDifference": 0,
-        "matchesPlayed": 3,
-        "position": 2
       },
       {
         "teamId": "RIV",
         "teamName": "River Plate",
         "points": 3,
-        "goalsFor": 0,
-        "goalsAgainst": 0,
+        "goalsFor": 4,
+        "goalsAgainst": 4,
+        "goalDifference": 0,
+        "matchesPlayed": 3,
+        "position": 2
+      },
+      {
+        "teamId": "MON",
+        "teamName": "Monterrey",
+        "points": 3,
+        "goalsFor": 2,
+        "goalsAgainst": 2,
         "goalDifference": 0,
         "matchesPlayed": 3,
         "position": 3
@@ -879,9 +879,9 @@
         "teamId": "URA",
         "teamName": "Urawa Reds",
         "points": 3,
-        "goalsFor": 0,
-        "goalsAgainst": 0,
-        "goalDifference": 0,
+        "goalsFor": 2,
+        "goalsAgainst": 4,
+        "goalDifference": -2,
         "matchesPlayed": 3,
         "position": 4
       }
@@ -891,9 +891,9 @@
         "teamId": "DOR",
         "teamName": "B. Dortmund",
         "points": 3,
-        "goalsFor": 0,
-        "goalsAgainst": 0,
-        "goalDifference": 0,
+        "goalsFor": 4,
+        "goalsAgainst": 1,
+        "goalDifference": 3,
         "matchesPlayed": 3,
         "position": 1
       },
@@ -901,113 +901,113 @@
         "teamId": "FLU",
         "teamName": "Fluminense",
         "points": 3,
-        "goalsFor": 0,
-        "goalsAgainst": 0,
-        "goalDifference": 0,
+        "goalsFor": 3,
+        "goalsAgainst": 1,
+        "goalDifference": 2,
         "matchesPlayed": 3,
         "position": 2
+      },
+      {
+        "teamId": "ULS",
+        "teamName": "Ulsan HD",
+        "points": 3,
+        "goalsFor": 1,
+        "goalsAgainst": 2,
+        "goalDifference": -1,
+        "matchesPlayed": 3,
+        "position": 4
       },
       {
         "teamId": "SUN",
         "teamName": "Sundowns",
         "points": 3,
         "goalsFor": 0,
-        "goalsAgainst": 0,
-        "goalDifference": 0,
+        "goalsAgainst": 4,
+        "goalDifference": -4,
         "matchesPlayed": 3,
         "position": 3
-      },
-      {
-        "teamId": "ULS",
-        "teamName": "Ulsan HD",
-        "points": 3,
-        "goalsFor": 0,
-        "goalsAgainst": 0,
-        "goalDifference": 0,
-        "matchesPlayed": 3,
-        "position": 4
       }
     ],
     "G": [
       {
-        "teamId": "AAI",
-        "teamName": "Al Ain",
-        "points": 3,
-        "goalsFor": 0,
-        "goalsAgainst": 0,
-        "goalDifference": 0,
+        "teamId": "MCI",
+        "teamName": "Manchester City",
+        "points": 9,
+        "goalsFor": 4,
+        "goalsAgainst": 1,
+        "goalDifference": 3,
         "matchesPlayed": 3,
         "position": 1
       },
       {
         "teamId": "JUV",
         "teamName": "Juventus",
-        "points": 3,
-        "goalsFor": 0,
-        "goalsAgainst": 0,
-        "goalDifference": 0,
+        "points": 6,
+        "goalsFor": 3,
+        "goalsAgainst": 2,
+        "goalDifference": 1,
         "matchesPlayed": 3,
         "position": 2
-      },
-      {
-        "teamId": "MCI",
-        "teamName": "Manchester City",
-        "points": 3,
-        "goalsFor": 0,
-        "goalsAgainst": 0,
-        "goalDifference": 0,
-        "matchesPlayed": 3,
-        "position": 3
       },
       {
         "teamId": "WYD",
         "teamName": "Wydad",
         "points": 3,
         "goalsFor": 0,
-        "goalsAgainst": 0,
+        "goalsAgainst": 2,
+        "goalDifference": -2,
+        "matchesPlayed": 3,
+        "position": 3
+      },
+      {
+        "teamId": "AAI",
+        "teamName": "Al Ain",
+        "points": 3,
+        "goalsFor": 0,
+        "goalsAgainst": 2,
         "goalDifference": 0,
         "matchesPlayed": 3,
-        "position": 4
+        "position": 1
       }
     ],
     "H": [
       {
+        "teamId": "RMA",
+        "teamName": "Real Madrid",
+        "points": 3,
+        "goalsFor": 5,
+        "goalsAgainst": 1,
+        "goalDifference": 4,
+        "matchesPlayed": 3,
+        "position": 1
+      },
+      {
+        "teamId": "SAL",
+        "teamName": "Salzburg",
+        "points": 3,
+        "goalsFor": 3,
+        "goalsAgainst": 3,
+        "goalDifference": 0,
+        "matchesPlayed": 3,
+        "position": 2
+      },
+      {
         "teamId": "HIL",
         "teamName": "Al Hilal",
         "points": 3,
-        "goalsFor": 0,
-        "goalsAgainst": 0,
-        "goalDifference": 0,
+        "goalsFor": 2,
+        "goalsAgainst": 3,
+        "goalDifference": -1,
         "matchesPlayed": 3,
-        "position": 1
+        "position": 3
       },
       {
         "teamId": "PAC",
         "teamName": "Pachuca",
         "points": 3,
         "goalsFor": 0,
-        "goalsAgainst": 0,
-        "goalDifference": 0,
-        "matchesPlayed": 3,
-        "position": 2
-      },
-      {
-        "teamId": "RMA",
-        "teamName": "Real Madrid",
-        "points": 3,
-        "goalsFor": 0,
-        "goalsAgainst": 0,
-        "goalDifference": 0,
-        "matchesPlayed": 3,
-        "position": 3
-      },
-      {
-        "teamId": "SAL",
-        "teamName": "Salzburg",
-        "points": 3,
-        "goalsFor": 0,
-        "goalsAgainst": 0,
-        "goalDifference": 0,
+        "goalsAgainst": 3,
+        "goalDifference": -3,
         "matchesPlayed": 3,
         "position": 4
       }
