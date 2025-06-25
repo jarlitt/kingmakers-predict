@@ -213,7 +213,16 @@
         }
         participantSelect.addEventListener('change', () => {
           localStorage.setItem('lastParticipant', participantSelect.value);
-          displayParticipant(participantSelect.value);
+          if(dataLoaded){
+            displayParticipant(participantSelect.value);
+            // Si estamos en otra pestaña, cambia a Predicciones
+            if(predTab.style.display==='none'){
+              showTab('pred');
+            }
+          } else {
+            pendingParticipant=participantSelect.value;
+            showTab('pred');
+          }
         });
 
         // Seleccionar pestaña guardada
