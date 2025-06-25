@@ -1,0 +1,8519 @@
+[
+  {
+    "userId": "adrian",
+    "matchId": "W2",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W1",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W16",
+    "predHome": 1,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W17",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W34",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W33",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W3",
+    "predHome": 0,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W4",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W19",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W18",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W36",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W35",
+    "predHome": 0,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W5",
+    "predHome": 4,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W6",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W21",
+    "predHome": 2,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W20",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W38",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W37",
+    "predHome": 0,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W7",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W8",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W23",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W22",
+    "predHome": 0,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W40",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W39",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W10",
+    "predHome": 2,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W9",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W25",
+    "predHome": 4,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W24",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W41",
+    "predHome": 4,
+    "predAway": 6,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W42",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W11",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W12",
+    "predHome": 3,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W27",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W26",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W43",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W44",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W13",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W30",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W29",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W28",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W46",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W45",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W15",
+    "predHome": 4,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W14",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W31",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W32",
+    "predHome": 1,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W47",
+    "predHome": 0,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W48",
+    "predHome": 2,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.952Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W2",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W1",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W16",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W17",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W34",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W33",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W3",
+    "predHome": 1,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W4",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W19",
+    "predHome": 0,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W18",
+    "predHome": 5,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W36",
+    "predHome": 0,
+    "predAway": 4,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W35",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W5",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W6",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W21",
+    "predHome": 1,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W20",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W38",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W37",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W7",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W8",
+    "predHome": 0,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W23",
+    "predHome": 0,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W22",
+    "predHome": 0,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W40",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W39",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W10",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W9",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W25",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W24",
+    "predHome": 4,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W41",
+    "predHome": 0,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W42",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W11",
+    "predHome": 2,
+    "predAway": 4,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W12",
+    "predHome": 0,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W27",
+    "predHome": 0,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W26",
+    "predHome": 1,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W43",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W44",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W13",
+    "predHome": 4,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W30",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W29",
+    "predHome": 1,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W28",
+    "predHome": 5,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W46",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W45",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W15",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W14",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W31",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W32",
+    "predHome": 1,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W47",
+    "predHome": 1,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W48",
+    "predHome": 2,
+    "predAway": 4,
+    "timestamp": "2025-06-24T08:21:55.957Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W2",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W1",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W16",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W17",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W34",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W33",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W3",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W4",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W19",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W18",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W36",
+"predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W35",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W5",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W6",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W21",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W20",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W38",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W37",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W7",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W8",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W23",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W22",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W40",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W39",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W10",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W9",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W25",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W24",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W41",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W42",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W11",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W12",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W27",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W26",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W43",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W44",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W13",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W30",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W29",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W28",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W46",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W45",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W15",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W14",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W31",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W32",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W47",
+    "predHome": "-", 
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W48",
+    "predHome": "-",
+    "predAway": "-",
+    "timestamp": "2025-06-24T08:21:55.958Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W2",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W1",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W16",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W17",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W34",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W33",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W3",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W4",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W19",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W18",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W36",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W35",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W5",
+    "predHome": 4,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W6",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W21",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W20",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W38",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W37",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W7",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W8",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W23",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W22",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W40",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W39",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W10",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W9",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W25",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W24",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W41",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W42",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W11",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W12",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W27",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W26",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W43",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W44",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W13",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W30",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W29",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W28",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W46",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W45",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W15",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W14",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W31",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W32",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W47",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W48",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.963Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W2",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W1",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W16",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W17",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W34",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W33",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W3",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W4",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W19",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W18",
+    "predHome": 1,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W36",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W35",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W5",
+    "predHome": 5,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W6",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W21",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W20",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W38",
+    "predHome": 0,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W37",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W7",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W8",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W23",
+    "predHome": 3,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W22",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W40",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W39",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W10",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W9",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W25",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W24",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W41",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W42",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W11",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W12",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W27",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W26",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W43",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W44",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W13",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W30",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W29",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W28",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W46",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W45",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W15",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W14",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W31",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W32",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W47",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "david",
+    "matchId": "W48",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.964Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W2",
+    "predHome": 1,
+    "predAway": 4,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W1",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W16",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W17",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W34",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W33",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W3",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W4",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W19",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W18",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W36",
+    "predHome": 0,
+    "predAway": 4,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W35",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W5",
+    "predHome": 4,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W6",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W21",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W20",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W38",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W37",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W7",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W8",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W23",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W22",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W40",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W39",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W10",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W9",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W25",
+    "predHome": 4,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W24",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W41",
+    "predHome": 0,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W42",
+    "predHome": 1,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W11",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W12",
+    "predHome": 0,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W27",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W26",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W43",
+    "predHome": 4,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W44",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W13",
+    "predHome": 5,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W30",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W29",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W28",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W46",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W45",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W15",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W14",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W31",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W32",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W47",
+    "predHome": 3,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W48",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.967Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W2",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W1",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W16",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W17",
+    "predHome": 1,
+    "predAway": 4,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W34",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W33",
+    "predHome": 1,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W3",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W4",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W19",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W18",
+    "predHome": 1,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W36",
+    "predHome": 0,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W35",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W5",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W6",
+    "predHome": 0,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W21",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W20",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W38",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W37",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W7",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W8",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W23",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W22",
+    "predHome": 1,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W40",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W39",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W10",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W9",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W25",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W24",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W41",
+    "predHome": 0,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W42",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W11",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W12",
+    "predHome": 0,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W27",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W26",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W43",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W44",
+    "predHome": 0,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W13",
+    "predHome": 4,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W30",
+    "predHome": 0,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W29",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W28",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W46",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W45",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W15",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W14",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W31",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W32",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W47",
+    "predHome": 1,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W48",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.969Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W2",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W1",
+    "predHome": 0,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W16",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W17",
+    "predHome": 0,
+    "predAway": 4,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W34",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W33",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W3",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W4",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W19",
+    "predHome": 0,
+    "predAway": 4,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W18",
+    "predHome": 4,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W36",
+    "predHome": 0,
+    "predAway": 5,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W35",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W5",
+    "predHome": 6,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W6",
+    "predHome": 0,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W21",
+    "predHome": 1,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W20",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W38",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W37",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W7",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W8",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W23",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W22",
+    "predHome": 0,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W40",
+    "predHome": 0,
+    "predAway": 5,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W39",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W10",
+    "predHome": 3,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W9",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W25",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W24",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W41",
+    "predHome": 0,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W42",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W11",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W12",
+    "predHome": 0,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W27",
+    "predHome": 0,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W26",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W43",
+    "predHome": 4,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W44",
+    "predHome": 1,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W13",
+    "predHome": 5,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W30",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W29",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W28",
+    "predHome": 4,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W46",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W45",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W15",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W14",
+    "predHome": 1,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W31",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W32",
+    "predHome": 0,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W47",
+    "predHome": 0,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W48",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.970Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W2",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W1",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W16",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W17",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W34",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W33",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W3",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W4",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W19",
+    "predHome": 0,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W18",
+    "predHome": 4,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W36",
+    "predHome": 0,
+    "predAway": 5,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W35",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W5",
+    "predHome": 5,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W6",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W21",
+    "predHome": 4,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W20",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W38",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W37",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W7",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W8",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W23",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W22",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W40",
+    "predHome": 0,
+    "predAway": 4,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W39",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W10",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W9",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W25",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W24",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W41",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W42",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W11",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W12",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W27",
+    "predHome": 0,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W26",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W43",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W44",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W13",
+    "predHome": 5,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W30",
+    "predHome": 0,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W29",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W28",
+    "predHome": 4,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W46",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W45",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W15",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W14",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W31",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W32",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W47",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W48",
+    "predHome": 0,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.971Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W2",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W1",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W16",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W17",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W34",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W33",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W3",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W4",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W19",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W18",
+    "predHome": 4,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W36",
+    "predHome": 0,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W35",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W5",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W6",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W21",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W20",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W38",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W37",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W7",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W8",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W23",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W22",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W40",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W39",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W10",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W9",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W25",
+    "predHome": 4,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W24",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W41",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W42",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W11",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W12",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W27",
+    "predHome": 0,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W26",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W43",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W44",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W13",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W30",
+    "predHome": 0,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W29",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W28",
+    "predHome": 4,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W46",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W45",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W15",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W14",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W31",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W32",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W47",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W48",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.972Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W2",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W1",
+    "predHome": 1,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W16",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W17",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W34",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W33",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W3",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W4",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W19",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W18",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W36",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W35",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W5",
+    "predHome": 4,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W6",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W21",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W20",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W38",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W37",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W7",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W8",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W23",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W22",
+    "predHome": 1,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W40",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W39",
+    "predHome": 0,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W10",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W9",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W25",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W24",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W41",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W42",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W11",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W12",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W27",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W26",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W43",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W44",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W13",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W30",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W29",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W28",
+    "predHome": 4,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W46",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W45",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W15",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W14",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W31",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W32",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W47",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W48",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.973Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W2",
+    "predHome": 0,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W1",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W16",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W17",
+    "predHome": 0,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W34",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W33",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W3",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W4",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W19",
+    "predHome": 0,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W18",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W36",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W35",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W5",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W6",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W21",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W20",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W38",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W37",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W7",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W8",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W23",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W22",
+    "predHome": 0,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W40",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W39",
+    "predHome": 0,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W10",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W9",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W25",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W24",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W41",
+    "predHome": 0,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W42",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W11",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W12",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W27",
+    "predHome": 0,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W26",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W43",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W44",
+    "predHome": 0,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W13",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W30",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W29",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W28",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W46",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W45",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W15",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W14",
+    "predHome": 0,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W31",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W32",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W47",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W48",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W2",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W1",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W16",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W17",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W34",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W33",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W3",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W4",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W19",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W18",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W36",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W35",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W5",
+    "predHome": 4,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W6",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W21",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W20",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W38",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W37",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W7",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W8",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W23",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W22",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W40",
+    "predHome": 0,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W39",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W10",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W9",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W25",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W24",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W41",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W42",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W11",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W12",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W27",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W26",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W43",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W44",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W13",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W30",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W29",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W28",
+    "predHome": 4,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W46",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W45",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W15",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W14",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W31",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W32",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W47",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W48",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.974Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W2",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W1",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W16",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W17",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W34",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W33",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W3",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W4",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W19",
+    "predHome": 0,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W18",
+    "predHome": 1,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W36",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W35",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W5",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W6",
+    "predHome": 3,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W21",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W20",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W38",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W37",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W7",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W8",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W23",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W22",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W40",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W39",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W10",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W9",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W25",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W24",
+    "predHome": 4,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W41",
+    "predHome": 4,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W42",
+    "predHome": 1,
+    "predAway": 4,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W11",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W12",
+    "predHome": 3,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W27",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W26",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W43",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W44",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W13",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W30",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W29",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W28",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W46",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W45",
+    "predHome": 3,
+    "predAway": 4,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W15",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W14",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W31",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W32",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W47",
+    "predHome": 1,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W48",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.975Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W2",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W1",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W16",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W17",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W34",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W33",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W3",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W4",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W19",
+    "predHome": 0,
+    "predAway": 4,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W18",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W36",
+    "predHome": 2,
+    "predAway": 5,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W35",
+    "predHome": 4,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W5",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W6",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W21",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W20",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W38",
+    "predHome": 0,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W37",
+    "predHome": 0,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W7",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W8",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W23",
+    "predHome": 1,
+    "predAway": 4,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W22",
+    "predHome": 1,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W40",
+    "predHome": 0,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W39",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W10",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W9",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W25",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W24",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W41",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W42",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W11",
+    "predHome": 0,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W12",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W27",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W26",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W43",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W44",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W13",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W30",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W29",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W28",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W46",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W45",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W15",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W14",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W31",
+    "predHome": 4,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W32",
+    "predHome": 1,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W47",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W48",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.982Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W2",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W1",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W16",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W17",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W34",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W33",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W3",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W4",
+    "predHome": 1,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W19",
+    "predHome": 0,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W18",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W36",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W35",
+    "predHome": 1,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W5",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W6",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W21",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W20",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W38",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W37",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W7",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W8",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W23",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W22",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W40",
+    "predHome": 0,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W39",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W10",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W9",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W25",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W24",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W41",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W42",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W11",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W12",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W27",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W26",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W43",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W44",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W13",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W30",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W29",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W28",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W46",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W45",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W15",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W14",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W31",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W32",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W47",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W48",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:55.989Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W2",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W1",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W16",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W17",
+    "predHome": 1,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W34",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W33",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W3",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W4",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W19",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W18",
+    "predHome": 4,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W36",
+    "predHome": 1,
+    "predAway": 4,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W35",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W5",
+    "predHome": 4,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W6",
+    "predHome": 3,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W21",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W20",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W38",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W37",
+    "predHome": 0,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W7",
+    "predHome": 2,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W8",
+    "predHome": 3,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W23",
+    "predHome": 0,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W22",
+    "predHome": 2,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W40",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W39",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W10",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W9",
+    "predHome": 0,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W25",
+    "predHome": 4,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W24",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W41",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W42",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W11",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W12",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W27",
+    "predHome": 1,
+    "predAway": 4,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W26",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W43",
+    "predHome": 1,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W44",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W13",
+    "predHome": 5,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W30",
+    "predHome": 0,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W29",
+    "predHome": 1,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W28",
+    "predHome": 5,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W46",
+    "predHome": 3,
+    "predAway": 3,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W45",
+    "predHome": 0,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W15",
+    "predHome": 3,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W14",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W31",
+    "predHome": 4,
+    "predAway": 0,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W32",
+    "predHome": 2,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W47",
+    "predHome": 1,
+    "predAway": 1,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W48",
+    "predHome": 1,
+    "predAway": 2,
+    "timestamp": "2025-06-24T08:21:56.009Z"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W49",
+    "predHome": 1,
+    "predAway": 1,
+    "predPenalties": {
+      "home": 1,
+      "away": 2
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W50",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W51",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W52",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W53",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W54",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W55",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W56",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W57",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W58",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W59",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W60",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W61",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W62",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "jorge",
+    "matchId": "W63",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W49",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W50",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W51",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W52",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W53",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W54",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W55",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W56",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W57",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W58",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W59",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W60",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W61",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W62",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "carlos",
+    "matchId": "W63",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W49",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W50",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W51",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W52",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W53",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W54",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W55",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W56",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W57",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W58",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W59",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W60",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W61",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W62",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "paul",
+    "matchId": "W63",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W49",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W50",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W51",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W52",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W53",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W54",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W55",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W56",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W57",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W58",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W59",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W60",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W61",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W62",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "sergii",
+    "matchId": "W63",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W49",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W50",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W51",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W52",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W53",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W54",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W55",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W56",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W57",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W58",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W59",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W60",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W61",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W62",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "gonzalo",
+    "matchId": "W63",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W49",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W50",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W51",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W52",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W53",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W54",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W55",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W56",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W57",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W58",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W59",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W60",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W61",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W62",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "mario",
+    "matchId": "W63",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W49",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W50",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W51",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W52",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W53",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W54",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W55",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W56",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W57",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W58",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W59",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W60",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W61",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W62",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "almudena",
+    "matchId": "W63",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W49",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W50",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W51",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W52",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W53",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W54",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W55",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W56",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W57",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W58",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W59",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W60",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W61",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W62",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "guillermo",
+    "matchId": "W63",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W49",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W50",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W51",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W52",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W53",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W54",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W55",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W56",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W57",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W58",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W59",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W60",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W61",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W62",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "nacho",
+    "matchId": "W63",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W49",
+    "predHome": "-",
+    "predAway": "-",
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W50",
+    "predHome": "-",
+    "predAway": "-",
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W51",
+    "predHome": "-",
+    "predAway": "-",
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W52",
+    "predHome": "-",
+    "predAway": "-",
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W53",
+    "predHome": "-",
+    "predAway": "-",
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W54",
+    "predHome": "-",
+    "predAway": "-",
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W55",
+    "predHome": "-",
+    "predAway": "-",
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W56",
+    "predHome": "-",
+    "predAway": "-",
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W57",
+    "predHome": "-",
+    "predAway": "-",
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W58",
+    "predHome": "-",
+    "predAway": "-",
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W59",
+    "predHome": "-",
+    "predAway": "-",
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W60",
+    "predHome": "-",
+    "predAway": "-",
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W61",
+    "predHome": "-",
+    "predAway": "-",
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W62",
+    "predHome": "-",
+    "predAway": "-",
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "asier",
+    "matchId": "W63",
+    "predHome": "-",
+    "predAway": "-",
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W49",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W50",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W51",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W52",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W53",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W54",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W55",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W56",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W57",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W58",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W59",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W60",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W61",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W62",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "diego",
+    "matchId": "W63",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W49",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W50",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W51",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W52",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W53",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W54",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W55",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W56",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W57",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W58",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W59",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W60",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W61",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W62",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "vicente",
+    "matchId": "W63",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W49",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W50",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W51",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W52",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W53",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W54",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W55",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W56",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W57",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W58",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W59",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W60",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W61",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W62",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "adrian",
+    "matchId": "W63",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W49",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W50",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W51",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W52",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W53",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W54",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W55",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W56",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W57",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W58",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W59",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W60",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W61",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W62",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "paula",
+    "matchId": "W63",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W49",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W50",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W51",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W52",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W53",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W54",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W55",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W56",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W57",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W58",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W59",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W60",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W61",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W62",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "juan",
+    "matchId": "W63",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W49",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W50",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W51",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W52",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W53",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W54",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W55",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W56",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W57",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W58",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W59",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W60",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W61",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W62",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "lucas",
+    "matchId": "W63",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "david",
+    "matchId": "W49",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "david",
+    "matchId": "W50",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "david",
+    "matchId": "W51",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "david",
+    "matchId": "W52",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "david",
+    "matchId": "W53",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "david",
+    "matchId": "W54",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "david",
+    "matchId": "W55",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "david",
+    "matchId": "W56",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "david",
+    "matchId": "W57",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "david",
+    "matchId": "W58",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "david",
+    "matchId": "W59",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "david",
+    "matchId": "W60",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "david",
+    "matchId": "W61",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "david",
+    "matchId": "W62",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  },
+  {
+    "userId": "david",
+    "matchId": "W63",
+    "predHome": 0,
+    "predAway": 0,
+    "predPenalties": {
+      "home": 0,
+      "away": 0
+    },
+    "timestamp": "2025-06-14T00:00:00+02:00"
+  }
+]

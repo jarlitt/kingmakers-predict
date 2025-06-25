@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Predicciones Copa Mundial de Clubes 2025</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="header-content">
+        <img src="k-logo.svg" alt="KingMakers" class="logo"/>
+        <h1 class="main-title">2025 FIFA Club World Cup Porra</h1>
+      </div>
+    </header>
+
+    <nav class="nav-tabs">
+      <button id="btnClasif" class="tab-button tab-active">
+        <span class="tab-icon">🏆</span>
+        Leaderboard
+      </button>
+      <button id="btnPred" class="tab-button">
+        <span class="tab-icon">⚽</span>
+        Predictions
+      </button>
+    </nav>
+
+    <main class="main-content">
+      <section id="predTab" class="tab-content">
+        <div class="prediction-controls card">
+          <div class="control-group">
+            <label for="participantSelect" class="control-label">Select Participant</label>
+            <select id="participantSelect" class="select-input"></select>
+          </div>
+          <div id="leaderSnippet" class="leader-snippet"></div>
+          <h1 id="predTitle" class="section-title"></h1>
+        </div>
+
+        <div class="predictions-section">
+          <div class="section-header">
+            <h3 class="section-title">Group Stage</h3>
+          </div>
+          <div class="table-container">
+            <table id="groupPredictionsTable" class="predictions-table">
+              <thead>
+                <tr>
+                  <th>Time</th>
+                  <th>Round</th>
+                  <th>Match</th>
+                  <th>Prediction</th>
+                  <th>Result</th>
+                  <th>Points</th>
+                </tr>
+              </thead>
+              <tbody id="groupPredictionsBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <section id="standingsSection" class="standings-section" style="display:none;">
+          <div class="section-header">
+            <h2 class="section-title">Group Classifications</h2>
+          </div>
+          <div id="standingsContainer" class="standings-grid"></div>
+        </section>
+
+        <div class="predictions-section">
+          <div class="section-header">
+            <h3 class="section-title">Knockout Stage</h3>
+          </div>
+          <div class="table-container">
+            <table id="koPredictionsTable" class="predictions-table">
+              <thead>
+                <tr>
+                  <th>Time</th>
+                  <th>Round</th>
+                  <th>Predicted Match</th>
+                  <th>Actual Match</th>
+                  <th>Prediction</th>
+                  <th>Result</th>
+                  <th>Points</th>
+                </tr>
+              </thead>
+              <tbody id="koPredictionsBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="clasifTab" class="tab-content" style="display:none;">
+          <h1 class="section-title">Overall Leaderboard</h1>
+          <p id="updatedAt" class="last-updated"></p>
+        
+        <div class="table-container">
+          <table id="leaderboardTable" class="leaderboard-table">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Participant</th>
+                <th>Points</th>
+                <th id="prevDayHeader">Previous Day Points</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const participantSelect = document.getElementById('participantSelect');
+    const btnPred=document.getElementById('btnPred');
+    const btnClasif=document.getElementById('btnClasif');
+    const predTab=document.getElementById('predTab');
+    const clasifTab=document.getElementById('clasifTab');
+    const groupPredictionsBody = document.getElementById('groupPredictionsBody');
+    const groupPredictionsTable = document.getElementById('groupPredictionsTable');
+    const koPredictionsBody = document.getElementById('koPredictionsBody');
+    const koPredictionsTable = document.getElementById('koPredictionsTable');
+    const standingsContainer = document.getElementById('standingsContainer');
+    const standingsSection = document.getElementById('standingsSection');
+    const predControls=document.querySelector('.prediction-controls');
+    const predTitle=document.getElementById('predTitle');
+
+    let participants = [];
+    let leaderboard = [];
+    let matchesById = {};
+    let predictions = [];
+    let groupStandings = {};
+    let realGroupStandings = {};
+    let resultsById = {};
+    let teamIdToName = {};
+    let currentPredStandings = {}; // clasific. del usuario actual
+
+    async function loadData() {
+      try {
+        // Cargamos todos los ficheros necesarios en paralelo
+        const [participantsRes, matchesRes, predictionsRes, standingsRes, resultsRes, teamsRes] = await Promise.all([
+          fetch('participants.json'),
+          fetch('matches.json'),
+          fetch('predictions.json'),
+          fetch('group-standings.json'),
+          fetch('results.json'),
+          fetch('teams.json')
+        ]);
+
+        participants = (await participantsRes.json()).filter(p => !(p.displayName==='Asier' || p.userId==='asier'));
+        const matchesArray = await matchesRes.json();
+        predictions = await predictionsRes.json();
+        groupStandings = await standingsRes.json();
+        const resultsArray = await resultsRes.json();
+        const teamsArray = await teamsRes.json();
+
+        // 𝗡𝗨𝗘𝗩𝗢: Recalcular clasificación real en base a los últimos resultados
+        realGroupStandings = computeRealGroupStandings(matchesArray, resultsArray, teamsArray);
+
+        // Pasamos los arrays a diccionarios por id para lookup rápido
+        matchesArray.forEach(m => { matchesById[m.matchId] = m; });
+        resultsArray.forEach(r => { resultsById[r.matchId] = r; });
+        teamIdToName = Object.fromEntries(teamsArray.map(t => [t.teamId, t.name]));
+
+        // Calculamos puntos totales por participante
+        const pointsByUser = {};
+        predictions.forEach(pred => {
+          const res = resultsArray.find(r => r.matchId === pred.matchId);
+          let pts = 0;
+          if (res && res.homeGoals !== null && res.awayGoals !== null) {
+            const diffRes = res.homeGoals - res.awayGoals;
+            const diffPred = pred.predHome - pred.predAway;
+            if (pred.predHome === res.homeGoals && pred.predAway === res.awayGoals) {
+              pts = 5;
+            } else if ((diffRes === 0 && diffPred === 0) || (diffRes > 0 && diffPred > 0) || (diffRes < 0 && diffPred < 0)) {
+              pts = 3;
+            }
+          }
+          pointsByUser[pred.userId] = (pointsByUser[pred.userId] || 0) + pts;
+        });
+
+        // Añadimos puntos de clasificación de grupos
+        Object.keys(groupStandings).forEach(uid=>{
+          const userGroups=groupStandings[uid];
+          if(!userGroups) return;
+          Object.keys(userGroups).forEach(g=>{
+            if(isGroupComplete(realGroupStandings[g])){
+              const pts=calcGroupPoints(userGroups[g], realGroupStandings[g]);
+              pointsByUser[uid]=(pointsByUser[uid]||0)+pts;
+            }
+          });
+        });
+
+        leaderboard = Object.entries(pointsByUser).filter(([userId])=>userId!=='asier').map(([userId, pts]) => {
+          const p = participants.find(pr => pr.userId === userId);
+          return { userId, displayName: p ? p.displayName : userId, points: pts };
+        }).sort((a, b) => b.points - a.points);
+
+        renderLeaderboard();
+
+        populateSelect();
+        // Valor recordado
+        const savedParticipant = localStorage.getItem('lastParticipant') || '';
+        if(participantSelect.querySelector(`option[value="${savedParticipant}"]`)){
+          participantSelect.value = savedParticipant;
+        }
+        participantSelect.addEventListener('change', () => {
+          localStorage.setItem('lastParticipant', participantSelect.value);
+          displayParticipant(participantSelect.value);
+        });
+
+        // Seleccionar pestaña guardada
+        const savedTab = localStorage.getItem('lastTab') || 'clasif';
+        showTab(savedTab);
+      } catch (err) {
+        console.error('Error cargando datos:', err);
+        alert('Hubo un problema cargando los datos. Revisa la consola para más detalles.');
+      }
+    }
+
+    function populateSelect() {
+      // Opción por defecto vacía
+      const defaultOpt=document.createElement('option');
+      defaultOpt.value='';
+      defaultOpt.textContent='Select a participant...';
+      participantSelect.appendChild(defaultOpt);
+      // Resto de participantes en orden alfabético
+      [...participants].sort((a,b)=> a.displayName.localeCompare(b.displayName,'es',{sensitivity:'base'})).forEach(p => {
+        const option = document.createElement('option');
+        option.value = p.userId;
+        option.textContent = p.displayName;
+        participantSelect.appendChild(option);
+      });
+    }
+
+    function createStandingTable(data) {
+        const table = document.createElement('table');
+        table.classList.add('group-table');
+        
+        const thead = document.createElement('thead');
+        thead.innerHTML = '<tr><th>Pos</th><th>Team</th><th>MP</th><th>Pts</th><th>GF</th><th>GA</th><th>GD</th></tr>';
+        table.appendChild(thead);
+        
+        const tbody = document.createElement('tbody');
+        if (data) {
+            data.forEach(team => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td><span class="position-badge pos-${team.position}">${team.position}</span></td><td class="team-name">${team.teamName}</td><td>${team.matchesPlayed ?? '-'}</td><td class="points-cell">${team.points}</td><td>${team.goalsFor}</td><td>${team.goalsAgainst}</td><td class="goal-diff ${team.goalDifference > 0 ? 'positive' : team.goalDifference < 0 ? 'negative' : ''}">${team.goalDifference > 0 ? '+' : ''}${team.goalDifference}</td>`;
+                tbody.appendChild(tr);
+            });
+        }
+        table.appendChild(tbody);
+        return table;
+    }
+
+    function displayParticipant(userId) {
+      const snippetDiv=document.getElementById('leaderSnippet');
+      // Referencias a headings h3 (Grupo y KO)
+      const groupSection = document.querySelector('.predictions-section:first-of-type');
+      const koSection = document.querySelector('.predictions-section:last-of-type');
+
+      const predSections=document.querySelectorAll('.predictions-section');
+
+      if(!userId){
+        // Limpiar y ocultar todo
+        groupPredictionsBody.innerHTML='';
+        koPredictionsBody.innerHTML='';
+        standingsContainer.innerHTML='';
+        groupPredictionsTable.style.display='none';
+        koPredictionsTable.style.display='none';
+        standingsSection.style.display='none';
+        if(groupSection) groupSection.style.display='none';
+        if(koSection) koSection.style.display='none';
+        snippetDiv.innerHTML='';
+        if(predTitle){ predTitle.textContent=''; }
+        predSections.forEach(sec=> sec.style.display='none');
+        return;
+      }
+
+      // Asegurar que elementos estén visibles al seleccionar participante
+      groupPredictionsTable.style.display='';
+      koPredictionsTable.style.display='';
+      if(groupSection) groupSection.style.display='';
+      if(koSection) koSection.style.display='';
+      standingsSection.style.display='block';
+      
+      // Construimos snippet prev-actual-next
+      snippetDiv.innerHTML='';
+      if(leaderboard.length && participants.find(p=>p.userId===userId)){
+          const idx=leaderboard.findIndex(e=>e.userId===userId);
+          const lines=[];
+          const makeLine=(entry, bold=false)=>{
+              const text=`${entry.rank}º ${entry.displayName} | ${entry.points} points`;
+              return bold?`<div class="snippet-line current">${text}</div>`:`<div class="snippet-line">${text}</div>`;
+          };
+          leaderboard.forEach((e,i)=>{ e.rank=i+1; });
+          if(idx>0){ lines.push(makeLine(leaderboard[idx-1])); }
+          lines.push(makeLine(leaderboard[idx], true));
+          if(idx<leaderboard.length-1){ lines.push(makeLine(leaderboard[idx+1])); }
+          snippetDiv.innerHTML=lines.join('');
+      }
+
+      // 1. Mostramos predicciones de partidos
+      const userPreds = predictions.filter(p => p.userId === userId);
+      groupPredictionsBody.innerHTML = '';
+      koPredictionsBody.innerHTML = '';
+      if (userPreds.length > 0) {
+        // Ordenamos las predicciones por fecha de partido
+        userPreds.sort((a, b) => {
+            const dateA = new Date(matchesById[a.matchId]?.dateTime || 0);
+            const dateB = new Date(matchesById[b.matchId]?.dateTime || 0);
+            return dateA - dateB;
+        });
+
+        // Split predictions
+        const groupPreds = userPreds.filter(p => matchesById[p.matchId]?.phase === 'group');
+        const koPreds = userPreds.filter(p => matchesById[p.matchId] && matchesById[p.matchId].phase !== 'group');
+
+        // Render group predictions
+        if (groupPreds.length>0){ renderPredTable(groupPreds, groupPredictionsBody,false); }
+
+        // Render KO predictions
+        if (koPreds.length>0){ renderPredTable(koPreds, koPredictionsBody,true); }
+
+        if(groupPreds.length>0 || koPreds.length>0){ predTab.style.display='block'; } else { predTab.style.display='none'; }
+      } else {
+        // Si no hay predicciones pero sí usuario, dejamos tablas vacías
+        groupPredictionsBody.innerHTML='';
+        koPredictionsBody.innerHTML='';
+      }
+      
+      // 2. Mostramos clasificaciones de grupos (predicción vs real)
+      standingsContainer.innerHTML = '';
+      const userStandings = groupStandings[userId];
+      currentPredStandings = userStandings || {};
+      const participant = participants.find(p => p.userId === userId);
+      const userName = participant ? participant.displayName : userId;
+
+      if (userStandings && Object.keys(realGroupStandings).length > 0) {
+        Object.keys(userStandings).sort().forEach(groupKey => {
+            const groupCard = document.createElement('div');
+            groupCard.className = 'group-card';
+            
+            const groupTitle = document.createElement('h3');
+            groupTitle.className = 'group-title';
+            groupTitle.textContent = `Group ${groupKey}`;
+            groupCard.appendChild(groupTitle);
+            
+            const tablesContainer = document.createElement('div');
+            tablesContainer.className = 'group-tables';
+            
+            // Columna de Predicción
+            const predictedDiv = document.createElement('div');
+            predictedDiv.className = 'table-column';
+            const predictedTitle = document.createElement('h4');
+            predictedTitle.className = 'table-subtitle';
+            predictedTitle.textContent = `Prediction (${userName})`;
+            predictedDiv.appendChild(predictedTitle);
+            predictedDiv.appendChild(createStandingTable(userStandings[groupKey]));
+            tablesContainer.appendChild(predictedDiv);
+
+            // Columna Real
+            const realDiv = document.createElement('div');
+            realDiv.className = 'table-column';
+            const realTitle = document.createElement('h4');
+            realTitle.className = 'table-subtitle';
+            realTitle.textContent = 'Actual';
+            realDiv.appendChild(realTitle);
+            realDiv.appendChild(createStandingTable(realGroupStandings[groupKey]));
+            tablesContainer.appendChild(realDiv);
+
+            // Columna de Puntos
+            const ptsDiv=document.createElement('div');
+            ptsDiv.className='points-column';
+            const ptsTitle=document.createElement('h4');
+            ptsTitle.className = 'table-subtitle';
+            ptsTitle.textContent='Points';
+            ptsDiv.appendChild(ptsTitle);
+            const ptsValue=document.createElement('div');
+            ptsValue.className = 'points-display';
+            let ptsText='-';
+            if(isGroupComplete(realGroupStandings[groupKey])){
+              const ptsCalc=calcGroupPoints(userStandings[groupKey], realGroupStandings[groupKey]);
+              ptsText=ptsCalc.toString();
+              ptsValue.classList.add('points-earned');
+            }
+            ptsValue.innerHTML = `<span class="points-number">${ptsText}</span>`;
+            if(ptsText==='-') ptsValue.classList.add('points-pending');
+            ptsDiv.appendChild(ptsValue);
+
+            // Desglose o aviso
+            const ptsDesc=document.createElement('div');
+            ptsDesc.className='points-description';
+            if(isGroupComplete(realGroupStandings[groupKey])){
+              const ptsCalc=parseInt(ptsText,10);
+              let reason='';
+              switch(ptsCalc){
+                case 7: reason='Perfect order prediction';break;
+                case 5: reason='Both qualifiers correct';break;
+                case 2: reason='One qualifier correct';break;
+                default: reason='No correct predictions';
+              }
+              ptsDesc.textContent=reason;
+            } else {
+              ptsDesc.textContent='Group not finished';
+            }
+            ptsDiv.appendChild(ptsDesc);
+            tablesContainer.appendChild(ptsDiv);
+
+            groupCard.appendChild(tablesContainer);
+            standingsContainer.appendChild(groupCard);
+        });
+        predTab.style.display = 'block';
+      } else {
+        predTab.style.display = 'none';
+      }
+    }
+
+    function renderPredTable(predArray, tbody, isKO){
+        tbody.innerHTML='';
+        // Sort predictions by date ascending
+        predArray.sort((a,b)=> new Date(matchesById[a.matchId].dateTime)- new Date(matchesById[b.matchId].dateTime));
+
+        // Agrupamos por día (YYYY-MM-DD)
+        const groups = {};
+        predArray.forEach(p=>{
+            const dKey = matchesById[p.matchId]?.dateTime.split('T')[0];
+            if(!groups[dKey]) groups[dKey]=[];
+            groups[dKey].push(p);
+        });
+
+        const dateKeys = Object.keys(groups).sort();
+        const today=new Date();
+        const yyyyMmDd=(d)=>d.toISOString().split('T')[0];
+        const yesterdayKey=yyyyMmDd(new Date(today.getFullYear(),today.getMonth(),today.getDate()-1));
+
+        // NUEVO: determinar el primer día con al menos un partido sin resultado (solo para fase de grupos)
+        let ongoingDayKey = null;
+        if(!isKO){
+          dateKeys.some(dk=>{
+              const hasUnfinished=groups[dk].some(pred=>{
+                  const res=resultsById[pred.matchId];
+                  return !(res && res.homeGoals!==null && res.awayGoals!==null);
+              });
+              if(hasUnfinished){ ongoingDayKey=dk; return true; }
+              return false;
+          });
+        }
+
+        // Función para calcular puntos por predicción
+        const calcPoints = (pred)=>{
+            const res=resultsById[pred.matchId];
+            if(res && res.homeGoals!==null){
+                const diff=res.homeGoals-res.awayGoals;
+                const predDiff=pred.predHome-pred.predAway;
+                if(pred.predHome===res.homeGoals && pred.predAway===res.awayGoals){return 5;}
+                if((diff===0 && predDiff===0)||(diff>0 && predDiff>0)||(diff<0 && predDiff<0)){return 3;}
+            }
+            return 0;
+        };
+
+        const dayPointsMap = {};
+        dateKeys.forEach(k=>{
+            dayPointsMap[k]=groups[k].reduce((sum,p)=> sum+calcPoints(p),0);
+        });
+
+        dateKeys.forEach(dateKey=>{
+            const headerTr=document.createElement('tr');
+            headerTr.className='day-header';
+            const colSpan=isKO?7:6;
+            const formattedDate=formatDateEnglish(new Date(dateKey));
+            const isInitiallyOpen = (new Date(dateKey).setHours(0,0,0,0)) >= (new Date(today.getFullYear(),today.getMonth(),today.getDate()-1).setHours(0,0,0,0));
+            const arrow=isInitiallyOpen?'▼':'▶';
+            const pts=dayPointsMap[dateKey];
+            const ongoingLabel = dateKey===ongoingDayKey?'<span class="ongoing-badge">LIVE</span>':'';
+            headerTr.innerHTML=`<td colspan="${colSpan}"><div class="day-header-content"><span class="arrow">${arrow}</span><span class="date-text">${formattedDate}</span>${ongoingLabel}<span class="points-badge">${pts} pts</span></div></td>`;
+            tbody.appendChild(headerTr);
+
+            // rows for this date
+            groups[dateKey].forEach(pred=>{
+                const matchInfo=matchesById[pred.matchId];
+                const date=new Date(matchInfo.dateTime);
+                const timePart=date.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',hour12:false});
+                const matchDate=`${timePart}`;
+
+                let roundText='-';
+                switch(matchInfo.phase){case 'group':roundText=`Group ${matchInfo.group}`;break;case 'ro16':roundText='Round of 16';break;case 'qf':roundText='Quarter-Final';break;case 'sf':roundText='Semi-Final';break;case 'final':roundText='Final';break;default:roundText=matchInfo.phase;}
+                if(isKO){ roundText += ` (${matchInfo.matchId})`; }
+
+                const predScore=`${pred.predHome} - ${pred.predAway}`;
+                const realResObj=resultsById[pred.matchId];
+                const realScore=(realResObj && realResObj.homeGoals!==null)?`${realResObj.homeGoals} - ${realResObj.awayGoals}`:'-';
+                let points=0;
+                if(realResObj && realResObj.homeGoals!==null){
+                    const diff=realResObj.homeGoals-realResObj.awayGoals;
+                    const predDiff=pred.predHome-pred.predAway;
+                    if(pred.predHome===realResObj.homeGoals && pred.predAway===realResObj.awayGoals){points=5;}
+                    else if((diff===0 && predDiff===0)||(diff>0 && predDiff>0)||(diff<0 && predDiff<0)){points=3;}
+                }
+
+                let rowHtml='';
+                if(isKO){
+                    const resolveUserToken=(tok)=>{
+                      if(teamIdToName[tok]) return teamIdToName[tok];
+                      if(/^[12][A-H]$/i.test(tok)){
+                        const pos=parseInt(tok[0],10);
+                        const grp=tok[1].toUpperCase();
+                        const arr=currentPredStandings[grp];
+                        if(arr && arr[pos-1]) return arr[pos-1].teamName;
+                      }
+                      return tok;
+                    };
+                    // NUEVO: obtenemos los placeholders originales del displayName
+                    const parts = matchInfo.displayName.split(' vs ').map(s => s.trim());
+                    let predictedName;
+                    if(parts.length === 2){
+                      const homeTok = parts[0];
+                      const awayTok = parts[1];
+                      predictedName = `${resolveUserToken(homeTok)} vs ${resolveUserToken(awayTok)}`;
+                    } else {
+                      // Fallback a comportamiento previo si no se puede parsear
+                      predictedName = `${resolveUserToken(matchInfo.homeTeam)} vs ${resolveUserToken(matchInfo.awayTeam)}`;
+                    }
+                    const realName=getRealKOName(matchInfo);
+                    rowHtml=`<td class="time-cell">${matchDate}</td><td class="round-cell">${roundText}</td><td class="match-cell">${predictedName}</td><td class="match-cell">${realName}</td><td class="score-cell prediction">${predScore}</td><td class="score-cell result">${realScore}</td><td class="points-cell"><span class="points-badge ${points > 0 ? 'earned' : 'none'}">${points}</span></td>`;
+                } else {
+                    const matchCol=matchInfo.displayName;
+                    rowHtml=`<td class="time-cell">${matchDate}</td><td class="round-cell">${roundText}</td><td class="match-cell">${matchCol}</td><td class="score-cell prediction">${predScore}</td><td class="score-cell result">${realScore}</td><td class="points-cell"><span class="points-badge ${points > 0 ? 'earned' : 'none'}">${points}</span></td>`;
+                }
+                const tr=document.createElement('tr');
+                tr.className=`match-row row-${dateKey}`;
+                tr.innerHTML=rowHtml;
+                tbody.appendChild(tr);
+            });
+
+            // collapsible behaviour
+            const toggleRows=()=>{
+                let next=headerTr.nextElementSibling;
+                while(next && !next.classList.contains('day-header')){
+                    next.style.display = (next.style.display==='none')?'':'none';
+                    next=next.nextElementSibling;
+                }
+            };
+            headerTr.addEventListener('click',()=>{
+                toggleRows();
+                const arrowSpan=headerTr.querySelector('.arrow');
+                if(arrowSpan){ arrowSpan.textContent = (arrowSpan.textContent==='▼')?'▶':'▼'; }
+            });
+
+            // Inicialmente colapsamos si no debe estar abierto
+            if(!isInitiallyOpen){
+                toggleRows();
+                const arrowSpan=headerTr.querySelector('.arrow');
+                if(arrowSpan){ arrowSpan.textContent='▶'; }
+            }
+        });
+    }
+
+    function resolveTeamToken(token) {
+      if (teamIdToName[token]) return teamIdToName[token];
+      if (/^[12][A-H]$/i.test(token)) {
+        const pos = parseInt(token[0], 10);
+        const group = token[1].toUpperCase();
+        const standingsArr = realGroupStandings[group];
+        const groupFinished = standingsArr && standingsArr.every(t => t.matchesPlayed === 3);
+        if (groupFinished && standingsArr[pos - 1]) {
+          return standingsArr[pos - 1].teamName;
+        }
+      }
+      return token; // Mantener placeholder (Wxx, 1A, etc.)
+    }
+
+    function getRealKOName(match) {
+      // NUEVO: resolvemos a partir de displayName para mantener placeholders cuando proceda
+      const parts = match.displayName.split(' vs ').map(s => s.trim());
+      if(parts.length === 2){
+        const home = resolveTeamToken(parts[0]);
+        const away = resolveTeamToken(parts[1]);
+        return `${home} vs ${away}`;
+      }
+      const home = resolveTeamToken(match.homeTeam);
+      const away = resolveTeamToken(match.awayTeam);
+      return `${home} vs ${away}`;
+    }
+
+    function showTab(tab){
+        if(tab==='pred'){
+            predTab.style.display='block';
+            clasifTab.style.display='none';
+            standingsSection.style.display='block';
+            predControls.style.display='block';
+            btnPred.classList.add('tab-active');
+            btnClasif.classList.remove('tab-active');
+            displayParticipant(participantSelect.value);
+            predTitle.textContent='';
+        } else {
+            predTab.style.display='none';
+            clasifTab.style.display='block';
+            standingsSection.style.display='none';
+            predControls.style.display='none';
+            btnClasif.classList.add('tab-active');
+            btnPred.classList.remove('tab-active');
+            predTitle.textContent='';
+        }
+    }
+
+    btnPred.addEventListener('click',()=>{ localStorage.setItem('lastTab','pred'); showTab('pred'); });
+    btnClasif.addEventListener('click',()=>{ localStorage.setItem('lastTab','clasif'); showTab('clasif'); });
+
+    function renderLeaderboard(){
+        const tbody=document.querySelector('#leaderboardTable tbody');
+        tbody.innerHTML='';
+
+        // Determinar día ongoing y el inmediatamente anterior con todos los partidos finalizados
+        const allDateMap={};
+        Object.values(matchesById).forEach(m=>{
+          const dKey=m.dateTime.split('T')[0];
+          if(!allDateMap[dKey]) allDateMap[dKey]=[];
+          allDateMap[dKey].push(m);
+        });
+        const allDateKeys=Object.keys(allDateMap).sort();
+        let ongoingKey=null;
+        for(const dk of allDateKeys){
+          const unfinished=allDateMap[dk].some(m=>{
+            const res=resultsById[m.matchId];
+            return !(res && res.homeGoals!==null && res.awayGoals!==null);
+          });
+          if(unfinished){ ongoingKey=dk; break; }
+        }
+        const prevDayKey=allDateKeys[allDateKeys.indexOf(ongoingKey)-1] || null;
+
+        // Actualizar cabecera con fecha
+        const prevHeader=document.getElementById('prevDayHeader');
+        if(prevHeader){
+          if(prevDayKey){
+            const dateObj=new Date(prevDayKey);
+            const dateStr=formatDateEnglish(dateObj);
+            prevHeader.textContent=`Points ${dateStr}`;
+          } else {
+            prevHeader.textContent='Points';
+          }
+        }
+
+        // Calcular puntos obtenidos por usuario en prevDayKey
+        const pointsYesterday={};
+        if(prevDayKey){
+          const calcPts=(pred)=>{
+            const res=resultsById[pred.matchId];
+            if(res && res.homeGoals!==null){
+              const diff=res.homeGoals-res.awayGoals;
+              const predDiff=pred.predHome-pred.predAway;
+              if(pred.predHome===res.homeGoals && pred.predAway===res.awayGoals) return 5;
+              if((diff===0 && predDiff===0)||(diff>0 && predDiff>0)||(diff<0 && predDiff<0)) return 3;
+            }
+            return 0;
+          };
+          predictions.forEach(pred=>{
+            const match=matchesById[pred.matchId];
+            if(match && match.dateTime.split('T')[0]===prevDayKey){
+              pointsYesterday[pred.userId]=(pointsYesterday[pred.userId]||0)+calcPts(pred);
+            }
+          });
+          // Añadir puntos de grupos finalizados ese día
+          Object.keys(realGroupStandings).forEach(g=>{
+            const groupMatches=Object.values(matchesById).filter(m=>m.phase==='group' && m.group===g);
+            const lastDate=groupMatches.reduce((max,m)=> m.dateTime>max?m.dateTime:max,'');
+            if(lastDate.split('T')[0]===prevDayKey){
+              participants.forEach(p=>{
+                const uid=p.userId;
+                const userGs=groupStandings[uid];
+                if(userGs && userGs[g]){
+                  const pts=calcGroupPoints(userGs[g], realGroupStandings[g]);
+                  pointsYesterday[uid]=(pointsYesterday[uid]||0)+pts;
+                }
+              });
+            }
+          });
+        }
+
+        // Construir ranking del día anterior
+        const prevTotals=leaderboard.map(e=>({userId:e.userId, pts:e.points-(pointsYesterday[e.userId]||0)}));
+        prevTotals.sort((a,b)=> b.pts - a.pts);
+        const prevRankMap={};
+        let prevRankNum=1, lastPrevPts=null;
+        prevTotals.forEach((item,idx)=>{
+          if(idx>0 && item.pts!==lastPrevPts){ prevRankNum=idx+1; }
+          prevRankMap[item.userId]=prevRankNum;
+          lastPrevPts=item.pts;
+        });
+
+        leaderboard.forEach((entry,idx)=>{
+            const tr=document.createElement('tr');
+            tr.className = 'leaderboard-row';
+            // Empates en puntos -> "=" excepto primer miembro del empate
+            let posDisplay = idx+1;
+            if(idx>0 && entry.points === leaderboard[idx-1].points){ posDisplay='='; }
+
+            const gained=pointsYesterday[entry.userId]||0;
+
+            // Variación de posiciones
+            const currentRankNum=(posDisplay==='=')? (function(){
+                // buscar rank number of first tied above
+                let i=idx;
+                while(i>0 && leaderboard[i-1].points===entry.points){ i--; }
+                return i+1;
+            })(): idx+1;
+            const prevRank=prevRankMap[entry.userId]||currentRankNum;
+            const diffRank=prevRank-currentRankNum; // positivo si sube
+            let deltaHtml='';
+            if(diffRank>0){ deltaHtml=`<span class="rank-change up">+${diffRank}</span>`; }
+            else if(diffRank<0){ deltaHtml=`<span class="rank-change down">-${Math.abs(diffRank)}</span>`; }
+
+            // Medal icons for top 3
+            let rankDisplay = posDisplay;
+            if (currentRankNum === 1) rankDisplay = '🥇';
+            else if (currentRankNum === 2) rankDisplay = '🥈';
+            else if (currentRankNum === 3) rankDisplay = '🥉';
+
+            tr.innerHTML=`
+              <td class="rank-cell">
+                <div class="rank-content">
+                  <span class="rank-number">${rankDisplay}</span>
+                  ${deltaHtml}
+                </div>
+              </td>
+              <td class="participant-cell">
+                <div class="participant-name">${entry.displayName}</div>
+              </td>
+              <td class="points-cell">
+                <span class="total-points">${entry.points}</span>
+              </td>
+              <td class="gained-cell">
+                <span class="gained-points ${gained > 0 ? 'positive' : ''}">${gained > 0 ? '+' : ''}${gained}</span>
+              </td>
+            `;
+            tbody.appendChild(tr);
+        });
+
+        // Timestamp actualizado
+        const updatedEl=document.getElementById('updatedAt');
+        let lastDate=null;
+        Object.keys(resultsById).forEach(mid=>{
+            const res=resultsById[mid];
+            if(res.homeGoals!==null && res.awayGoals!==null){
+                const match=matchesById[mid];
+                if(match){
+                    const d=new Date(match.dateTime);
+                    if(!lastDate || d>lastDate){ lastDate=d; }
+                }
+            }
+        });
+        if(lastDate){
+            // Usar la fecha/hora del último partido completo y sumar 3 horas
+            const ts=new Date(lastDate.getTime()+3*60*60*1000);
+            const dateStr=formatDateEnglish(ts);
+            const timeStr=ts.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',hour12:false});
+            updatedEl.textContent=`Last updated: ${dateStr}, ${timeStr}`;
+        }
+    }
+
+    // Calcula puntos de clasificación de grupo según reglas
+    function calcGroupPoints(predicted, real){
+      if(!predicted || !real || predicted.length<4 || real.length<4) return 0;
+      const predOrder = predicted.map(t=>t.teamName).join('|');
+      const realOrder = real.map(t=>t.teamName).join('|');
+      if(predOrder===realOrder){ return 7; }
+      const predQual = predicted.slice(0,2).map(t=>t.teamName);
+      const realQual = real.slice(0,2).map(t=>t.teamName);
+      const matches = predQual.filter(n=>realQual.includes(n)).length;
+      if(matches===2) return 5;
+      if(matches===1) return 2;
+      return 0;
+    }
+
+    // Devuelve true si un grupo terminó (3 partidos cada equipo)
+    function isGroupComplete(realArr){
+      return realArr && realArr.length && realArr.every(t=>t.matchesPlayed===3);
+    }
+
+    /** ----------------------------------------------------------
+     *  NUEVA FUNCIÓN: calcular clasificación real a partir de resultados
+     *  (reglas simplificadas: puntos, diferencia de goles, goles a favor)
+     * ---------------------------------------------------------*/
+    function computeRealGroupStandings(matchesArr, resultsArr, teamsArr){
+      const teamIdToName = Object.fromEntries(teamsArr.map(t=>[t.teamId, t.name]));
+      const teamIdToGroup = Object.fromEntries(teamsArr.map(t=>[t.teamId, t.group]));
+      const standings = {};
+      // Agrupar por equipo -> stats base
+      const statsMap = {};
+      teamsArr.forEach(t=>{
+        statsMap[t.teamId]={
+          teamId:t.teamId,
+          teamName:teamIdToName[t.teamId],
+          points:0, goalsFor:0, goalsAgainst:0, goalDifference:0, matchesPlayed:0
+        };
+      });
+      // Procesar cada resultado de fase de grupos
+      matchesArr.forEach(match=>{
+        if(match.phase!== 'group') return;
+        const res = resultsArr.find(r=> r.matchId===match.matchId);
+        if(!res || res.homeGoals===null || res.awayGoals===null) return;
+        const homeStats = statsMap[match.homeTeam];
+        const awayStats = statsMap[match.awayTeam];
+        if(!homeStats || !awayStats) return;
+        // Actualizar PJ
+        homeStats.matchesPlayed++; awayStats.matchesPlayed++;
+        // Goles
+        homeStats.goalsFor += res.homeGoals; homeStats.goalsAgainst += res.awayGoals;
+        awayStats.goalsFor += res.awayGoals; awayStats.goalsAgainst += res.homeGoals;
+        // Puntos
+        if(res.homeGoals>res.awayGoals){ homeStats.points+=3; }
+        else if(res.homeGoals<res.awayGoals){ awayStats.points+=3; }
+        else { homeStats.points+=1; awayStats.points+=1; }
+      });
+      // Calcular DG y agrupar por grupo
+      Object.values(statsMap).forEach(st=>{
+        st.goalDifference = st.goalsFor - st.goalsAgainst;
+        const grp = teamIdToGroup[st.teamId];
+        if(!standings[grp]) standings[grp]=[];
+        standings[grp].push(st);
+      });
+      // Ordenar y añadir posición
+      Object.keys(standings).forEach(g=>{
+        standings[g].sort((a,b)=>{
+          if(b.points!==a.points) return b.points-a.points;
+          if(b.goalDifference!==a.goalDifference) return b.goalDifference-a.goalDifference;
+          if(b.goalsFor!==a.goalsFor) return b.goalsFor-a.goalsFor;
+          return a.teamName.localeCompare(b.teamName);
+        });
+        standings[g].forEach((t,idx)=> t.position = idx+1);
+      });
+      return standings;
+    }
+
+    // Devuelve fecha en inglés: 25th June
+    function formatDateEnglish(date){
+      const day=date.getDate();
+      const suffix=(day%10===1&&day!==11)?'st':(day%10===2&&day!==12)?'nd':(day%10===3&&day!==13)?'rd':'th';
+      const month=date.toLocaleString('en-GB',{month:'long'});
+      return `${day}${suffix} ${month}`;
+    }
+
+    // Iniciamos la app
+    loadData();
+
+    // Eliminado el Service Worker: si hubiera uno previo, lo desregistramos
+    if('serviceWorker' in navigator){
+      navigator.serviceWorker.getRegistrations().then(regs=>{
+        regs.forEach(r=> r.unregister());
+      });
+    }
+  </script>
+</body>
+</html>

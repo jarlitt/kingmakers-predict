@@ -1,0 +1,554 @@
+[
+  {
+    "matchId": "W1",
+    "dateTime": "2025-06-16T00:00:00+02:00",
+    "homeTeam": "PAL",
+    "awayTeam": "POR",
+    "phase": "group",
+    "group": "A",
+    "displayName": "Palmeiras vs Porto"
+  },
+  {
+    "matchId": "W2",
+    "dateTime": "2025-06-15T02:00:00+02:00",
+    "homeTeam": "AHL",
+    "awayTeam": "MIA",
+    "phase": "group",
+    "group": "A",
+    "displayName": "Al Ahly vs Inter Miami"
+  },
+  {
+    "matchId": "W3",
+    "dateTime": "2025-06-15T21:00:00+02:00",
+    "homeTeam": "PSG",
+    "awayTeam": "ATM",
+    "phase": "group",
+    "group": "B",
+    "displayName": "PSG vs At. Madrid"
+  },
+  {
+    "matchId": "W4",
+    "dateTime": "2025-06-16T04:00:00+02:00",
+    "homeTeam": "BOT",
+    "awayTeam": "SEA",
+    "phase": "group",
+    "group": "B",
+    "displayName": "Botafogo vs Seattle Sounders"
+  },
+  {
+    "matchId": "W5",
+    "dateTime": "2025-06-15T18:00:00+02:00",
+    "homeTeam": "BAY",
+    "awayTeam": "AUC",
+    "phase": "group",
+    "group": "C",
+    "displayName": "Bayern Munich vs Auckland City"
+  },
+  {
+    "matchId": "W6",
+    "dateTime": "2025-06-17T00:00:00+02:00",
+    "homeTeam": "BOC",
+    "awayTeam": "BEN",
+    "phase": "group",
+    "group": "C",
+    "displayName": "Boca Juniors vs Benfica"
+  },
+  {
+    "matchId": "W7",
+    "dateTime": "2025-06-16T21:00:00+02:00",
+    "homeTeam": "CHE",
+    "awayTeam": "LAF",
+    "phase": "group",
+    "group": "D",
+    "displayName": "Chelsea vs LAFC"
+  },
+  {
+    "matchId": "W8",
+    "dateTime": "2025-06-17T03:00:00+02:00",
+    "homeTeam": "FLA",
+    "awayTeam": "EST",
+    "phase": "group",
+    "group": "D",
+    "displayName": "Flamengo vs ES Tunis"
+  },
+  {
+    "matchId": "W9",
+    "dateTime": "2025-06-18T03:00:00+02:00",
+    "homeTeam": "MON",
+    "awayTeam": "INT",
+    "phase": "group",
+    "group": "E",
+    "displayName": "Monterrey vs Inter Milan"
+  },
+  {
+    "matchId": "W10",
+    "dateTime": "2025-06-17T21:00:00+02:00",
+    "homeTeam": "RIV",
+    "awayTeam": "URA",
+    "phase": "group",
+    "group": "E",
+    "displayName": "River Plate vs Urawa Reds"
+  },
+  {
+    "matchId": "W11",
+    "dateTime": "2025-06-17T18:00:00+02:00",
+    "homeTeam": "FLU",
+    "awayTeam": "DOR",
+    "phase": "group",
+    "group": "F",
+    "displayName": "Fluminense vs B. Dortmund"
+  },
+  {
+    "matchId": "W12",
+    "dateTime": "2025-06-18T00:00:00+02:00",
+    "homeTeam": "ULS",
+    "awayTeam": "SUN",
+    "phase": "group",
+    "group": "F",
+    "displayName": "Ulsan HD vs Sundowns"
+  },
+  {
+    "matchId": "W13",
+    "dateTime": "2025-06-18T18:00:00+02:00",
+    "homeTeam": "MCI",
+    "awayTeam": "WYD",
+    "phase": "group",
+    "group": "G",
+    "displayName": "Manchester City vs Wydad"
+  },
+  {
+    "matchId": "W14",
+    "dateTime": "2025-06-19T00:00:00+02:00",
+    "homeTeam": "PAC",
+    "awayTeam": "SAL",
+    "phase": "group",
+    "group": "H",
+    "displayName": "Pachuca vs Salzburg"
+  },
+  {
+    "matchId": "W15",
+    "dateTime": "2025-06-18T21:00:00+02:00",
+    "homeTeam": "RMA",
+    "awayTeam": "HIL",
+    "phase": "group",
+    "group": "H",
+    "displayName": "Real Madrid vs Al Hilal"
+  },
+  {
+    "matchId": "W16",
+    "dateTime": "2025-06-19T18:00:00+02:00",
+    "homeTeam": "PAL",
+    "awayTeam": "AHL",
+    "phase": "group",
+    "group": "A",
+    "displayName": "Palmeiras vs Al Ahly"
+  },
+  {
+    "matchId": "W17",
+    "dateTime": "2025-06-19T21:00:00+02:00",
+    "homeTeam": "MIA",
+    "awayTeam": "POR",
+    "phase": "group",
+    "group": "A",
+    "displayName": "Inter Miami vs Porto"
+  },
+  {
+    "matchId": "W18",
+    "dateTime": "2025-06-20T03:00:00+02:00",
+    "homeTeam": "PSG",
+    "awayTeam": "BOT",
+    "phase": "group",
+    "group": "B",
+    "displayName": "PSG vs Botafogo"
+  },
+  {
+    "matchId": "W19",
+    "dateTime": "2025-06-20T00:00:00+02:00",
+    "homeTeam": "SEA",
+    "awayTeam": "ATM",
+    "phase": "group",
+    "group": "B",
+    "displayName": "Seattle Sounders vs At. Madrid"
+  },
+  {
+    "matchId": "W20",
+    "dateTime": "2025-06-21T03:00:00+02:00",
+    "homeTeam": "BAY",
+    "awayTeam": "BOC",
+    "phase": "group",
+    "group": "C",
+    "displayName": "Bayern Munich vs Boca Juniors"
+  },
+  {
+    "matchId": "W21",
+    "dateTime": "2025-06-20T18:00:00+02:00",
+    "homeTeam": "BEN",
+    "awayTeam": "AUC",
+    "phase": "group",
+    "group": "C",
+    "displayName": "Benfica vs Auckland City"
+  },
+  {
+    "matchId": "W22",
+    "dateTime": "2025-06-21T00:00:00+02:00",
+    "homeTeam": "LAF",
+    "awayTeam": "EST",
+    "phase": "group",
+    "group": "D",
+    "displayName": "LAFC vs ES Tunis"
+  },
+  {
+    "matchId": "W23",
+    "dateTime": "2025-06-20T20:00:00+02:00",
+    "homeTeam": "FLA",
+    "awayTeam": "CHE",
+    "phase": "group",
+    "group": "D",
+    "displayName": "Flamengo vs Chelsea"
+  },
+  {
+    "matchId": "W24",
+    "dateTime": "2025-06-22T03:00:00+02:00",
+    "homeTeam": "RIV",
+    "awayTeam": "MON",
+    "phase": "group",
+    "group": "E",
+    "displayName": "River Plate vs Monterrey"
+  },
+  {
+    "matchId": "W25",
+    "dateTime": "2025-06-21T21:00:00+02:00",
+    "homeTeam": "INT",
+    "awayTeam": "URA",
+    "phase": "group",
+    "group": "E",
+    "displayName": "Inter Milan vs Urawa Reds"
+  },
+  {
+    "matchId": "W26",
+    "dateTime": "2025-06-22T00:00:00+02:00",
+    "homeTeam": "FLU",
+    "awayTeam": "ULS",
+    "phase": "group",
+    "group": "F",
+    "displayName": "Fluminense vs Ulsan HD"
+  },
+  {
+    "matchId": "W27",
+    "dateTime": "2025-06-21T18:00:00+02:00",
+    "homeTeam": "SUN",
+    "awayTeam": "DOR",
+    "phase": "group",
+    "group": "F",
+    "displayName": "Sundowns vs B. Dortmund"
+  },
+  {
+    "matchId": "W28",
+    "dateTime": "2025-06-23T03:00:00+02:00",
+    "homeTeam": "MCI",
+    "awayTeam": "AAI",
+    "phase": "group",
+    "group": "G",
+    "displayName": "Manchester City vs Al Ain"
+  },
+  {
+    "matchId": "W29",
+    "dateTime": "2025-06-22T18:00:00+02:00",
+    "homeTeam": "JUV",
+    "awayTeam": "WYD",
+    "phase": "group",
+    "group": "G",
+    "displayName": "Juventus vs Wydad"
+  },
+  {
+    "matchId": "W30",
+    "dateTime": "2025-06-19T03:00:00+02:00",
+    "homeTeam": "AAI",
+    "awayTeam": "JUV",
+    "phase": "group",
+    "group": "G",
+    "displayName": "Al Ain vs Juventus"
+  },
+  {
+    "matchId": "W31",
+    "dateTime": "2025-06-22T21:00:00+02:00",
+    "homeTeam": "RMA",
+    "awayTeam": "PAC",
+    "phase": "group",
+    "group": "H",
+    "displayName": "Real Madrid vs Pachuca"
+  },
+  {
+    "matchId": "W32",
+    "dateTime": "2025-06-23T00:00:00+02:00",
+    "homeTeam": "SAL",
+    "awayTeam": "HIL",
+    "phase": "group",
+    "group": "H",
+    "displayName": "Salzburg vs Al Hilal"
+  },
+  {
+    "matchId": "W33",
+    "dateTime": "2025-06-24T03:00:00+02:00",
+    "homeTeam": "POR",
+    "awayTeam": "AHL",
+    "phase": "group",
+    "group": "A",
+    "displayName": "Porto vs Al Ahly"
+  },
+  {
+    "matchId": "W34",
+    "dateTime": "2025-06-24T03:00:00+02:00",
+    "homeTeam": "MIA",
+    "awayTeam": "PAL",
+    "phase": "group",
+    "group": "A",
+    "displayName": "Inter Miami vs Palmeiras"
+  },
+  {
+    "matchId": "W35",
+    "dateTime": "2025-06-23T21:00:00+02:00",
+    "homeTeam": "ATM",
+    "awayTeam": "BOT",
+    "phase": "group",
+    "group": "B",
+    "displayName": "At. Madrid vs Botafogo"
+  },
+  {
+    "matchId": "W36",
+    "dateTime": "2025-06-23T21:00:00+02:00",
+    "homeTeam": "SEA",
+    "awayTeam": "PSG",
+    "phase": "group",
+    "group": "B",
+    "displayName": "Seattle Sounders vs PSG"
+  },
+  {
+    "matchId": "W37",
+    "dateTime": "2025-06-24T21:00:00+02:00",
+    "homeTeam": "BEN",
+    "awayTeam": "BAY",
+    "phase": "group",
+    "group": "C",
+    "displayName": "Benfica vs Bayern Munich"
+  },
+  {
+    "matchId": "W38",
+    "dateTime": "2025-06-24T21:00:00+02:00",
+    "homeTeam": "AUC",
+    "awayTeam": "BOC",
+    "phase": "group",
+    "group": "C",
+    "displayName": "Auckland City vs Boca Juniors"
+  },
+  {
+    "matchId": "W39",
+    "dateTime": "2025-06-25T03:00:00+02:00",
+    "homeTeam": "LAF",
+    "awayTeam": "FLA",
+    "phase": "group",
+    "group": "D",
+    "displayName": "LAFC vs Flamengo"
+  },
+  {
+    "matchId": "W40",
+    "dateTime": "2025-06-25T03:00:00+02:00",
+    "homeTeam": "EST",
+    "awayTeam": "CHE",
+    "phase": "group",
+    "group": "D",
+    "displayName": "ES Tunis vs Chelsea"
+  },
+  {
+    "matchId": "W41",
+    "dateTime": "2025-06-26T03:00:00+02:00",
+    "homeTeam": "URA",
+    "awayTeam": "MON",
+    "phase": "group",
+    "group": "E",
+    "displayName": "Urawa Reds vs Monterrey"
+  },
+  {
+    "matchId": "W42",
+    "dateTime": "2025-06-26T03:00:00+02:00",
+    "homeTeam": "INT",
+    "awayTeam": "RIV",
+    "phase": "group",
+    "group": "E",
+    "displayName": "Inter Milan vs River Plate"
+  },
+  {
+    "matchId": "W43",
+    "dateTime": "2025-06-25T21:00:00+02:00",
+    "homeTeam": "DOR",
+    "awayTeam": "ULS",
+    "phase": "group",
+    "group": "F",
+    "displayName": "B. Dortmund vs Ulsan HD"
+  },
+  {
+    "matchId": "W44",
+    "dateTime": "2025-06-25T21:00:00+02:00",
+    "homeTeam": "SUN",
+    "awayTeam": "FLU",
+    "phase": "group",
+    "group": "F",
+    "displayName": "Sundowns vs Fluminense"
+  },
+  {
+    "matchId": "W45",
+    "dateTime": "2025-06-26T21:00:00+02:00",
+    "homeTeam": "JUV",
+    "awayTeam": "MCI",
+    "phase": "group",
+    "group": "G",
+    "displayName": "Juventus vs Manchester City"
+  },
+  {
+    "matchId": "W46",
+    "dateTime": "2025-06-26T21:00:00+02:00",
+    "homeTeam": "WYD",
+    "awayTeam": "AAI",
+    "phase": "group",
+    "group": "G",
+    "displayName": "Wydad vs Al Ain"
+  },
+  {
+    "matchId": "W47",
+    "dateTime": "2025-06-27T03:00:00+02:00",
+    "homeTeam": "HIL",
+    "awayTeam": "PAC",
+    "phase": "group",
+    "group": "H",
+    "displayName": "Al Hilal vs Pachuca"
+  },
+  {
+    "matchId": "W48",
+    "dateTime": "2025-06-27T03:00:00+02:00",
+    "homeTeam": "SAL",
+    "awayTeam": "RMA",
+    "phase": "group",
+    "group": "H",
+    "displayName": "Salzburg vs Real Madrid"
+  },
+  {
+    "matchId": "W49",
+    "dateTime": "2025-06-28T18:00:00+02:00",
+    "homeTeam": "POR",
+    "awayTeam": "BOT",
+    "phase": "ro16",
+    "displayName": "1A vs 2B"
+  },
+  {
+    "matchId": "W50",
+    "dateTime": "2025-06-28T22:00:00+02:00",
+    "homeTeam": "BAY",
+    "awayTeam": "FLA",
+    "phase": "ro16",
+    "displayName": "1C vs 2D"
+  },
+  {
+    "matchId": "W51",
+    "dateTime": "2025-06-30T21:00:00+02:00",
+    "homeTeam": "INT",
+    "awayTeam": "FLU",
+    "phase": "ro16",
+    "displayName": "1E vs 2F"
+  },
+  {
+    "matchId": "W52",
+    "dateTime": "2025-07-01T03:00:00+02:00",
+    "homeTeam": "MCI",
+    "awayTeam": "SAL",
+    "phase": "ro16",
+    "displayName": "1G vs 2H"
+  },
+  {
+    "matchId": "W53",
+    "dateTime": "2025-06-29T18:00:00+02:00",
+    "homeTeam": "SEA",
+    "awayTeam": "MIA",
+    "phase": "ro16",
+    "displayName": "1B vs 2A"
+  },
+  {
+    "matchId": "W54",
+    "dateTime": "2025-06-29T22:00:00+02:00",
+    "homeTeam": "EST",
+    "awayTeam": "BOC",
+    "phase": "ro16",
+    "displayName": "1D vs 2C"
+  },
+  {
+    "matchId": "W55",
+    "dateTime": "2025-07-02T03:00:00+02:00",
+    "homeTeam": "SUN",
+    "awayTeam": "MON",
+    "phase": "ro16",
+    "displayName": "1F vs 2E"
+  },
+  {
+    "matchId": "W56",
+    "dateTime": "2025-07-01T21:00:00+02:00",
+    "homeTeam": "RMA",
+    "awayTeam": "JUV",
+    "phase": "ro16",
+    "displayName": "1H vs 2G"
+  },
+  {
+    "matchId": "W57",
+    "dateTime": "2025-07-05T03:00:00+02:00",
+    "homeTeam": "W49",
+    "awayTeam": "W50",
+    "phase": "qf",
+    "displayName": "W49 vs W50"
+  },
+  {
+    "matchId": "W58",
+    "dateTime": "2025-07-05T18:00:00+02:00",
+    "homeTeam": "W51",
+    "awayTeam": "W52",
+    "phase": "qf",
+    "displayName": "W51 vs W52"
+  },
+  {
+    "matchId": "W59",
+    "dateTime": "2025-07-04T21:00:00+02:00",
+    "homeTeam": "W53",
+    "awayTeam": "W54",
+    "phase": "qf",
+    "displayName": "W53 vs W54"
+  },
+  {
+    "matchId": "W60",
+    "dateTime": "2025-07-05T22:00:00+02:00",
+    "homeTeam": "W55",
+    "awayTeam": "W56",
+    "phase": "qf",
+    "displayName": "W55 vs W56"
+  },
+  {
+    "matchId": "W61",
+    "dateTime": "2025-07-08T21:00:00+02:00",
+    "homeTeam": "W57",
+    "awayTeam": "W58",
+    "phase": "sf",
+    "displayName": "W57 vs W58"
+  },
+  {
+    "matchId": "W62",
+    "dateTime": "2025-07-09T21:00:00+02:00",
+    "homeTeam": "W59",
+    "awayTeam": "W60",
+    "phase": "sf",
+    "displayName": "W59 vs W60"
+  },
+  {
+    "matchId": "W63",
+    "dateTime": "2025-07-13T21:00:00+02:00",
+    "homeTeam": "W61",
+    "awayTeam": "W62",
+    "phase": "final",
+    "displayName": "W61 vs W62"
+  }
+]
