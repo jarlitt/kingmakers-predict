@@ -134,6 +134,8 @@
     let resultsById = {};
     let teamIdToName = {};
     let currentPredStandings = {}; // clasific. del usuario actual
+    let dataLoaded = false;
+    let pendingParticipant=null;
 
     async function loadData() {
       try {
@@ -197,6 +199,11 @@
         }).sort((a, b) => b.points - a.points);
 
         renderLeaderboard();
+        dataLoaded=true;
+        if(pendingParticipant!==null){
+          displayParticipant(pendingParticipant);
+          pendingParticipant=null;
+        }
 
         populateSelect();
         // Valor recordado
@@ -591,7 +598,11 @@
             predControls.style.display='block';
             btnPred.classList.add('tab-active');
             btnClasif.classList.remove('tab-active');
-            displayParticipant(participantSelect.value);
+            if(dataLoaded){
+              displayParticipant(participantSelect.value);
+            } else {
+              pendingParticipant=participantSelect.value;
+            }
             predTitle.textContent='';
         } else {
             predTab.style.display='none';
