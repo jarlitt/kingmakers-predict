@@ -1,0 +1,16 @@
+{
+  "headers": [
+    {
+      "source": "/results.json",
+      "headers": [
+        { "key": "Cache-Control", "value": "max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/predictions.json",
+      "headers": [
+        { "key": "Cache-Control", "value": "max-age=60" }
+      ]
+    }
+  ]
+} 
