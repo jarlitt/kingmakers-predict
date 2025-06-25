@@ -674,337 +674,337 @@
   {
     "userId": "asier",
     "matchId": "W2",
-    "predHome": "0",
-    "predAway": "1",
+    "predHome": 0,
+    "predAway": 1,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W1",
-    "predHome": "1",
-    "predAway": "2",
+    "predHome": 1,
+    "predAway": 2,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W16",
-    "predHome": "1",
-    "predAway": "1",
+    "predHome": 1,
+    "predAway": 1,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W17",
-    "predHome": "1",
-    "predAway": "1",
+    "predHome": 1,
+    "predAway": 1,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W34",
-    "predHome": "2",
-    "predAway": "1",
+    "predHome": 2,
+    "predAway": 1,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W33",
-    "predHome": "1",
-    "predAway": "1",
+    "predHome": 1,
+    "predAway": 1,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W3",
-    "predHome": "2",
-    "predAway": "2",
+    "predHome": 2,
+    "predAway": 2,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W4",
-    "predHome": "1",
-    "predAway": "0",
+    "predHome": 1,
+    "predAway": 0,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W19",
-    "predHome": "1",
-    "predAway": "1",
+    "predHome": 1,
+    "predAway": 1,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W18",
-    "predHome": "1",
-    "predAway": "2",
+    "predHome": 1,
+    "predAway": 2,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W36",
-    "predHome": "1",
-    "predAway": "1",
+    "predHome": 1,
+    "predAway": 1,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W35",
-    "predHome": "1",
-    "predAway": "1",
+    "predHome": 1,
+    "predAway": 1,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W5",
-    "predHome": "1",
-    "predAway": "0",
+    "predHome": 1,
+    "predAway": 0,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W6",
-    "predHome": "1",
-    "predAway": "1",
+    "predHome": 1,
+    "predAway": 1,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W21",
-    "predHome": "1",
-    "predAway": "0",
+    "predHome": 1,
+    "predAway": 0,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W20",
-    "predHome": "2",
-    "predAway": "1",
+    "predHome": 2,
+    "predAway": 1,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W38",
-    "predHome": "0",
-    "predAway": "0",
+    "predHome": 0,
+    "predAway": 0,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W37",
-    "predHome": "1",
-    "predAway": "2",
+    "predHome": 1,
+    "predAway": 2,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W7",
-    "predHome": "1",
-    "predAway": "1",
+    "predHome": 1,
+    "predAway": 1,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W8",
-    "predHome": "1",
-    "predAway": "0",
+    "predHome": 1,
+    "predAway": 0,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W23",
-    "predHome": "1",
-    "predAway": "2",
+    "predHome": 1,
+    "predAway": 2,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W22",
-    "predHome": "0",
-    "predAway": "0",
+    "predHome": 0,
+    "predAway": 0,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W40",
-    "predHome": "0",
-    "predAway": "1",
+    "predHome": 0,
+    "predAway": 1,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W39",
-    "predHome": "1",
-    "predAway": "1",
+    "predHome": 1,
+    "predAway": 1,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W10",
-    "predHome": "2",
-    "predAway": "1",
+    "predHome": 2,
+    "predAway": 1,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W9",
-    "predHome": "1",
-    "predAway": "1",
+    "predHome": 1,
+    "predAway": 1,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W25",
-    "predHome": "2",
-    "predAway": "1",
+    "predHome": 2,
+    "predAway": 1,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W24",
-    "predHome": "1",
-    "predAway": "1",
+    "predHome": 1,
+    "predAway": 1,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W41",
-    "predHome": "0",
-    "predAway": "0",
+    "predHome": 0,
+    "predAway": 0,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W42",
-    "predHome": "2",
-    "predAway": "1",
+    "predHome": 2,
+    "predAway": 1,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W11",
-    "predHome": "1",
-    "predAway": "1",
+    "predHome": 1,
+    "predAway": 1,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W12",
-    "predHome": "1",
-    "predAway": "0",
+    "predHome": 1,
+    "predAway": 0,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W27",
-    "predHome": "0",
-    "predAway": "2",
+    "predHome": 0,
+    "predAway": 2,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W26",
-    "predHome": "1",
-    "predAway": "0",
+    "predHome": 1,
+    "predAway": 0,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W43",
-    "predHome": "1",
-    "predAway": "0",
+    "predHome": 1,
+    "predAway": 0,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W44",
-    "predHome": "0",
-    "predAway": "1",
+    "predHome": 0,
+    "predAway": 1,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W13",
-    "predHome": "1",
-    "predAway": "0",
+    "predHome": 1,
+    "predAway": 0,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W30",
-    "predHome": "0",
-    "predAway": "1",
+    "predHome": 0,
+    "predAway": 1,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W29",
-    "predHome": "1",
-    "predAway": "0",
+    "predHome": 1,
+    "predAway": 0,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W28",
-    "predHome": "1",
-    "predAway": "1",
+    "predHome": 1,
+    "predAway": 1,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W46",
-    "predHome": "0",
-    "predAway": "0",
+    "predHome": 0,
+    "predAway": 0,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W45",
-    "predHome": "1",
-    "predAway": "2",
+    "predHome": 1,
+    "predAway": 2,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W15",
-    "predHome": "2",
-    "predAway": "0",
+    "predHome": 2,
+    "predAway": 0,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W14",
-    "predHome": "0",
-    "predAway": "1",
+    "predHome": 0,
+    "predAway": 1,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W31",
-    "predHome": "1",
-    "predAway": "0",
+    "predHome": 1,
+    "predAway": 0,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W32",
-    "predHome": "1",
-    "predAway": "1",
+    "predHome": 1,
+    "predAway": 1,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W47",
-    "predHome": "1", 
-    "predAway": "0",
+    "predHome": 1,
+    "predAway": 0,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
     "userId": "asier",
     "matchId": "W48",
-    "predHome": "1",
-    "predAway": "2",
+    "predHome": 1,
+    "predAway": 2,
     "timestamp": "2025-06-24T08:21:55.958Z"
   },
   {
@@ -3964,8 +3964,8 @@
   {
     "userId": "mario",
     "matchId": "W29",
-    "predHome": 0,
-    "predAway": 2,
+    "predHome": 3,
+    "predAway": 1,
     "timestamp": "2025-06-24T08:21:55.974Z"
   },
   {

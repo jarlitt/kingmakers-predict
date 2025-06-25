@@ -1120,7 +1120,7 @@ body {
 .collapsible-header{cursor:pointer;display:flex;align-items:center;gap:8px;}
 .collapse-arrow{font-size:12px;color:var(--text-secondary);transition:transform .2s;}
 
-.live-badge{background:var(--accent-danger);color:#fff;font-size:10px;font-weight:600;padding:2px 6px;border-radius:12px;text-transform:uppercase;margin-left:6px;}
+.live-badge{display:none;}
 
 .match-cell { text-align: left !important; }
 
@@ -1171,3 +1171,17 @@ body {
 
 /* Color de fondo específico para la celda de fecha (day-header) */
 .predictions-table .day-header td{ background:#edeff1 !important; }
+
+/* Toggle botones vista de fase de grupos */
+.view-switch{display:flex;gap:8px;margin-bottom:12px;}
+.toggle-btn{padding:6px 12px;border:1px solid var(--border-default);background:var(--bg-secondary);border-radius:var(--radius-sm);font-size:12px;color:var(--text-secondary);cursor:pointer;transition:all .2s ease;}
+.toggle-btn:hover{background:var(--bg-accent);color:var(--text-primary);}
+.toggle-btn.active{background:var(--bg-secondary);color:var(--accent-primary);box-shadow:var(--shadow-sm);font-weight:600;}
+
+/* Badge de estado (Completed) */
+.status-badge{background:var(--accent-success);color:#fff;font-size:10px;font-weight:600;padding:2px 6px;border-radius:12px;text-transform:uppercase;margin-left:6px;}
+
+/* Icon badges */
+.badge-icon{width:14px;height:14px;vertical-align:middle;margin-left:6px;}
+.live-icon{animation:pulse 1.5s ease-in-out infinite;}
+@keyframes pulse{0%{opacity:1;}50%{opacity:0.3;}100%{opacity:1;}}
