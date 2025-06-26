@@ -124,6 +124,7 @@
     let realGroupStandings = {};
     let resultsById = {};
     let teamIdToName = {};
+    let teamIdToBadge = {};
     let currentPredStandings = {}; // clasific. del usuario actual
     let groupPredView = 'date'; // 'date' o 'group'
     let dataLoaded = false;
@@ -211,6 +212,7 @@
         setLiveBadge('koPredHeader',liveKO);
 
         teamIdToName = Object.fromEntries(teamsArray.map(t => [t.teamId, t.name]));
+        teamIdToBadge = Object.fromEntries(teamsArray.map(t => [t.teamId, t.badge || '']));
 
         // 𝗡𝗨𝗘𝗩𝗢: Calcular clasificación pronosticada para cada participante a partir de sus predicciones
         groupStandings = computeAllPredictedGroupStandings(matchesArray, predictions, teamsArray);
@@ -310,7 +312,8 @@
         if (data) {
             data.forEach(team => {
                 const tr = document.createElement('tr');
-                tr.innerHTML = `<td><span class="position-badge pos-${team.position}">${team.position}</span></td><td class="team-name">${team.teamName}</td><td>${team.matchesPlayed ?? '-'}</td><td class="points-cell">${team.points}</td><td>${team.goalsFor}</td><td>${team.goalsAgainst}</td><td class="goal-diff ${team.goalDifference > 0 ? 'positive' : team.goalDifference < 0 ? 'negative' : ''}">${team.goalDifference > 0 ? '+' : ''}${team.goalDifference}</td>`;
+                const badgeImg = teamIdToBadge[team.teamId] ? `<img src="${teamIdToBadge[team.teamId]}" class="team-badge" alt="${team.teamName} badge"/>` : '';
+                tr.innerHTML = `<td><span class="position-badge pos-${team.position}">${team.position}</span></td><td class="team-name">${badgeImg}${team.teamName}</td><td>${team.matchesPlayed ?? '-'}</td><td class="points-cell">${team.points}</td><td>${team.goalsFor}</td><td>${team.goalsAgainst}</td><td class="goal-diff ${team.goalDifference > 0 ? 'positive' : team.goalDifference < 0 ? 'negative' : ''}">${team.goalDifference > 0 ? '+' : ''}${team.goalDifference}</td>`;
                 tbody.appendChild(tr);
             });
         }
@@ -427,8 +430,13 @@
             const groupTitle=document.createElement('h3');
             groupTitle.className='group-title';
             groupTitle.textContent=`Group ${groupKey}`;
+            // Flecha colapsable
+            const arrowGrp=document.createElement('span');
+            arrowGrp.className='collapse-arrow';
+            arrowGrp.textContent='▼';
+            headerTop.classList.add('collapsible-header');
+            headerTop.appendChild(arrowGrp);
             headerTop.appendChild(groupTitle);
-            // badge se añadirá después de calcularlo
 
             headerWrap.appendChild(headerTop);
             // placeholder for description; añadiremos después
@@ -501,6 +509,51 @@
 
             groupCard.appendChild(tablesContainer);
             standingsContainer.appendChild(groupCard);
+
+            // Comportamiento de colapsar/expandir
+            headerTop.addEventListener('click',()=>{
+              const hidden = tablesContainer.style.display==='none';
+              tablesContainer.style.display = hidden? '' : 'none';
+              arrowGrp.textContent = hidden? '▼' : '▶';
+            });
+
+            // Determinar estado LIVE y completado del grupo
+            const groupMatchesAll = Object.values(matchesById).filter(m=> m.phase==='group' && m.group===groupKey);
+            const nowMsGrp = Date.now();
+            const liveWindowGrp = nowMsGrp + 24*60*60*1000;
+            let isLiveGroup = false;
+            let isCompleteGroup = true;
+            groupMatchesAll.forEach(m=>{
+              const res=resultsById[m.matchId];
+              const played = res && res.homeGoals!==null && res.awayGoals!==null;
+              if(!played){
+                isCompleteGroup=false;
+                const t=new Date(m.dateTime).getTime();
+                if(t>=nowMsGrp && t<=liveWindowGrp){ isLiveGroup=true; }
+              }
+            });
+
+            const insertStatusBadge=(imgEl)=>{ groupTitle.insertAdjacentElement('afterend', imgEl); };
+            if(isLiveGroup){
+              const liveImg=document.createElement('img');
+              liveImg.src='live.svg';
+              liveImg.alt='Live';
+              liveImg.className='badge-icon live-icon';
+              insertStatusBadge(liveImg);
+            } else if(isCompleteGroup){
+              const checkImg=document.createElement('img');
+              checkImg.src='check.svg';
+              checkImg.alt='Completed';
+              checkImg.className='badge-icon';
+              insertStatusBadge(checkImg);
+            }
+
+            // Estado inicial colapsado/expandido
+            const initiallyCollapsed = isCompleteGroup && !isLiveGroup;
+            if(initiallyCollapsed){
+              tablesContainer.style.display='none';
+              arrowGrp.textContent='▶';
+            }
         });
         predTab.style.display = 'block';
       } else {
@@ -543,7 +596,7 @@
     function renderPredTable(predArray, tbody, isKO){
         tbody.innerHTML='';
         // Sort predictions by date ascending
-        predArray.sort((a,b)=> new Date(matchesById[a.matchId].dateTime)- new Date(matchesById[b.matchId].dateTime));
+        predArray.sort((a, b) => new Date(matchesById[a.matchId]?.dateTime) - new Date(matchesById[b.matchId]?.dateTime));
 
         // Agrupamos por día (YYYY-MM-DD)
         const groups = {};
@@ -604,17 +657,46 @@
             dayPointsMap[k]=groups[k].reduce((sum,p)=> sum+calcPoints(p),0);
         });
 
+        // NUEVO: determinar días a mostrar abiertos (último día completo + próximos 24h)
+        const upcomingDayKeys=[];
+        const nowMs=Date.now();
+        const liveWindow=nowMs+24*60*60*1000;
+        const considerLive = (!isKO) || isGroupStageComplete; // En KO solo aplica cuando ya terminó la fase de grupos
+        if(considerLive){
+          dateKeys.forEach(dk=>{
+            const hasUpcoming = groups[dk].some(p=>{
+              const matchInfo=matchesById[p.matchId];
+              const t=new Date(matchInfo.dateTime).getTime();
+              return t>=nowMs && t<=liveWindow;
+            });
+            if(hasUpcoming){ upcomingDayKeys.push(dk); }
+          });
+        }
+
+        let lastCompleteDayKey=null;
+        for(let i=dateKeys.length-1;i>=0;i--){
+          const dk=dateKeys[i];
+          const allPlayed=groups[dk].every(p=>{
+            const res=resultsById[p.matchId];
+            return res && res.homeGoals!==null && res.awayGoals!==null;
+          });
+          if(allPlayed){ lastCompleteDayKey=dk; break; }
+        }
+
         dateKeys.forEach(dateKey=>{
             const headerTr=document.createElement('tr');
             headerTr.className='day-header';
             const colSpan=isKO?7:6;
             const formattedDate=formatDateEnglish(new Date(dateKey));
-            const isInitiallyOpen = (dateKey===ongoingDayKey) || (dateKey===prevDayKey);
+            const isInitiallyOpen = upcomingDayKeys.includes(dateKey) || dateKey===lastCompleteDayKey;
             const arrow=isInitiallyOpen?'▼':'▶';
             const pts=dayPointsMap[dateKey];
-            // Calcular badges
-            const nowMs=Date.now();
-            const liveWindow=nowMs+24*60*60*1000;
+            // Determinar si al menos un partido de ese día ya tiene resultado
+            const anyPlayed = groups[dateKey].some(pred=>{
+                const res=resultsById[pred.matchId];
+                return res && res.homeGoals!==null && res.awayGoals!==null;
+            });
+            const ptsDisplay = anyPlayed ? `${pts} pts` : '-';
             const matchesToday=groups[dateKey];
             const allPlayedDay=matchesToday.every(pred=>{
                 const res=resultsById[pred.matchId];
@@ -630,7 +712,7 @@
             }
             const liveBadge=liveFlag?'<img src="live.svg" class="badge-icon live-icon" alt="Live"/>':'';
             const completedBadge=(allPlayedDay && new Date(dateKey).getTime()<nowMs)?'<img src="check.svg" class="badge-icon" alt="Completed"/>':'';
-            headerTr.innerHTML=`<td colspan="${colSpan}"><div class="day-header-content"><span class="arrow">${arrow}</span><span class="date-text">${formattedDate}</span>${liveBadge}${completedBadge}<span class="points-badge">${pts} pts</span></div></td>`;
+            headerTr.innerHTML=`<td colspan="${colSpan}"><div class="day-header-content"><span class="arrow">${arrow}</span><span class="date-text">${formattedDate}</span>${liveBadge}${completedBadge}<span class="points-badge">${ptsDisplay}</span></div></td>`;
             tbody.appendChild(headerTr);
 
             // Sub‐header con nombres de columnas para este día
@@ -642,7 +724,8 @@
 
             subHeaderTr.innerHTML=subHeaders.map((h,idx)=>{
                 if(idx===subHeaders.length-1){
-                    return `<td class=\"pts-header-cell\"><span class=\"day-total points-badge\" style=\"display:none\">${pts} pts</span><span class=\"pts-text\">pts</span></td>`;
+                    const inner = anyPlayed ? `${ptsDisplay}` : '-';
+                    return `<td class=\"pts-header-cell\"><span class=\"day-total points-badge\" style=\"display:none\">${inner}</span><span class=\"pts-text\">${anyPlayed?'pts':''}</span></td>`;
                 }
                 return `<td>${h}</td>`;
             }).join('');
@@ -750,10 +833,13 @@
                     rowHtml=`<td class=\"time-cell\">${matchDate}</td><td class=\"round-cell\">${roundHtml}</td><td class=\"match-cell\">${predictedHtml}</td><td class=\"match-cell\">${realHtml}</td><td class=\"score-cell prediction\">${predScoreHtml}</td><td class=\"score-cell result\">${realScoreHtml}</td><td class=\"points-cell\"><span class=\"points-badge ${ptsClass}\">${ptsText}</span></td>`;
                 } else {
                     // Fase de grupos
-                    const partsName = matchInfo.displayName.split(' vs ').map(s=>s.trim());
-                    const matchCol = (partsName.length===2)
-                      ? `<span class=\"home-team\">${partsName[0]}</span><span class=\"vs-sep\">vs</span><span class=\"away-team\">${partsName[1]}</span>`
-                      : matchInfo.displayName;
+                    const homeId = matchInfo.homeTeam;
+                    const awayId = matchInfo.awayTeam;
+                    const homeBadge = teamIdToBadge[homeId] ? `<img src="${teamIdToBadge[homeId]}" class="team-badge" alt="${teamIdToName[homeId] || ''} badge"/>` : '';
+                    const awayBadge = teamIdToBadge[awayId] ? `<img src="${teamIdToBadge[awayId]}" class="team-badge" alt="${teamIdToName[awayId] || ''} badge"/>` : '';
+                    const homeName = teamIdToName[homeId] || matchInfo.displayName.split(' vs ')[0];
+                    const awayName = teamIdToName[awayId] || matchInfo.displayName.split(' vs ')[1];
+                    const matchCol = `<span class=\"home-team\">${homeBadge}<span class=\"team-id\">${homeId}</span><span class=\"team-name-full\">${homeName}</span></span><span class=\"vs-sep\">vs</span><span class=\"away-team\">${awayBadge}<span class=\"team-id\">${awayId}</span><span class=\"team-name-full\">${awayName}</span></span>`;
                     rowHtml=`<td class=\"time-cell\">${matchDate}</td><td class=\"round-cell\">${roundHtml}</td><td class=\"match-cell\">${matchCol}</td><td class=\"score-cell prediction\">${predScoreHtml}</td><td class=\"score-cell result\">${realScoreHtml}</td><td class=\"points-cell\"><span class=\"points-badge ${ptsClass}\">${ptsText}</span></td>`;
                 }
                 const tr=document.createElement('tr');
@@ -1238,18 +1324,29 @@
             return 0;
         };
 
-        // Determinar índices de grupos a mostrar abiertos
-        const incompleteIdxs = groupKeys
-          .map((k,idx)=> isGroupComplete(realGroupStandings[k])? null : idx)
-          .filter(idx=> idx!==null)
-          .slice(0,2); // primeros dos grupos sin completar
+        // NUEVO: calcular grupos LIVE y último completo
+        const isGroupLive = (gKey)=>{
+          const matchesAll = Object.values(matchesById).filter(m=> m.phase==='group' && m.group===gKey);
+          let rec=0, miss=0;
+          matchesAll.forEach(m=>{
+            const res=resultsById[m.matchId];
+            if(res && res.homeGoals!==null && res.awayGoals!==null){ rec++; } else { miss++; }
+          });
+          return rec>0 && miss>0;
+        };
+        const liveGroupKeys = groupKeys.filter(k=> isGroupLive(k));
 
-        groupKeys.forEach((gKey,idx)=>{
+        groupKeys.forEach((gKey)=>{
             const items = groups[gKey].sort((a,b)=> new Date(matchesById[a.matchId].dateTime) - new Date(matchesById[b.matchId].dateTime));
 
-            const isInitiallyOpen = incompleteIdxs.includes(idx);
-            
+            const isInitiallyOpen = liveGroupKeys.includes(gKey);
+            const arrow = isInitiallyOpen ? '▼' : '▶';
             const ptsTotal = items.reduce((sum,p)=> sum+calcPoints(p),0);
+            const anyPlayedGroup = items.some(pred=>{
+                const res=resultsById[pred.matchId];
+                return res && res.homeGoals!==null && res.awayGoals!==null;
+            });
+            const ptsDisplayGrp = anyPlayedGroup ? `${ptsTotal} pts` : '-';
 
             const headerTr=document.createElement('tr');
             headerTr.className='day-header';
@@ -1264,7 +1361,7 @@
             });
             const liveBadge = isLiveGroup ? '<img src="live.svg" class="badge-icon live-icon" alt="Live"/>' : '';
             const completedBadge = isGroupComplete(realGroupStandings[gKey]) ? '<img src="check.svg" class="badge-icon" alt="Completed"/>' : '';
-            headerTr.innerHTML=`<td colspan="6"><div class="day-header-content"><span class="arrow">▼</span><span class="date-text">Group ${gKey}</span>${liveBadge}${completedBadge}<span class="points-badge">${ptsTotal} pts</span></div></td>`;
+            headerTr.innerHTML=`<td colspan="6"><div class="day-header-content"><span class="arrow">${arrow}</span><span class="date-text">Group ${gKey}</span>${liveBadge}${completedBadge}<span class="points-badge">${ptsDisplayGrp}</span></div></td>`;
             tbody.appendChild(headerTr);
 
             const subHeaderTr=document.createElement('tr');
@@ -1272,7 +1369,8 @@
             const subHeaders=['Date','Time','Match','Pred.','Real','Pts'];
             subHeaderTr.innerHTML=subHeaders.map((h,idx)=>{
                 if(idx===subHeaders.length-1){
-                    return `<td class="pts-header-cell"><span class="day-total points-badge" style="display:none">${ptsTotal} pts</span><span class="pts-text">pts</span></td>`;
+                    const inner = anyPlayedGroup ? `${ptsDisplayGrp}` : '-';
+                    return `<td class="pts-header-cell"><span class="day-total points-badge" style="display:none">${inner}</span><span class="pts-text">${anyPlayedGroup?'pts':''}</span></td>`;
                 }
                 return `<td>${h}</td>`;
             }).join('');
@@ -1304,10 +1402,13 @@
                 }
 
                 // Nombre de display
-                const partsName = matchInfo.displayName.split(' vs ').map(s=>s.trim());
-                const matchCol = (partsName.length===2)
-                  ? `<span class="home-team">${partsName[0]}</span><span class="vs-sep">vs</span><span class="away-team">${partsName[1]}</span>`
-                  : matchInfo.displayName;
+                const homeId = matchInfo.homeTeam;
+                const awayId = matchInfo.awayTeam;
+                const homeBadge = teamIdToBadge[homeId] ? `<img src="${teamIdToBadge[homeId]}" class="team-badge" alt="${teamIdToName[homeId] || ''} badge"/>` : '';
+                const awayBadge = teamIdToBadge[awayId] ? `<img src="${teamIdToBadge[awayId]}" class="team-badge" alt="${teamIdToName[awayId] || ''} badge"/>` : '';
+                const homeName = teamIdToName[homeId] || matchInfo.displayName.split(' vs ')[0];
+                const awayName = teamIdToName[awayId] || matchInfo.displayName.split(' vs ')[1];
+                const matchCol = `<span class=\"home-team\">${homeBadge}<span class=\"team-id\">${homeId}</span><span class=\"team-name-full\">${homeName}</span></span><span class=\"vs-sep\">vs</span><span class=\"away-team\">${awayBadge}<span class=\"team-id\">${awayId}</span><span class=\"team-name-full\">${awayName}</span></span>`;
 
                 const rowHtml=`<td class="round-cell">${dateCell}</td><td class="time-cell">${matchDate}</td><td class="match-cell">${matchCol}</td><td class="score-cell prediction">${predScoreHtml}</td><td class="score-cell result">${realScoreHtml}</td><td class="points-cell"><span class="points-badge ${ptsClass}">${ptsText}</span></td>`;
 

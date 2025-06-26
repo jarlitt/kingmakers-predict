@@ -1185,3 +1185,16 @@ body {
 .badge-icon{width:14px;height:14px;vertical-align:middle;margin-left:6px;}
 .live-icon{animation:pulse 1.5s ease-in-out infinite;}
 @keyframes pulse{0%{opacity:1;}50%{opacity:0.3;}100%{opacity:1;}}
+
+.team-badge{width:16px;height:16px;vertical-align:middle;margin-right:6px;}
+
+.match-cell .home-team, .match-cell .away-team { display:block; white-space:nowrap; }
+.vs-sep, .score-sep { display:none; }
+.score-cell .home-score, .score-cell .away-score { display:block; }
+
+.team-id{display:none;font-weight:400;}
+.team-name-full{display:inline;}
+@media (max-width:768px){
+  .team-id{display:inline;}
+  .team-name-full{display:none;}
+}
