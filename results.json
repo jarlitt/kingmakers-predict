@@ -361,8 +361,8 @@
   },
   {
     "matchId": "W41",
-    "homeGoals": null,
-    "awayGoals": null,
+    "homeGoals": 0,
+    "awayGoals": 4,
     "penalties": {
       "homePenaltyGoals": null,
       "awayPenaltyGoals": null
@@ -370,8 +370,8 @@
   },
   {
     "matchId": "W42",
-    "homeGoals": null,
-    "awayGoals": null,
+    "homeGoals": 2,
+    "awayGoals": 0,
     "penalties": {
       "homePenaltyGoals": null,
       "awayPenaltyGoals": null
