@@ -182,7 +182,6 @@ body {
 /* Leader Extra container */
 .leader-extra {
   display: flex; /* lay out children horizontally by default */
-  gap: 96px; /* space between snippet and stats */
   justify-content: flex-start;
 }
 
@@ -1355,4 +1354,28 @@ body {
 @media (min-width:1073px){
   .leader-extra{justify-content:space-between;gap:0;}
   .leader-stats{flex-direction:row;}
+}
+
+@media (min-width:564px){
+  .leader-extra{display:flex;justify-content:space-between;}
+  .leader-snippet{margin-bottom:24px;}
+}
+
+/* Ajustes para mobile mediano: líder-extra apilado a la izquierda */
+@media (max-width: 654px){
+  .leader-extra{
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 24px;
+  }
+  .leader-stats{
+    flex-direction: row;
+  }
+}
+
+/* Ajuste adicional para móviles pequeños */
+@media (max-width: 530px){
+  .leader-stats{
+    flex-direction: column;
+  }
 }

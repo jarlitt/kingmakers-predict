@@ -405,11 +405,17 @@
               return bold?`<div class="snippet-line current">${text}</div>`:`<div class="snippet-line">${text}</div>`;
           };
           leaderboard.forEach((e,i)=>{ e.rank=i+1; });
-          if(idx>1){ lines.push(makeLine(leaderboard[idx-2])); }
-          if(idx>0){ lines.push(makeLine(leaderboard[idx-1])); }
-          lines.push(makeLine(leaderboard[idx], true));
-          if(idx<leaderboard.length-1){ lines.push(makeLine(leaderboard[idx+1])); }
-          if(idx<leaderboard.length-2){ lines.push(makeLine(leaderboard[idx+2])); }
+          // Determinar cuántas líneas mostrar por encima y por debajo según el puesto
+          let up=2, down=2;
+          if(idx===0){ up=0; down=4; }
+          else if(idx===1){ up=1; down=3; }
+
+          const start=Math.max(0, idx-up);
+          const end=Math.min(leaderboard.length-1, idx+down);
+
+          for(let i=start;i<=end;i++){
+            lines.push(makeLine(leaderboard[i], i===idx));
+          }
           snippetDiv.innerHTML=lines.join('');
       }
 
