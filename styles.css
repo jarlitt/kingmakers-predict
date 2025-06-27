@@ -1332,6 +1332,8 @@ body {
   .leaderboard-area .overall-stats{
     flex:1 1 0;
   }
+  .stats-block .stats-group{flex-direction:column;}
+  .leader-stats .stat-group{flex-direction:column;}
 }
 
 /* Márgenes específicos para título y fecha dentro del leaderboard */
