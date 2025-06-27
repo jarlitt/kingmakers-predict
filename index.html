@@ -34,12 +34,15 @@
             <label for="participantSelect" class="control-label">Select Participant</label>
             <select id="participantSelect" class="select-input"></select>
           </div>
-          <div id="leaderSnippet" class="leader-snippet"></div>
+          <div class="leader-extra">
+            <div id="leaderSnippet" class="leader-snippet"></div>
+            <div id="leaderStats" class="leader-stats"></div>
+          </div>
           <h1 id="predTitle" class="section-title"></h1>
         </div>
 
         <div class="predictions-section">
-          <div id="groupStageViewSwitch" class="view-switch" style="margin-bottom:12px; display:flex; gap:8px;">
+          <div id="groupStageViewSwitch" class="view-switch" style="margin-bottom:24px; display:flex; gap:8px;">
             <button id="btnViewDate" class="toggle-btn active">By date</button>
             <button id="btnViewGroup" class="toggle-btn">By group</button>
           </div>
@@ -81,22 +84,24 @@
       </section>
 
       <section id="clasifTab" class="tab-content" style="display:none;">
-          <h1 class="section-title">Overall Leaderboard</h1>
-          <p id="updatedAt" class="last-updated"></p>
-        
-        <div class="table-container">
-          <table id="leaderboardTable" class="leaderboard-table">
-            <thead>
-              <tr>
-                <th>Rank</th>
-                <th>Points</th>
-                <th>Participant</th>
-                <th id="prevDayHeader">Previous Day Points</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </div>
+          <div class="leaderboard-area">
+            <div class="table-container">
+              <h3 class="section-title">Overall Leaderboard</h3>
+              <p id="updatedAt" class="last-updated"></p>
+              <table id="leaderboardTable" class="leaderboard-table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Pts</th>
+                    <th class="progress-header">Form</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <div id="globalStats" class="overall-stats"></div>
+          </div>
       </section>
     </main>
   </div>
@@ -129,6 +134,35 @@
     let groupPredView = 'date'; // 'date' o 'group'
     let dataLoaded = false;
     let pendingParticipant=null;
+    let nameToId = {};
+    // Forzar aperturas específicas solicitadas
+    const FORCE_OPEN_DAYS=['2025-06-26','2025-06-27']; // Fechas que deben mostrarse expandidas en vista "By date"
+    const FORCE_OPEN_GROUPS=['G','H']; // Grupos que deben mostrarse expandidos en vistas por grupo y clasificación
+
+    function getIdFromToken(tok){
+      if(teamIdToBadge[tok]) return tok; // ya es ID
+      if(nameToId[tok]) return nameToId[tok]; // es nombre
+      // placeholder tipo 1A o 2B usando clasificación PRONOSTICADA actual
+      if(/^[12][A-H]$/i.test(tok)){
+        const pos=parseInt(tok[0],10);
+        const grp=tok[1].toUpperCase();
+        const arr=currentPredStandings[grp];
+        if(arr && arr[pos-1]) return arr[pos-1].teamId;
+      }
+      return null;
+    }
+
+    // Resuelve un token (teamId, nombre, placeholder 1A) al nombre de equipo pronosticado
+    function resolveUserToken(token){
+      if(teamIdToName[token]) return teamIdToName[token];
+      if(/^[12][A-H]$/i.test(token)){
+         const pos=parseInt(token[0],10);
+         const grp=token[1].toUpperCase();
+         const arr=currentPredStandings[grp];
+         if(arr && arr[pos-1]) return arr[pos-1].teamName;
+      }
+      return token;
+    }
 
     async function loadData() {
       try {
@@ -213,6 +247,8 @@
 
         teamIdToName = Object.fromEntries(teamsArray.map(t => [t.teamId, t.name]));
         teamIdToBadge = Object.fromEntries(teamsArray.map(t => [t.teamId, t.badge || '']));
+
+        nameToId = Object.fromEntries(teamsArray.map(t=>[t.name, t.teamId]));
 
         // 𝗡𝗨𝗘𝗩𝗢: Calcular clasificación pronosticada para cada participante a partir de sus predicciones
         groupStandings = computeAllPredictedGroupStandings(matchesArray, predictions, teamsArray);
@@ -328,6 +364,7 @@
       const koSection = document.querySelector('.predictions-section:last-of-type');
 
       const predSections=document.querySelectorAll('.predictions-section');
+      const viewSwitchEl=document.getElementById('groupStageViewSwitch');
 
       if(!userId){
         // Limpiar y ocultar todo
@@ -342,6 +379,7 @@
         snippetDiv.innerHTML='';
         if(predTitle){ predTitle.textContent=''; }
         predSections.forEach(sec=> sec.style.display='none');
+        if(viewSwitchEl) viewSwitchEl.style.display='none';
         return;
       }
 
@@ -351,6 +389,7 @@
       if(groupSection) groupSection.style.display='';
       if(koSection) koSection.style.display='';
       standingsSection.style.display='block';
+      if(viewSwitchEl) viewSwitchEl.style.display='flex';
       
       // Obtener clasificación de grupos pronosticada y exponerla para la fase KO
       const userStandings = groupStandings[userId];
@@ -362,13 +401,15 @@
           const idx=leaderboard.findIndex(e=>e.userId===userId);
           const lines=[];
           const makeLine=(entry, bold=false)=>{
-              const text=`${entry.rank}º ${entry.displayName} | ${entry.points} points`;
+              const text=`${entry.rank}º ${entry.displayName} | ${entry.points} pts`;
               return bold?`<div class="snippet-line current">${text}</div>`:`<div class="snippet-line">${text}</div>`;
           };
           leaderboard.forEach((e,i)=>{ e.rank=i+1; });
+          if(idx>1){ lines.push(makeLine(leaderboard[idx-2])); }
           if(idx>0){ lines.push(makeLine(leaderboard[idx-1])); }
           lines.push(makeLine(leaderboard[idx], true));
           if(idx<leaderboard.length-1){ lines.push(makeLine(leaderboard[idx+1])); }
+          if(idx<leaderboard.length-2){ lines.push(makeLine(leaderboard[idx+2])); }
           snippetDiv.innerHTML=lines.join('');
       }
 
@@ -378,6 +419,8 @@
       let koPreds=[];
       groupPredictionsBody.innerHTML = '';
       koPredictionsBody.innerHTML = '';
+      const isPredTabActive = btnPred.classList.contains('tab-active');
+
       if (userPreds.length > 0) {
         // Ordenamos las predicciones por fecha de partido
         userPreds.sort((a, b) => {
@@ -399,10 +442,18 @@
           }
         }
 
-        // Render KO predictions
-        if (koPreds.length>0){ renderPredTable(koPreds, koPredictionsBody,true); }
+        // Render KO predictions SIEMPRE con estilo "By Date" (renderPredTable con isKO=true)
+        if(koPreds.length>0){
+           renderPredTable(koPreds, koPredictionsBody, true);
+           if(koSection) koSection.style.display='';
+        } else {
+           koPredictionsBody.innerHTML='';
+           if(koSection) koSection.style.display='none';
+        }
 
-        if(groupPreds.length>0 || koPreds.length>0){ predTab.style.display='block'; } else { predTab.style.display='none'; }
+        if(isPredTabActive){
+         if(groupPreds.length>0 || koPreds.length>0){ predTab.style.display='block'; } else { predTab.style.display='none'; }
+        }
       } else {
         // Si no hay predicciones pero sí usuario, dejamos tablas vacías
         groupPredictionsBody.innerHTML='';
@@ -439,8 +490,25 @@
             headerTop.appendChild(groupTitle);
 
             headerWrap.appendChild(headerTop);
-            // placeholder for description; añadiremos después
-            
+            // Row con badges de los equipos del grupo
+            const badgesRow=document.createElement('div');
+            badgesRow.className='group-badges';
+            const teamsInGroup=realGroupStandings[groupKey] || Object.values(teamIdToName).filter((_,tid)=> teamsArray.find(t=>t.teamId===tid && t.group===groupKey));
+            if(teamsInGroup){
+              (Array.isArray(teamsInGroup)?teamsInGroup:[]).forEach(t=>{
+                const id=t.teamId||t;
+                if(teamIdToBadge[id]){
+                  const img=document.createElement('img');
+                  img.src=teamIdToBadge[id];
+                  img.alt=t.teamName||teamIdToName[id]||id;
+                  img.className='team-badge';
+                  badgesRow.appendChild(img);
+                }
+              });
+            }
+            badgesRow.style.marginTop='8px';
+            headerWrap.appendChild(badgesRow);
+
             groupCard.appendChild(headerWrap);
 
             const tablesContainer = document.createElement('div');
@@ -499,7 +567,15 @@
               ptsDesc.textContent='Group not finished';
             }
 
-            headerWrap.appendChild(ptsDesc);
+            // ----- NUEVO: fila badges + descripción ---------
+            const infoRow=document.createElement('div');
+            infoRow.className='group-info-row';
+            // badgesRow ya creado antes: lo usamos
+            badgesRow.classList.add('badges-inline');
+            infoRow.appendChild(badgesRow);
+            ptsDesc.style.marginLeft='auto';
+            infoRow.appendChild(ptsDesc);
+            headerWrap.appendChild(infoRow);
 
             // Ajustar margen inferior del header
             headerWrap.style.marginBottom='20px';
@@ -512,27 +588,32 @@
 
             // Comportamiento de colapsar/expandir
             headerTop.addEventListener('click',()=>{
-              const hidden = tablesContainer.style.display==='none';
-              tablesContainer.style.display = hidden? '' : 'none';
-              arrowGrp.textContent = hidden? '▼' : '▶';
+              const collapsedNow = tablesContainer.style.display !== 'none'; // true => expanded currently
+              if(collapsedNow){
+                // will collapse
+                tablesContainer.style.display='none';
+                badgesRow.style.display='';
+                arrowGrp.textContent='▶';
+                headerWrap.style.marginBottom='0';
+              } else {
+                // will expand
+                tablesContainer.style.display='';
+                badgesRow.style.display='none';
+                arrowGrp.textContent='▼';
+                headerWrap.style.marginBottom='20px';
+              }
             });
 
             // Determinar estado LIVE y completado del grupo
             const groupMatchesAll = Object.values(matchesById).filter(m=> m.phase==='group' && m.group===groupKey);
-            const nowMsGrp = Date.now();
-            const liveWindowGrp = nowMsGrp + 24*60*60*1000;
-            let isLiveGroup = false;
-            let isCompleteGroup = true;
-            groupMatchesAll.forEach(m=>{
+            const todayStr = new Date().toISOString().split('T')[0];
+            const isLiveGroup = groupMatchesAll.some(m=> {
+              if(m.dateTime.split('T')[0] !== todayStr) return false;
               const res=resultsById[m.matchId];
-              const played = res && res.homeGoals!==null && res.awayGoals!==null;
-              if(!played){
-                isCompleteGroup=false;
-                const t=new Date(m.dateTime).getTime();
-                if(t>=nowMsGrp && t<=liveWindowGrp){ isLiveGroup=true; }
-              }
+              const notPlayed = !(res && res.homeGoals!==null && res.awayGoals!==null);
+              return notPlayed; // partido de hoy sin resultado
             });
-
+            const isCompleteGroup = isGroupComplete(realGroupStandings[groupKey]);
             const insertStatusBadge=(imgEl)=>{ groupTitle.insertAdjacentElement('afterend', imgEl); };
             if(isLiveGroup){
               const liveImg=document.createElement('img');
@@ -549,10 +630,14 @@
             }
 
             // Estado inicial colapsado/expandido
-            const initiallyCollapsed = isCompleteGroup && !isLiveGroup;
+            const initiallyCollapsed = !(FORCE_OPEN_GROUPS.includes(groupKey)) && isCompleteGroup && !isLiveGroup;
             if(initiallyCollapsed){
               tablesContainer.style.display='none';
+              badgesRow.style.display='';
               arrowGrp.textContent='▶';
+              headerWrap.style.marginBottom='0';
+            } else {
+              badgesRow.style.display='none';
             }
         });
         predTab.style.display = 'block';
@@ -583,17 +668,105 @@
           }
         });
       }
-      // Actualizar spans
-      const setTotal=(id,val)=>{
-        const el=document.getElementById(id);
+      // Actualizar spans con lógica especial para KO todavía no iniciado
+      const setGroupTotal = (val)=>{
+        const el=document.getElementById('groupPredTotal');
         if(el){ el.textContent=`${val} pts`; }
       };
-      setTotal('groupPredTotal',groupStagePts);
-      setTotal('koPredTotal',koStagePts);
-      setTotal('classifTotal',classifPts);
+      const setKOTotal = (val)=>{
+        const el=document.getElementById('koPredTotal');
+        if(!el) return;
+        if(val===0){
+          // Comprobar si hay algún partido KO con resultado registrado
+          const anyKOPlayed = Object.values(matchesById).some(m=> m.phase!=='group' && resultsById[m.matchId] && resultsById[m.matchId].homeGoals!==null && resultsById[m.matchId].awayGoals!==null);
+          el.textContent = anyKOPlayed ? '0 pts' : '-';
+        } else {
+          el.textContent = `${val} pts`;
+        }
+      };
+      const setClassifTotal = (val)=>{
+        const el=document.getElementById('classifTotal');
+        if(el){ el.textContent=`${val} pts`; }
+      };
+
+      setGroupTotal(groupStagePts);
+      setKOTotal(koStagePts);
+      setClassifTotal(classifPts);
+      // Actualizar iconos LIVE en los headers según contenido renderizado
+      refreshHeaderLiveIcons();
+
+      /* ---------------- Leader Stats ---------------- */
+      const statsEl=document.getElementById('leaderStats');
+      if(statsEl){
+        // Aciertos exactos y signo
+        let exact=0, sign=0, played=0, totalPtsPlayed=0;
+        const calcPtsMatch=(pred)=>{
+          const res=resultsById[pred.matchId];
+          if(res && res.homeGoals!==null){
+            const diff=res.homeGoals-res.awayGoals;
+            const predDiff=pred.predHome-pred.predAway;
+            if(pred.predHome===res.homeGoals && pred.predAway===res.awayGoals) return 5;
+            if((diff===0 && predDiff===0)||(diff>0 && predDiff>0)||(diff<0 && predDiff<0)) return 3;
+          }
+          return 0;
+        };
+        userPreds.forEach(pred=>{
+          const res=resultsById[pred.matchId];
+          if(res && res.homeGoals!==null){
+            played++;
+            const pts=calcPtsMatch(pred);
+            totalPtsPlayed+=pts;
+            if(pts===5) exact++; else if(pts===3) sign++;
+          }
+        });
+        const exactPct = played? ((exact/played)*100).toFixed(1):'0';
+        const signPct = played? ((sign/played)*100).toFixed(1):'0';
+        const avgPts = played? (totalPtsPlayed/played).toFixed(2):'0';
+
+        // Grupos puntos
+        let perfect=0, semi=0, oneQual=0, groupsCompleted=0;
+        Object.keys(realGroupStandings).forEach(g=>{
+          if(isGroupComplete(realGroupStandings[g])){
+            groupsCompleted++;
+            const pts=calcGroupPoints((userStandings||{})[g], realGroupStandings[g]);
+            if(pts===7) perfect++; else if(pts===5) semi++; else if(pts===2) oneQual++; 
+          }
+        });
+        const grpPct=(val)=> groupsCompleted? ((val/groupsCompleted)*100).toFixed(1):'0';
+
+        // Puntos máximos posibles
+        const currentTotal = leaderboard.find(e=>e.userId===userId)?.points || 0;
+        const remainingMatches = userPreds.filter(p=>{
+          const res=resultsById[p.matchId];
+          return !(res && res.homeGoals!==null);
+        }).length;
+        const incompleteGroups = 8 - groupsCompleted;
+        const maxPotential = currentTotal + remainingMatches*5 + incompleteGroups*7;
+
+        const makeCard=(label,value)=>`<div class=\"stat-card\"><span class=\"stat-value\">${value}</span><span class=\"stat-label\">${label}</span></div>`;
+        statsEl.innerHTML=`
+          <div class=\"stat-set\">
+            <div class=\"stat-set-title\">Matches Stats.</div>
+            <div class=\"stat-group\">
+              ${makeCard('Exact scores', `${exact} • ${exactPct}%`)}
+              ${makeCard('Outcome hits', `${sign} • ${signPct}%`)}
+              ${makeCard('pts / match', `${avgPts}`)}
+            </div>
+          </div>
+          <div class=\"stat-set\">
+            <div class=\"stat-set-title\">Groups Stats.</div>
+            <div class=\"stat-group\">
+              ${makeCard('Perfect', `${perfect} • ${grpPct(perfect)}%`)}
+              ${makeCard('Semi-perfect', `${semi} • ${grpPct(semi)}%`)}
+              ${makeCard('1 qualifier', `${oneQual} • ${grpPct(oneQual)}%`)}
+            </div>
+          </div>
+        `;
+      }
     }
 
     function renderPredTable(predArray, tbody, isKO){
+        const todayStr = new Date().toISOString().split('T')[0];
         tbody.innerHTML='';
         // Sort predictions by date ascending
         predArray.sort((a, b) => new Date(matchesById[a.matchId]?.dateTime) - new Date(matchesById[b.matchId]?.dateTime));
@@ -688,7 +861,7 @@
             headerTr.className='day-header';
             const colSpan=isKO?7:6;
             const formattedDate=formatDateEnglish(new Date(dateKey));
-            const isInitiallyOpen = upcomingDayKeys.includes(dateKey) || dateKey===lastCompleteDayKey;
+            const isInitiallyOpen = FORCE_OPEN_DAYS.includes(dateKey) || upcomingDayKeys.includes(dateKey) || dateKey===lastCompleteDayKey;
             const arrow=isInitiallyOpen?'▼':'▶';
             const pts=dayPointsMap[dateKey];
             // Determinar si al menos un partido de ese día ya tiene resultado
@@ -703,16 +876,52 @@
                 return res && res.homeGoals!==null && res.awayGoals!==null;
             });
             let liveFlag=false;
-            for(const pred of matchesToday){
-                const info=matchesById[pred.matchId];
-                const t=new Date(info.dateTime).getTime();
-                const res=resultsById[pred.matchId];
-                const played=res && res.homeGoals!==null && res.awayGoals!==null;
-                if(!played && t>=nowMs && t<=liveWindow){ liveFlag=true; break; }
+            // Regla principal: si hoy y aún quedan partidos sin jugar -> LIVE
+            if(dateKey===todayStr){
+               liveFlag = !allPlayedDay; // solo si NO está completo
             }
+            // Si todavía no es LIVE por la regla anterior, comprobamos si hay partidos futuros en <24h sin jugar (lógica anterior)
+            if(!liveFlag){
+              for(const pred of matchesToday){
+                  const info=matchesById[pred.matchId];
+                  const t=new Date(info.dateTime).getTime();
+                  const res=resultsById[pred.matchId];
+                  const played=res && res.homeGoals!==null && res.awayGoals!==null;
+                  if(!played && t>=nowMs && t<=liveWindow){ liveFlag=true; break; }
+              }
+            }
+
+            // Escudos de equipos confirmados (solo KO)
+            let dayBadgesHtml='';
+            if(isKO){
+              const badgeArr=[];
+              const pushBadge=(tok)=>{
+                // Solo mostramos badge real si el token es ya un teamId con escudo.
+                const id = teamIdToBadge[tok]? tok : null;
+                let src='badges/unknownTeam.png';
+                if(id && teamIdToBadge[id]) src=teamIdToBadge[id];
+                badgeArr.push(`<img src="${src}" class="team-badge" alt="team"/>`);
+              };
+              matchesToday.forEach(pred=>{
+                const mi=matchesById[pred.matchId];
+                pushBadge(mi.homeTeam);
+                pushBadge(mi.awayTeam);
+              });
+              dayBadgesHtml=badgeArr.join('');
+            }
+
             const liveBadge=liveFlag?'<img src="live.svg" class="badge-icon live-icon" alt="Live"/>':'';
             const completedBadge=(allPlayedDay && new Date(dateKey).getTime()<nowMs)?'<img src="check.svg" class="badge-icon" alt="Completed"/>':'';
-            headerTr.innerHTML=`<td colspan="${colSpan}"><div class="day-header-content"><span class="arrow">${arrow}</span><span class="date-text">${formattedDate}</span>${liveBadge}${completedBadge}<span class="points-badge">${ptsDisplay}</span></div></td>`;
+            if(isKO){
+              headerTr.innerHTML=`<td colspan="${colSpan}"><div class="day-header-content"><span class="arrow">${arrow}</span><span class="date-text">${formattedDate}</span>${liveBadge}${completedBadge}<span class="points-badge">${ptsDisplay}</span></div><div class="phase-badges-row">${dayBadgesHtml}</div></td>`;
+              // Ocultar badges si el día estará inicialmente expandido
+              if(isInitiallyOpen){
+                  const rowBadges=headerTr.querySelector('.phase-badges-row');
+                  if(rowBadges) rowBadges.style.display='none';
+              }
+            } else {
+              headerTr.innerHTML=`<td colspan="${colSpan}"><div class="day-header-content"><span class="arrow">${arrow}</span><span class="date-text">${formattedDate}</span>${liveBadge}${completedBadge}<span class="points-badge">${ptsDisplay}</span></div></td>`;
+            }
             tbody.appendChild(headerTr);
 
             // Sub‐header con nombres de columnas para este día
@@ -811,25 +1020,37 @@
                     };
                     // NUEVO: obtenemos los placeholders originales del displayName
                     const parts = matchInfo.displayName.split(' vs ').map(s => s.trim());
-                    let predictedName;
+                    let predHomeTok, predAwayTok;
                     if(parts.length === 2){
-                      const homeTok = parts[0];
-                      const awayTok = parts[1];
-                      predictedName = `${resolveUserToken(homeTok)} vs ${resolveUserToken(awayTok)}`;
+                      predHomeTok = parts[0];
+                      predAwayTok = parts[1];
                     } else {
-                      predictedName = `${resolveUserToken(matchInfo.homeTeam)} vs ${resolveUserToken(matchInfo.awayTeam)}`;
+                      predHomeTok = matchInfo.homeTeam;
+                      predAwayTok = matchInfo.awayTeam;
                     }
-                    const realName=getRealKOName(matchInfo);
-                    // Convertir nombres a spans para layout responsive
-                    const formatNames=(nameStr)=>{
-                      const arr=nameStr.split(' vs ').map(s=>s.trim());
-                      if(arr.length===2){
-                        return `<span class=\"home-team\">${arr[0]}</span><span class=\"vs-sep\">vs</span><span class=\"away-team\">${arr[1]}</span>`;
-                      }
-                      return nameStr;
-                    };
-                    const predictedHtml=formatNames(predictedName);
-                    const realHtml=formatNames(realName);
+                    const realTokHome = matchInfo.homeTeam;
+                    const realTokAway = matchInfo.awayTeam;
+                    const buildSpan=(tok, resolved, isReal=false)=>{
+                      let id=getIdFromToken(tok);
+                      // Si es columna Real y token es placeholder (1A, 2B, W49...), forzamos unknown
+                      if(isReal && (/^[12][A-H]$/i.test(tok) || /^W\d+/i.test(tok))){ id=null; }
+                      if(!id && resolved!==tok && !isReal){ id=getIdFromToken(resolved); }
+                      let src='';
+                      if(id && teamIdToBadge[id]){ src=teamIdToBadge[id]; }
+                      else if(isReal){ src='badges/unknownTeam.png'; }
+                      const badge=src?`<img src="${src}" class="team-badge" alt="${resolved} badge"/>`:'';
+                      const idText=id||tok;
+                      return `${badge}<span class="team-id">${idText}</span><span class="team-name-full">${resolved}</span>`; };
+
+                    const predictedSpanHome = buildSpan(predHomeTok, resolveUserToken(predHomeTok));
+                    const predictedSpanAway = buildSpan(predAwayTok, resolveUserToken(predAwayTok));
+                    const predictedHtml = `<span class=\"home-team\">${predictedSpanHome}</span><span class=\"vs-sep\">vs</span><span class=\"away-team\">${predictedSpanAway}</span>`;
+
+                    const realResolvedHome = resolveTeamToken(realTokHome);
+                    const realResolvedAway = resolveTeamToken(realTokAway);
+                    const realSpanHome = buildSpan(realTokHome, realResolvedHome, true);
+                    const realSpanAway = buildSpan(realTokAway, realResolvedAway, true);
+                    const realHtml = `<span class=\"home-team\">${realSpanHome}</span><span class=\"vs-sep\">vs</span><span class=\"away-team\">${realSpanAway}</span>`;
                     rowHtml=`<td class=\"time-cell\">${matchDate}</td><td class=\"round-cell\">${roundHtml}</td><td class=\"match-cell\">${predictedHtml}</td><td class=\"match-cell\">${realHtml}</td><td class=\"score-cell prediction\">${predScoreHtml}</td><td class=\"score-cell result\">${realScoreHtml}</td><td class=\"points-cell\"><span class=\"points-badge ${ptsClass}\">${ptsText}</span></td>`;
                 } else {
                     // Fase de grupos
@@ -861,6 +1082,11 @@
                 const arrowSpan=headerTr.querySelector('.arrow');
                 if(arrowSpan){
                     arrowSpan.textContent = (arrowSpan.textContent==='▼')?'▶':'▼';
+                }
+                const badgesRowEl=headerTr.querySelector('.phase-badges-row');
+                if(badgesRowEl){
+                   const expanded = arrowSpan.textContent==='▼';
+                   badgesRowEl.style.display = expanded? 'none' : 'flex';
                 }
                 const badgeHeader=headerTr.querySelector('.points-badge');
                 const badgeSub=subHeaderTr.querySelector('.day-total');
@@ -977,7 +1203,7 @@
           if(prevDayKey){
             const dateObj=new Date(prevDayKey);
             const dateStr=formatDateEnglish(dateObj);
-            prevHeader.textContent=`Points ${dateStr}`;
+            prevHeader.textContent=`PREV. DAY`;
           } else {
             prevHeader.textContent='Points';
           }
@@ -1030,6 +1256,74 @@
           lastPrevPts=item.pts;
         });
 
+        // ---------- CÁLCULO HISTÓRICO PARA PROGRESS (antes de crear filas) ----------
+        const rankHistoryByUser={};
+        const cumulativePoints={};
+        participants.forEach(p=>{ cumulativePoints[p.userId]=0; rankHistoryByUser[p.userId]=[]; });
+
+        const progressDates = ongoingKey ? allDateKeys.filter(dk=> dk<ongoingKey) : allDateKeys;
+
+        const calcPtsMatch=(pred)=>{
+          const res=resultsById[pred.matchId];
+          if(res && res.homeGoals!==null){
+            const diff=res.homeGoals-res.awayGoals;
+            const predDiff=pred.predHome-pred.predAway;
+            if(pred.predHome===res.homeGoals && pred.predAway===res.awayGoals) return 5;
+            if((diff===0 && predDiff===0)||(diff>0 && predDiff>0)||(diff<0 && predDiff<0)) return 3;
+          }
+          return 0;
+        };
+
+        progressDates.forEach(dk=>{
+          predictions.forEach(pred=>{
+            const match=matchesById[pred.matchId];
+            if(match && match.dateTime.split('T')[0]===dk){
+              const pts=calcPtsMatch(pred);
+              if(pts>0){ cumulativePoints[pred.userId]=(cumulativePoints[pred.userId]||0)+pts; }
+            }
+          });
+          // puntos group clasif
+          Object.keys(realGroupStandings).forEach(g=>{
+            const real=realGroupStandings[g];
+            if(!isGroupComplete(real)) return;
+            const groupMatches=Object.values(matchesById).filter(m=> m.phase==='group' && m.group===g);
+            const lastDate=groupMatches.reduce((max,m)=> m.dateTime>max?m.dateTime:max,'');
+            if(lastDate.split('T')[0]!==dk) return;
+            participants.forEach(p=>{
+              const uid=p.userId;
+              const userGs=groupStandings[uid];
+              if(userGs && userGs[g]){
+                const pts=calcGroupPoints(userGs[g], real);
+                cumulativePoints[uid]=(cumulativePoints[uid]||0)+pts;
+              }
+            });
+          });
+          // ranking del día
+          const sorted=Object.entries(cumulativePoints).sort((a,b)=> b[1]-a[1]);
+          let rank=1, lastPts=null;
+          sorted.forEach(([uid,pts],idx)=>{
+            if(idx>0 && pts!==lastPts){ rank=idx+1; }
+            rankHistoryByUser[uid].push(rank);
+            lastPts=pts;
+          });
+        });
+
+        const buildSparkline=(arr,maxRank)=>{
+          if(!arr || arr.length===0) return '';
+          const width=60, height=24;
+          if(arr.length===1){
+            const y=(arr[0]-1)/(maxRank-1)*height;
+            return `<svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" preserveAspectRatio="none"><circle cx="${width}" cy="${y}" r="2" fill="#0969da" /></svg>`;
+          }
+          const step=width/(arr.length-1);
+          const points=arr.map((r,i)=>{
+            const x=i*step;
+            const y=(r-1)/(maxRank-1)*height;
+            return `${x},${y}`;
+          }).join(' ');
+          return `<svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" preserveAspectRatio="none"><polyline fill="none" stroke="#0969da" stroke-width="2" points="${points}" /></svg>`;
+        };
+
         leaderboard.forEach((entry,idx)=>{
             const tr=document.createElement('tr');
             tr.className = 'leaderboard-row';
@@ -1048,31 +1342,28 @@
             })(): idx+1;
             const prevRank=prevRankMap[entry.userId]||currentRankNum;
             const diffRank=prevRank-currentRankNum; // positivo si sube
-            let deltaHtml='';
-            if(diffRank>0){ deltaHtml=`<span class="rank-change up">↑${diffRank}</span>`; }
-            else if(diffRank<0){ deltaHtml=`<span class="rank-change down">↓${Math.abs(diffRank)}</span>`; }
 
             // Medal icons for top 3
             let rankDisplay = posDisplay;
             if (currentRankNum === 1) rankDisplay = '🥇';
             else if (currentRankNum === 2) rankDisplay = '🥈';
             else if (currentRankNum === 3) rankDisplay = '🥉';
-
+            else if (currentRankNum === 17) rankDisplay = '🏮';
             tr.innerHTML=`
               <td class="rank-cell">
                 <div class="rank-content">
                   <span class="rank-number">${rankDisplay}</span>
-                  ${deltaHtml}
+                  ${diffRank > 0 ? `<span class="rank-change up">↑${diffRank}</span>` : diffRank < 0 ? `<span class="rank-change down">↓${Math.abs(diffRank)}</span>` : ''}
                 </div>
-              </td>
-              <td class="points-cell">
-                <span class="total-points">${entry.points}</span>
               </td>
               <td class="participant-cell">
                 <a href="#pred" class="participant-link" data-userid="${entry.userId}">${entry.displayName}</a>
               </td>
-              <td class="gained-cell">
-                <span class="gained-points ${gained > 0 ? 'positive' : ''}">${gained > 0 ? '+' : ''}${gained}</span>
+              <td class="points-cell">
+                <span class="total-points">${entry.points}</span>
+              </td>
+              <td class="progress-cell">
+                ${buildSparkline(rankHistoryByUser[entry.userId], participants.length)}
               </td>
             `;
             tbody.appendChild(tr);
@@ -1093,12 +1384,90 @@
         });
         if(lastDate){
             // Usar la fecha/hora del último partido completo y sumar 3 horas
-            const ts=new Date(lastDate.getTime()+3*60*60*1000);
+            const ts=new Date(lastDate.getTime()+2.25*60*60*1000);
             const dateStr=formatDateEnglish(ts);
             const timeStr=ts.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',hour12:false});
             updatedEl.textContent=`Last updated: ${dateStr}, ${timeStr}`;
         }
-    }
+
+        /* ---------- Global Stats Top 3 (para las 6 métricas) ---------- */
+        const globalStatsEl=document.getElementById('globalStats');
+        if(globalStatsEl){
+          // Precomputar métricas por usuario
+          const metricsByUser = {};
+          const calcPtsMatch = (pred) => {
+            const res = resultsById[pred.matchId];
+            if(res && res.homeGoals!==null){
+              const diff = res.homeGoals - res.awayGoals;
+              const predDiff = pred.predHome - pred.predAway;
+              if(pred.predHome===res.homeGoals && pred.predAway===res.awayGoals) return 5;
+              if((diff===0 && predDiff===0) || (diff>0 && predDiff>0) || (diff<0 && predDiff<0)) return 3;
+            }
+            return 0;
+          };
+
+          const completedGroups = Object.keys(realGroupStandings).filter(g=> isGroupComplete(realGroupStandings[g]));
+
+          participants.forEach(p => {
+            const uid = p.userId;
+            const userPreds = predictions.filter(pr => pr.userId===uid);
+            let exact=0, sign=0, played=0, totalPtsPlayed=0;
+            userPreds.forEach(pr=>{
+              const res = resultsById[pr.matchId];
+              if(res && res.homeGoals!==null){
+                played++;
+                const pts = calcPtsMatch(pr);
+                totalPtsPlayed += pts;
+                if(pts===5) exact++; else if(pts===3) sign++;
+              }
+            });
+            const avgPts = played? (totalPtsPlayed/played):0;
+
+            let perfect=0, semi=0, oneQual=0;
+            completedGroups.forEach(g=>{
+              const userGs = groupStandings[uid];
+              const pts = userGs && userGs[g] ? calcGroupPoints(userGs[g], realGroupStandings[g]) : 0;
+              if(pts===7) perfect++; else if(pts===5) semi++; else if(pts===2) oneQual++;
+            });
+
+            metricsByUser[uid] = {displayName:p.displayName || uid, exact, sign, avgPts:parseFloat(avgPts.toFixed(2)), perfect, semi, oneQual};
+          });
+
+          const getTop = key => Object.values(metricsByUser).sort((a,b)=> b[key]-a[key]).slice(0,3);
+
+          const metrics = [
+            {key:'exact', title:'Exact scores'},
+            {key:'sign', title:'Outcome hits'},
+            {key:'avgPts', title:'Pts / match'},
+            {key:'perfect', title:'Perfect groups'},
+            {key:'semi', title:'Semi-perfect'},
+            {key:'oneQual', title:'1 qualifier'}
+          ];
+
+          const matchesMetrics=['exact','sign','avgPts'];
+          const groupsMetrics=['perfect','semi','oneQual'];
+
+          const buildMetricHTML=(m)=>{
+            const top=getTop(m.key);
+            const itemsHtml=top.map(t=>`<li class=\"top-item\"><span class=\"name\">${t.displayName}</span><span class=\"value\">${t[m.key]}</span></li>`).join('');
+            return `<div class=\"stat-set\"><div class=\"stat-set-title\">${m.title}</div><ul class=\"top-list\">${itemsHtml}</ul></div>`;
+          };
+
+          const matchesHTML=metrics.filter(m=>matchesMetrics.includes(m.key)).map(buildMetricHTML).join('');
+          const groupsHTML=metrics.filter(m=>groupsMetrics.includes(m.key)).map(buildMetricHTML).join('');
+
+          globalStatsEl.innerHTML = `
+            <h3 class=\"section-title\">Overall Stats</h3>
+            <div class=\"stats-block\">
+              <div class=\"stats-block-title\">Matches Stats.</div>
+              <div class=\"stats-group\">${matchesHTML}</div>
+            </div>
+            <div class=\"stats-block\">
+              <div class=\"stats-block-title\">Groups Stats.</div>
+              <div class=\"stats-group\">${groupsHTML}</div>
+            </div>`;
+        }
+     }
 
     // Calcula puntos de clasificación de grupo según reglas
     function calcGroupPoints(predicted, real){
@@ -1288,8 +1657,8 @@
       const btnGroup=document.getElementById('btnViewGroup');
       if(btnDate){ btnDate.classList.toggle('active', groupPredView==='date'); }
       if(btnGroup){ btnGroup.classList.toggle('active', groupPredView==='group'); }
-      if(dataLoaded){
-        // Re‐renderizar sin cambiar participante
+      if(dataLoaded && btnPred.classList.contains('tab-active')){
+        // Re‐renderizar solo si la pestaña Predictions está activa
         displayParticipant(participantSelect.value);
       }
     }
@@ -1339,7 +1708,7 @@
         groupKeys.forEach((gKey)=>{
             const items = groups[gKey].sort((a,b)=> new Date(matchesById[a.matchId].dateTime) - new Date(matchesById[b.matchId].dateTime));
 
-            const isInitiallyOpen = liveGroupKeys.includes(gKey);
+            const isInitiallyOpen = FORCE_OPEN_GROUPS.includes(gKey) || liveGroupKeys.includes(gKey);
             const arrow = isInitiallyOpen ? '▼' : '▶';
             const ptsTotal = items.reduce((sum,p)=> sum+calcPoints(p),0);
             const anyPlayedGroup = items.some(pred=>{
@@ -1351,16 +1720,16 @@
             const headerTr=document.createElement('tr');
             headerTr.className='day-header';
             const groupMatchesAll = Object.values(matchesById).filter(m=> m.phase==='group' && m.group===gKey);
-            const nowMs = Date.now();
-            const liveWindow = nowMs + 24*60*60*1000;
-            const isLiveGroup = groupMatchesAll.some(m=>{
-                const d = new Date(m.dateTime).getTime();
-                const res = resultsById[m.matchId];
-                const played = res && res.homeGoals!==null && res.awayGoals!==null;
-                return d >= nowMs && d <= liveWindow && !played;
+            const todayStr = new Date().toISOString().split('T')[0];
+            const isLiveGroup = groupMatchesAll.some(m=> {
+              if(m.dateTime.split('T')[0] !== todayStr) return false;
+              const res=resultsById[m.matchId];
+              const notPlayed = !(res && res.homeGoals!==null && res.awayGoals!==null);
+              return notPlayed; // partido de hoy sin resultado
             });
+            const isCompleteGroup = isGroupComplete(realGroupStandings[gKey]);
             const liveBadge = isLiveGroup ? '<img src="live.svg" class="badge-icon live-icon" alt="Live"/>' : '';
-            const completedBadge = isGroupComplete(realGroupStandings[gKey]) ? '<img src="check.svg" class="badge-icon" alt="Completed"/>' : '';
+            const completedBadge = isCompleteGroup ? '<img src="check.svg" class="badge-icon" alt="Completed"/>' : '';
             headerTr.innerHTML=`<td colspan="6"><div class="day-header-content"><span class="arrow">${arrow}</span><span class="date-text">Group ${gKey}</span>${liveBadge}${completedBadge}<span class="points-badge">${ptsDisplayGrp}</span></div></td>`;
             tbody.appendChild(headerTr);
 
@@ -1448,6 +1817,24 @@
                 if(arrowSpan){ arrowSpan.textContent = (arrowSpan.textContent==='▼')?'▶':'▼'; }
                 const expanded = arrowSpan.textContent==='▼';
                 updateBadges(expanded);
+                const badgesRowEl=headerTr.querySelector('.phase-badges-row');
+                if(badgesRowEl){
+                   const expanded = arrowSpan.textContent==='▼';
+                   badgesRowEl.style.display = expanded? 'none' : 'flex';
+                }
+                const badgeHeader=headerTr.querySelector('.points-badge');
+                const badgeSub=subHeaderTr.querySelector('.day-total');
+                const ptsText=subHeaderTr.querySelector('.pts-text');
+                const isExpanded = arrowSpan.textContent==='▼';
+                if(isExpanded){
+                    badgeHeader.style.visibility='hidden';
+                    badgeSub.style.display='inline-block';
+                    if(ptsText) ptsText.style.display='none';
+                } else {
+                    badgeHeader.style.visibility='visible';
+                    badgeSub.style.display='none';
+                    if(ptsText) ptsText.style.display='inline';
+                }
             });
 
             // Estado inicial
@@ -1460,6 +1847,175 @@
                 updateBadges(true);
             }
         });
+    }
+
+    // Relocalizar el selector fecha/grupo fuera del bloque colapsable
+    document.addEventListener('DOMContentLoaded',()=>{
+      const viewSwitch=document.getElementById('groupStageViewSwitch');
+      const firstPredSection=document.querySelector('.predictions-section');
+      if(viewSwitch && firstPredSection && firstPredSection.parentElement){
+        firstPredSection.parentElement.insertBefore(viewSwitch, firstPredSection);
+        // Ajuste de estilo tras moverlo
+        viewSwitch.style.marginTop='20px';
+      }
+    });
+
+    // Render KO predictions agrupadas por fase
+    function renderPredTablePhase(predArray, tbody){
+        tbody.innerHTML='';
+        const phaseMap={ ro16:"Round of 16", qf:"Quarter-Finals", sf:"Semi-Finals", final:"Final" };
+        const order=["ro16","qf","sf","final"];
+
+        // Agrupar predicciones por phase
+        const groups={};
+        predArray.forEach(p=>{
+            const ph=matchesById[p.matchId]?.phase||'other';
+            if(!groups[ph]) groups[ph]=[];
+            groups[ph].push(p);
+        });
+
+        const calcPoints=(pred)=>{
+            const res=resultsById[pred.matchId];
+            if(res && res.homeGoals!==null){
+                const diff=res.homeGoals-res.awayGoals;
+                const predDiff=pred.predHome-pred.predAway;
+                if(pred.predHome===res.homeGoals && pred.predAway===res.awayGoals) return 5;
+                if((diff===0 && predDiff===0)||(diff>0 && predDiff>0)||(diff<0 && predDiff<0)) return 3;
+            }
+            return 0;
+        };
+
+        order.forEach(ph=>{
+            if(!groups[ph]) return;
+            const items=groups[ph].sort((a,b)=> new Date(matchesById[a.matchId].dateTime)-new Date(matchesById[b.matchId].dateTime));
+            const ptsTotal=items.reduce((s,p)=>s+calcPoints(p),0);
+            // Build team/unknown badges for phase header (similar a vista "By Date")
+            const badgeArr=[];
+            const pushBadge=(tok)=>{
+                const idToken = teamIdToBadge[tok] ? tok : null;
+                let src = 'badges/unknownTeam.png';
+                if(idToken && teamIdToBadge[idToken]) src = teamIdToBadge[idToken];
+                badgeArr.push(`<img src="${src}" class="team-badge" alt="team"/>`);
+            };
+            items.forEach(p=>{
+                const m = matchesById[p.matchId];
+                pushBadge(m.homeTeam);
+                pushBadge(m.awayTeam);
+            });
+            const phaseBadgesHtml = badgeArr.join('');
+            const headerTr=document.createElement('tr');
+            headerTr.className='day-header';
+            headerTr.innerHTML=`<td colspan="8"><div class="day-header-content"><span class="arrow">▼</span><span class="date-text">${phaseMap[ph]}</span><span class="points-badge">${ptsTotal} pts</span></div><div class="phase-badges-row">${phaseBadgesHtml}</div></td>`;
+            tbody.appendChild(headerTr);
+
+            // subheader
+            const sub=document.createElement('tr');
+            sub.className='sub-header';
+            const subHs=['Date','Time','ID','Pred.','Real','Pred.','Real','Pts'];
+            sub.innerHTML = subHs.map((h,i)=> i===subHs.length-1 ? `<td class="pts-header-cell"><span class="day-total points-badge" style="display:none">${ptsTotal} pts</span><span class="pts-text">pts</span></td>`:`<td>${h}</td>`).join('');
+            tbody.appendChild(sub);
+
+            items.forEach(pred=>{
+                const matchInfo=matchesById[pred.matchId];
+                const date=new Date(matchInfo.dateTime);
+                const day=date.toLocaleString('en-GB',{day:'numeric',month:'short'});
+                const time=date.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',hour12:false});
+                const predScore=`${pred.predHome}-${pred.predAway}`;
+                const res=resultsById[pred.matchId];
+                const realScore=res && res.homeGoals!==null?`${res.homeGoals}-${res.awayGoals}`:'-';
+                const points=calcPoints(pred);
+                const ptsClass=!res? 'none': points>0?'earned':'zero';
+                const ptsText=res? points: '-';
+                const row=document.createElement('tr');
+                // build de celda con distinción entre columna Predicción y Real
+                const buildCell=(tok, resolved, isReal = false)=>{
+                    let id = getIdFromToken(tok);
+                    // Si es columna Real y el token es placeholder (1A/2B/Wxx), forzar unknown
+                    if(isReal && (/^[12][A-H]$/i.test(tok) || /^W\d+/i.test(tok))){
+                        id = null;
+                    }
+                    // Para Pred., si no encontramos id con el token original pero resolved es distinto, reintentar con resolved
+                    if(!id && resolved !== tok && !isReal){
+                        id = getIdFromToken(resolved);
+                    }
+                    let src = 'badges/unknownTeam.png';
+                    if(id && teamIdToBadge[id]){ src = teamIdToBadge[id]; }
+                    const badge = `<img src="${src}" class="team-badge" alt="${resolved} badge"/>`;
+                    const idText = tok;
+                    return `${badge}<span class="team-id">${idText}</span><span class="team-name-full">${resolved}</span>`;
+                };
+                const predNames=`<span class="home-team">${buildCell(matchInfo.homeTeam, resolveUserToken(matchInfo.homeTeam), false)}</span><span class="vs-sep">vs</span><span class="away-team">${buildCell(matchInfo.awayTeam, resolveUserToken(matchInfo.awayTeam), false)}</span>`;
+                const realNames=`<span class="home-team">${buildCell(matchInfo.homeTeam, resolveTeamToken(matchInfo.homeTeam), true)}</span><span class="vs-sep">vs</span><span class="away-team">${buildCell(matchInfo.awayTeam, resolveTeamToken(matchInfo.awayTeam), true)}</span>`;
+                row.innerHTML=`<td class="round-cell">${day}</td><td class="time-cell">${time}</td><td class="round-cell">${matchInfo.matchId}</td><td class="match-cell">${predNames}</td><td class="match-cell">${realNames}</td><td class="score-cell prediction">${predScore}</td><td class="score-cell result">${realScore}</td><td class="points-cell"><span class="points-badge ${ptsClass}">${ptsText}</span></td>`;
+                tbody.appendChild(row);
+            });
+            // toggle collapse
+            const toggle=()=>{
+                let n=headerTr.nextElementSibling;
+                while(n && !n.classList.contains('day-header')){ n.style.display = n.style.display==='none'? '':'none'; n=n.nextElementSibling; }
+            };
+            headerTr.addEventListener('click',()=>{
+                toggle();
+                const arr=headerTr.querySelector('.arrow');
+                if(arr) arr.textContent= arr.textContent==='▼'?'▶':'▼';
+                const expandedNow = arr.textContent==='▼';
+                const badgesRow=headerTr.querySelector('.phase-badges-row');
+                if(badgesRow){ badgesRow.style.display = expandedNow? 'none' : 'flex'; }
+                updatePts(expandedNow);
+            });
+        });
+    }
+
+    // Función local para manejar traslado de puntos
+    const updatePts = (expanded)=>{
+        const badgeHeader=headerTr.querySelector('.points-badge');
+        const badgeSub=sub.querySelector('.day-total');
+        const ptsText=sub.querySelector('.pts-text');
+        if(expanded){
+            badgeHeader.style.visibility='hidden';
+            badgeSub.style.display='inline-block';
+            if(ptsText) ptsText.style.display='none';
+        } else {
+            badgeHeader.style.visibility='visible';
+            badgeSub.style.display='none';
+            if(ptsText) ptsText.style.display='inline';
+        }
+    };
+
+    /* --------------------------------------------------
+       UTILIDAD: Insertar / retirar icono "Live" en headers
+    --------------------------------------------------*/
+    function setLiveIconOnHeader(headerEl, isLive){
+      if(!headerEl) return;
+      let badge = headerEl.querySelector('.live-icon');
+      if(isLive){
+        if(!badge){
+          badge=document.createElement('img');
+          badge.src='live.svg';
+          badge.alt='Live';
+          badge.className='badge-icon live-icon';
+          // Colocamos el icono justo después del título del header
+          const titleEl = headerEl.querySelector('.section-title') || headerEl.querySelector('h2') || headerEl.querySelector('h3');
+          if(titleEl){
+            titleEl.insertAdjacentElement('afterend', badge);
+          } else {
+            headerEl.appendChild(badge);
+          }
+        }
+      } else {
+        if(badge){ badge.remove(); }
+      }
+    }
+
+    function refreshHeaderLiveIcons(){
+      // Determinar si hay iconos live en los cuerpos de cada sección
+      const hasGroupLive = !!(groupPredictionsBody && groupPredictionsBody.querySelector('.live-icon'));
+      const hasKOLive = !!(koPredictionsBody && koPredictionsBody.querySelector('.live-icon'));
+      const hasClassifLive = !!(standingsContainer && standingsContainer.querySelector('.live-icon'));
+
+      setLiveIconOnHeader(document.getElementById('groupPredHeader'), hasGroupLive);
+      setLiveIconOnHeader(document.getElementById('koPredHeader'), hasKOLive);
+      setLiveIconOnHeader(document.getElementById('classifHeader'), hasClassifLive);
     }
   </script>
 </body>
