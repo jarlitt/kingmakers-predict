@@ -449,22 +449,6 @@
   },
   {
     "matchId": "W51",
-    "dateTime": "2025-06-30T21:00:00+02:00",
-    "homeTeam": "INT",
-    "awayTeam": "FLU",
-    "phase": "ro16",
-    "displayName": "1E vs 2F"
-  },
-  {
-    "matchId": "W52",
-    "dateTime": "2025-07-01T03:00:00+02:00",
-    "homeTeam": "MCI",
-    "awayTeam": "HIL",
-    "phase": "ro16",
-    "displayName": "1G vs 2H"
-  },
-  {
-    "matchId": "W53",
     "dateTime": "2025-06-29T18:00:00+02:00",
     "homeTeam": "PSG",
     "awayTeam": "MIA",
@@ -472,7 +456,7 @@
     "displayName": "1B vs 2A"
   },
   {
-    "matchId": "W54",
+    "matchId": "W52",
     "dateTime": "2025-06-29T22:00:00+02:00",
     "homeTeam": "FLA",
     "awayTeam": "BAY",
@@ -480,15 +464,23 @@
     "displayName": "1D vs 2C"
   },
   {
-    "matchId": "W55",
-    "dateTime": "2025-07-02T03:00:00+02:00",
-    "homeTeam": "DOR",
-    "awayTeam": "MON",
+    "matchId": "W53",
+    "dateTime": "2025-06-30T21:00:00+02:00",
+    "homeTeam": "INT",
+    "awayTeam": "FLU",
     "phase": "ro16",
-    "displayName": "1F vs 2E"
+    "displayName": "1E vs 2F"
   },
   {
-    "matchId": "W56",
+    "matchId": "W54",
+    "dateTime": "2025-07-01T03:00:00+02:00",
+    "homeTeam": "MCI",
+    "awayTeam": "HIL",
+    "phase": "ro16",
+    "displayName": "1G vs 2H"
+  },
+  {
+    "matchId": "W55",
     "dateTime": "2025-07-01T21:00:00+02:00",
     "homeTeam": "RMA",
     "awayTeam": "JUV",
@@ -496,7 +488,23 @@
     "displayName": "1H vs 2G"
   },
   {
+    "matchId": "W56",
+    "dateTime": "2025-07-02T03:00:00+02:00",
+    "homeTeam": "DOR",
+    "awayTeam": "MON",
+    "phase": "ro16",
+    "displayName": "1F vs 2E"
+  },
+  {
     "matchId": "W57",
+    "dateTime": "2025-07-04T21:00:00+02:00",
+    "homeTeam": "W53",
+    "awayTeam": "W54",
+    "phase": "qf",
+    "displayName": "W53 vs W54"
+  },
+  {
+    "matchId": "W58",
     "dateTime": "2025-07-05T03:00:00+02:00",
     "homeTeam": "W49",
     "awayTeam": "W50",
@@ -504,20 +512,12 @@
     "displayName": "W49 vs W50"
   },
   {
-    "matchId": "W58",
-    "dateTime": "2025-07-05T18:00:00+02:00",
+    "matchId": "W59",
+    "dateTime": "2025-07-04T18:00:00+02:00",
     "homeTeam": "W51",
     "awayTeam": "W52",
     "phase": "qf",
     "displayName": "W51 vs W52"
-  },
-  {
-    "matchId": "W59",
-    "dateTime": "2025-07-04T21:00:00+02:00",
-    "homeTeam": "W53",
-    "awayTeam": "W54",
-    "phase": "qf",
-    "displayName": "W53 vs W54"
   },
   {
     "matchId": "W60",

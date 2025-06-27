@@ -488,7 +488,7 @@
   {
     "matchId": "W55",
     "homeGoals": null,
-    "awayGoals": 0,
+    "awayGoals": null,
     "penalties": {
       "homePenaltyGoals": null,
       "awayPenaltyGoals": null

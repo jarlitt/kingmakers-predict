@@ -902,10 +902,20 @@
             if(isKO){
               const badgeArr=[];
               const pushBadge=(tok)=>{
-                // Solo mostramos badge real si el token es ya un teamId con escudo.
-                const id = teamIdToBadge[tok]? tok : null;
+                let idTok=null;
+                if(teamIdToBadge[tok]){ idTok=tok; }
+                else if(/^W\d+$/i.test(tok)){
+                   const m=matchesById[tok]; const r=resultsById[tok];
+                   if(m && r && r.homeGoals!==null && r.awayGoals!==null){
+                      if(r.homeGoals>r.awayGoals){ idTok=m.homeTeam; }
+                      else if(r.awayGoals>r.homeGoals){ idTok=m.awayTeam; }
+                      else if(r.penalties && r.penalties.homePenaltyGoals!==null && r.penalties.awayPenaltyGoals!==null){
+                         idTok = r.penalties.homePenaltyGoals>r.penalties.awayPenaltyGoals ? m.homeTeam : m.awayTeam;
+                      }
+                   }
+                }
                 let src='badges/unknownTeam.png';
-                if(id && teamIdToBadge[id]) src=teamIdToBadge[id];
+                if(idTok && teamIdToBadge[idTok]) src=teamIdToBadge[idTok];
                 badgeArr.push(`<img src="${src}" class="team-badge" alt="team"/>`);
               };
               matchesToday.forEach(pred=>{
@@ -919,6 +929,7 @@
             const liveBadge=liveFlag?'<img src="live.svg" class="badge-icon live-icon" alt="Live"/>':'';
             const completedBadge=(allPlayedDay && new Date(dateKey).getTime()<nowMs)?'<img src="check.svg" class="badge-icon" alt="Completed"/>':'';
             if(isKO){
+              headerTr.dataset.dateKey=dateKey;
               headerTr.innerHTML=`<td colspan="${colSpan}"><div class="day-header-content"><span class="arrow">${arrow}</span><span class="date-text">${formattedDate}</span>${liveBadge}${completedBadge}<span class="points-badge">${ptsDisplay}</span></div><div class="phase-badges-row">${dayBadgesHtml}</div></td>`;
               // Ocultar badges si el día estará inicialmente expandido
               if(isInitiallyOpen){
@@ -985,10 +996,16 @@
                  }
                 const roundHtml=`<span class=\"round-desktop\">${roundDesktopContent}</span><span class=\"round-mobile\">${roundMobile}</span>`;
 
-                const predScoreHtml = `<span class=\"home-score\">${pred.predHome}</span><span class=\"score-sep\">-</span><span class=\"away-score\">${pred.predAway}</span>`;
+                // Mostrar penaltis si hay empate y se han pronosticado
+                let penHome='', penAway='';
+                if(pred.predHome===pred.predAway && pred.predPenalties){
+                   penHome=` (${pred.predPenalties.home})`;
+                   penAway=` (${pred.predPenalties.away})`;
+                }
+                const predScoreHtml = `<span class="home-score">${pred.predHome}${penHome}</span><span class="score-sep">-</span><span class="away-score">${pred.predAway}${penAway}</span>`;
                 const realScoreHtml = (resultsById[pred.matchId] && resultsById[pred.matchId].homeGoals!==null)
-                  ? `<span class=\"home-score\">${resultsById[pred.matchId].homeGoals}</span><span class=\"score-sep\">-</span><span class=\"away-score\">${resultsById[pred.matchId].awayGoals}</span>`
-                  : `<span class=\"home-score\">-</span><span class=\"score-sep\">-</span><span class=\"away-score\">-</span>`;
+                  ? `<span class="home-score">${resultsById[pred.matchId].homeGoals}</span><span class="score-sep">-</span><span class="away-score">${resultsById[pred.matchId].awayGoals}</span>`
+                  : `<span class="home-score">-</span><span class="score-sep">-</span><span class="away-score">-</span>`;
                 let points=0;
                 const played = (resultsById[pred.matchId] && resultsById[pred.matchId].homeGoals!==null);
                 if(played){
@@ -1015,12 +1032,15 @@
                         const grp=tok[1].toUpperCase();
                         const arr=currentPredStandings[grp];
                         if(arr){
-                          // Buscar por la propiedad "position" para ser agnóstico al orden del array
                           const found=arr.find(t=>t.position===pos);
                           if(found) return found.teamName;
-                          // Fallback por índice si no se encuentra
                           if(arr[pos-1]) return arr[pos-1].teamName;
                         }
+                      }
+                      // NUEVO: resolver ganador de partidos KO anteriores
+                      if(/^W\d+$/i.test(tok)){
+                        const winnerId=getPredictedWinner(participantSelect.value, tok);
+                        if(winnerId && teamIdToName[winnerId]) return teamIdToName[winnerId];
                       }
                       return tok;
                     };
@@ -1038,9 +1058,8 @@
                     const realTokAway = matchInfo.awayTeam;
                     const buildSpan=(tok, resolved, isReal=false)=>{
                       let id=getIdFromToken(tok);
-                      // Si es columna Real y token es placeholder (1A, 2B, W49...), forzamos unknown
-                      if(isReal && (/^[12][A-H]$/i.test(tok) || /^W\d+/i.test(tok))){ id=null; }
-                      if(!id && resolved!==tok && !isReal){ id=getIdFromToken(resolved); }
+                      // Si es columna Real y token es placeholder, intentamos badge del resolved
+                      if(id==null && resolved!==tok){ id=getIdFromToken(resolved); }
                       let src='';
                       if(id && teamIdToBadge[id]){ src=teamIdToBadge[id]; }
                       else if(isReal){ src='badges/unknownTeam.png'; }
@@ -1127,17 +1146,31 @@
     }
 
     function resolveTeamToken(token) {
-      if (teamIdToName[token]) return teamIdToName[token];
-      if (/^[12][A-H]$/i.test(token)) {
-        const pos = parseInt(token[0], 10);
-        const group = token[1].toUpperCase();
-        const standingsArr = realGroupStandings[group];
-        const groupFinished = standingsArr && standingsArr.every(t => t.matchesPlayed === 3);
-        if (groupFinished && standingsArr[pos - 1]) {
-          return standingsArr[pos - 1].teamName;
-        }
-      }
-      return token; // Mantener placeholder (Wxx, 1A, etc.)
+       if (teamIdToName[token]) return teamIdToName[token];
+       if (/^W\d+$/i.test(token)) {
+         const match = matchesById[token];
+         const res = resultsById[token];
+         if(match && res && res.homeGoals!==null && res.awayGoals!==null){
+            let winnerId=null;
+            if(res.homeGoals>res.awayGoals){ winnerId=match.homeTeam; }
+            else if(res.awayGoals>res.homeGoals){ winnerId=match.awayTeam; }
+            else if(res.penalties && res.penalties.homePenaltyGoals!==null && res.penalties.awayPenaltyGoals!==null){
+               if(res.penalties.homePenaltyGoals>res.penalties.awayPenaltyGoals){ winnerId=match.homeTeam; }
+               else if(res.penalties.awayPenaltyGoals>res.penalties.homePenaltyGoals){ winnerId=match.awayTeam; }
+            }
+            if(winnerId && teamIdToName[winnerId]) return teamIdToName[winnerId];
+         }
+       }
+       if (/^[12][A-H]$/i.test(token)) {
+         const pos = parseInt(token[0], 10);
+         const group = token[1].toUpperCase();
+         const standingsArr = realGroupStandings[group];
+         const groupFinished = standingsArr && standingsArr.every(t => t.matchesPlayed === 3);
+         if (groupFinished && standingsArr[pos - 1]) {
+           return standingsArr[pos - 1].teamName;
+         }
+       }
+       return token; // Mantener placeholder (Wxx, 1A, etc.)
     }
 
     function getRealKOName(match) {
@@ -1536,17 +1569,75 @@
         if(!standings[grp]) standings[grp]=[];
         standings[grp].push(st);
       });
-      // Ordenar y añadir posición
-      Object.keys(standings).forEach(g=>{
-        standings[g].sort((a,b)=>{
-          if(b.points!==a.points) return b.points-a.points;
-          if(b.goalDifference!==a.goalDifference) return b.goalDifference-a.goalDifference;
-          if(b.goalsFor!==a.goalsFor) return b.goalsFor-a.goalsFor;
-          return a.teamName.localeCompare(b.teamName);
+      // ------------ ORDENAR CON CRITERIOS FIFA ------------------
+      const getHeadToHeadStats=(cluster, matches, results)=>{
+        const stats={};
+        cluster.forEach(t=>{ stats[t.teamId]={pts:0, gf:0, ga:0, gd:0}; });
+        matches.forEach(m=>{
+          if(!(cluster.some(t=>t.teamId===m.homeTeam) && cluster.some(t=>t.teamId===m.awayTeam))) return;
+          const res=results.find(r=>r.matchId===m.matchId);
+          if(!res || res.homeGoals===null || res.awayGoals===null) return;
+          const home=stats[m.homeTeam], away=stats[m.awayTeam];
+          home.gf+=res.homeGoals; home.ga+=res.awayGoals;
+          away.gf+=res.awayGoals; away.ga+=res.homeGoals;
+          if(res.homeGoals>res.awayGoals){ home.pts+=3; }
+          else if(res.homeGoals<res.awayGoals){ away.pts+=3; }
+          else { home.pts+=1; away.pts+=1; }
         });
-        standings[g].forEach((t,idx)=> t.position = idx+1);
+        Object.values(stats).forEach(s=>{ s.gd=s.gf-s.ga; });
+        return stats;
+      };
+
+      const sortCluster=(arr, groupMatches, results)=>{
+        if(arr.length<=1) return arr;
+        // aplicar a) b) c)
+        const h2h=getHeadToHeadStats(arr, groupMatches, results);
+        arr.sort((a,b)=>{
+          if(h2h[b.teamId].pts!==h2h[a.teamId].pts) return h2h[b.teamId].pts - h2h[a.teamId].pts;
+          if(h2h[b.teamId].gd!==h2h[a.teamId].gd) return h2h[b.teamId].gd - h2h[a.teamId].gd;
+          if(h2h[b.teamId].gf!==h2h[a.teamId].gf) return h2h[b.teamId].gf - h2h[a.teamId].gf;
+          return 0;
+        });
+        // Comprobar si aún hay empates después de c)
+        for(let i=0;i<arr.length;){
+          const same=[arr[i]];
+          let j=i+1;
+          while(j<arr.length && h2h[arr[j].teamId].pts===h2h[arr[i].teamId].pts && h2h[arr[j].teamId].gd===h2h[arr[i].teamId].gd && h2h[arr[j].teamId].gf===h2h[arr[i].teamId].gf){
+            same.push(arr[j]); j++; }
+          if(same.length>1){
+            // aplicar d) e)
+            same.sort((x,y)=>{
+              if(y.goalDifference!==x.goalDifference) return y.goalDifference - x.goalDifference;
+              if(y.goalsFor!==x.goalsFor) return y.goalsFor - x.goalsFor;
+              return x.teamName.localeCompare(y.teamName);
+            });
+          }
+          // reemplazar
+          arr.splice(i, same.length, ...same);
+          i+=same.length;
+        }
+        return arr;
+      };
+
+      Object.keys(standings).forEach(g=>{
+        // Orden preliminar por puntos generales
+        standings[g].sort((a,b)=> b.points-a.points);
+        const groupMatches = matchesArr.filter(m=> m.phase==='group' && m.group===g);
+        // Resolver empates
+        for(let i=0;i<standings[g].length;){
+          const samePts=[standings[g][i]];
+          let j=i+1;
+          while(j<standings[g].length && standings[g][j].points===standings[g][i].points){ samePts.push(standings[g][j]); j++; }
+          if(samePts.length>1){
+            sortCluster(samePts, groupMatches, resultsArr);
+          }
+          // reemplazar
+          standings[g].splice(i, samePts.length, ...samePts);
+          i+=samePts.length;
+        }
+        standings[g].forEach((t,idx)=> t.position=idx+1);
       });
-      return standings;
+       return standings;
     }
 
     /** ----------------------------------------------------------
@@ -1644,14 +1735,10 @@
       }
     };
 
-    const now=new Date();
-    const switchDate=new Date('2025-06-28T00:00:00+02:00');
-    if(now >= switchDate){
-      /* Después del switch: solo KO abierto */
-      collapseHeader('groupPredHeader',true);
-      collapseHeader('classifHeader',true);
-      collapseHeader('koPredHeader',false);
-    } /* antes: todo abierto, no hacemos nada */
+    // Ajuste fijo: cerrar Group Stage y Group Classifications, abrir Knockout Stage
+    collapseHeader('groupPredHeader',true);
+    collapseHeader('classifHeader',true);
+    collapseHeader('koPredHeader',false);
 
     // ---------------------------
     // Vista por fecha / por grupo
@@ -1898,9 +1985,20 @@
             // Build team/unknown badges for phase header (similar a vista "By Date")
             const badgeArr=[];
             const pushBadge=(tok)=>{
-                const idToken = teamIdToBadge[tok] ? tok : null;
-                let src = 'badges/unknownTeam.png';
-                if(idToken && teamIdToBadge[idToken]) src = teamIdToBadge[idToken];
+                let idTok=null;
+                if(teamIdToBadge[tok]){ idTok=tok; }
+                else if(/^W\d+$/i.test(tok)){
+                   const m=matchesById[tok]; const r=resultsById[tok];
+                   if(m && r && r.homeGoals!==null && r.awayGoals!==null){
+                      if(r.homeGoals>r.awayGoals){ idTok=m.homeTeam; }
+                      else if(r.awayGoals>r.homeGoals){ idTok=m.awayTeam; }
+                      else if(r.penalties && r.penalties.homePenaltyGoals!==null && r.penalties.awayPenaltyGoals!==null){
+                         idTok = r.penalties.homePenaltyGoals>r.penalties.awayPenaltyGoals ? m.homeTeam : m.awayTeam;
+                      }
+                   }
+                }
+                let src='badges/unknownTeam.png';
+                if(idTok && teamIdToBadge[idTok]) src=teamIdToBadge[idTok];
                 badgeArr.push(`<img src="${src}" class="team-badge" alt="team"/>`);
             };
             items.forEach(p=>{
@@ -2022,7 +2120,138 @@
       setLiveIconOnHeader(document.getElementById('groupPredHeader'), hasGroupLive);
       setLiveIconOnHeader(document.getElementById('koPredHeader'), hasKOLive);
       setLiveIconOnHeader(document.getElementById('classifHeader'), hasClassifLive);
+
+      // Completed badges
+      const allGroupsFinished = Object.keys(realGroupStandings||{}).every(g=>isGroupComplete(realGroupStandings[g]));
+      const setCompletedBadge=(hdr,isComplete)=>{
+        if(!hdr) return;
+        let badge = hdr.querySelector('.completed-icon');
+        if(isComplete){
+          if(!badge){
+            badge=document.createElement('img');
+            badge.src='check.svg';
+            badge.alt='Completed';
+            badge.className='badge-icon completed-icon';
+            const titleEl = hdr.querySelector('.section-title') || hdr.querySelector('h2') || hdr.querySelector('h3');
+            if(titleEl){ titleEl.insertAdjacentElement('afterend', badge); }
+          }
+        } else { if(badge) badge.remove(); }
+      };
+      setCompletedBadge(document.getElementById('groupPredHeader'), allGroupsFinished);
+      setCompletedBadge(document.getElementById('classifHeader'), allGroupsFinished);
+
+      // Después de actualizar iconos Live y Completed, ajustamos headers de KO
+      if(typeof updateKnockoutHeaders==='function'){
+          updateKnockoutHeaders();
+      }
     }
+
+    // Añadir cache y funciones para calcular ganadores de KO según predicciones
+    const userWinnerCache={};
+    function getPredictedWinner(userId, matchId){
+      const key=`${userId}_${matchId}`;
+      if(key in userWinnerCache) return userWinnerCache[key];
+      const match=matchesById[matchId];
+      if(!match){ userWinnerCache[key]=null; return null; }
+      const pred=predictions.find(p=>p.userId===userId && p.matchId===matchId);
+      if(!pred){ userWinnerCache[key]=null; return null; }
+      let winnerTok=null;
+      if(pred.predHome>pred.predAway){ winnerTok=match.homeTeam; }
+      else if(pred.predAway>pred.predHome){ winnerTok=match.awayTeam; }
+      else {
+        // Empate: decidir por penaltis si existen
+        if(pred.predPenalties){
+           if(pred.predPenalties.home>pred.predPenalties.away){ winnerTok=match.homeTeam; }
+           else if(pred.predPenalties.away>pred.predPenalties.home){ winnerTok=match.awayTeam; }
+           else { winnerTok=match.homeTeam; }
+        } else { winnerTok=match.homeTeam; }
+      }
+      // Resolver recursivamente si es otro placeholder
+      if(/^W\d+$/i.test(winnerTok)){
+        winnerTok=getPredictedWinner(userId, winnerTok);
+      } else if(/^[12][A-H]$/i.test(winnerTok)){
+        const teamId=getIdFromToken(winnerTok);
+        if(teamId) winnerTok=teamId;
+      }
+      userWinnerCache[key]=winnerTok;
+      return winnerTok;
+    }
+
+    // At end of displayParticipant, before return or after rendering
+    // -----------------------------------------------
+    // Ajuste global de colapsables tras el 28 Jun
+    // Cierra grupos y abre solo KO Round-of-16
+    // -----------------------------------------------
+    const adjustCollapsiblesAfterRender=()=>{
+      /* deprecated: handled by updateKnockoutHeaders */
+      return;
+    };
+
+    adjustCollapsiblesAfterRender();
+
+    /* ------------------------------------------------------------
+       KO HEADERS AUTO-OPEN/CLOSE SEGÚN LIVE / COMPLETED / PENDIENTE
+    -------------------------------------------------------------*/
+    function updateKnockoutHeaders(){
+      const DAY_MS = 24*60*60*1000;
+      const koBody = document.getElementById('koPredictionsBody');
+      if(!koBody) return;
+      const headers = [...koBody.querySelectorAll('.day-header')];
+      if(headers.length===0) return;
+
+      // Helper para abrir/cerrar
+      const setOpen=(hdr,open)=>{
+        const arrow = hdr.querySelector('.arrow');
+        const isOpen = arrow && arrow.textContent==='▼';
+        if(open && !isOpen) hdr.click();
+        if(!open && isOpen) hdr.click();
+      };
+
+      // Determinar estados
+      let nextToPlayHeader=null;
+      headers.forEach(h=>{
+        const dateKey=h.dataset.dateKey;
+        const dayMatches = Object.values(matchesById).filter(m=> m.phase!=='group' && m.dateTime.startsWith(dateKey));
+        const resStates = dayMatches.map(m=> resultsById[m.matchId]);
+        const anyPlayed = resStates.some(r=> r && r.homeGoals!==null);
+        const allPlayed = dayMatches.length>0 && resStates.every(r=> r && r.homeGoals!==null);
+        const anyLive = dayMatches.some(m=>{
+           const t=new Date(m.dateTime).getTime();
+           const now=Date.now();
+           const res=resultsById[m.matchId];
+           const played = res && res.homeGoals!==null;
+           return !played && t<=now+DAY_MS && t>=now-10*60*1000; // ventana live 24h futura y 10m pasada
+        });
+
+        h.dataset.anyPlayed=anyPlayed;
+        h.dataset.allPlayed=allPlayed;
+        h.dataset.anyLive=anyLive;
+
+        if(!anyPlayed && !nextToPlayHeader){ nextToPlayHeader=h; }
+      });
+
+      // Aplicar reglas
+      headers.forEach(h=>{
+        const anyLive   = h.dataset.anyLive==='true';
+        const allPlayed = h.dataset.allPlayed==='true';
+        const dateKey   = h.dataset.dateKey;
+        let keepOpenCompleted=false;
+        if(allPlayed){
+           const key='completed_'+dateKey;
+           let ts=localStorage.getItem(key);
+           if(!ts){ ts=Date.now(); localStorage.setItem(key,ts); }
+           keepOpenCompleted = Date.now()-ts < DAY_MS;
+        }
+        const shouldOpen = anyLive || keepOpenCompleted || h===nextToPlayHeader;
+        setOpen(h, shouldOpen);
+      });
+    }
+
+    // Llamamos tras render KO
+    updateKnockoutHeaders();
+
+    refreshHeaderLiveIcons();
+    updateKnockoutHeaders();
   </script>
 </body>
 </html>
