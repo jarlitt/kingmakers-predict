@@ -1351,3 +1351,8 @@ body {
 @media (min-width:769px) and (max-width:1199px){
   .leaderboard-area{display:block;}
 }
+
+@media (min-width:1073px){
+  .leader-extra{justify-content:space-between;gap:0;}
+  .leader-stats{flex-direction:row;}
+}
