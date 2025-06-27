@@ -434,7 +434,7 @@
   {
     "matchId": "W49",
     "dateTime": "2025-06-28T18:00:00+02:00",
-    "homeTeam": "POR",
+    "homeTeam": "PAL",
     "awayTeam": "BOT",
     "phase": "ro16",
     "displayName": "1A vs 2B"
@@ -442,8 +442,8 @@
   {
     "matchId": "W50",
     "dateTime": "2025-06-28T22:00:00+02:00",
-    "homeTeam": "BAY",
-    "awayTeam": "FLA",
+    "homeTeam": "BEN",
+    "awayTeam": "CHE",
     "phase": "ro16",
     "displayName": "1C vs 2D"
   },
@@ -459,14 +459,14 @@
     "matchId": "W52",
     "dateTime": "2025-07-01T03:00:00+02:00",
     "homeTeam": "MCI",
-    "awayTeam": "SAL",
+    "awayTeam": null,
     "phase": "ro16",
     "displayName": "1G vs 2H"
   },
   {
     "matchId": "W53",
     "dateTime": "2025-06-29T18:00:00+02:00",
-    "homeTeam": "SEA",
+    "homeTeam": "PSG",
     "awayTeam": "MIA",
     "phase": "ro16",
     "displayName": "1B vs 2A"
@@ -474,15 +474,15 @@
   {
     "matchId": "W54",
     "dateTime": "2025-06-29T22:00:00+02:00",
-    "homeTeam": "EST",
-    "awayTeam": "BOC",
+    "homeTeam": "FLA",
+    "awayTeam": "BAY",
     "phase": "ro16",
     "displayName": "1D vs 2C"
   },
   {
     "matchId": "W55",
     "dateTime": "2025-07-02T03:00:00+02:00",
-    "homeTeam": "SUN",
+    "homeTeam": "DOR",
     "awayTeam": "MON",
     "phase": "ro16",
     "displayName": "1F vs 2E"
@@ -490,7 +490,7 @@
   {
     "matchId": "W56",
     "dateTime": "2025-07-01T21:00:00+02:00",
-    "homeTeam": "RMA",
+    "homeTeam": null,
     "awayTeam": "JUV",
     "phase": "ro16",
     "displayName": "1H vs 2G"
