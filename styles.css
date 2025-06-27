@@ -182,7 +182,7 @@ body {
 /* Leader Extra container */
 .leader-extra {
   display: flex; /* lay out children horizontally by default */
-  gap: 128px; /* space between snippet and stats */
+  gap: 96px; /* space between snippet and stats */
   justify-content: flex-start;
 }
 
