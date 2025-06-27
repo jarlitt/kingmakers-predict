@@ -129,6 +129,7 @@ body {
 /* Prediction Controls */
 .prediction-controls {
   margin-bottom: 32px;
+  max-width: fit-content;
 }
 
 .control-group {
@@ -1353,11 +1354,11 @@ body {
 
 @media (min-width:1073px){
   .leader-extra{justify-content:space-between;gap:0;}
-  .leader-stats{flex-direction:row;}
+  .leader-stats{flex-direction:column;}
 }
 
 @media (min-width:564px){
-  .leader-extra{display:flex;justify-content:space-between;}
+  .leader-extra{display:flex;justify-content: flex-start;gap: 16px;}
   .leader-snippet{margin-bottom:24px;}
 }
 
@@ -1378,4 +1379,8 @@ body {
   .leader-stats{
     flex-direction: column;
   }
+}
+
+@media (min-width:725px) and (max-width:1072px){
+  .leader-stats{flex-direction:row;}
 }

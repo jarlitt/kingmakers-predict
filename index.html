@@ -29,11 +29,11 @@
 
     <main class="main-content">
       <section id="predTab" class="tab-content">
+        <div class="control-group">
+          <label for="participantSelect" class="control-label">Select Participant</label>
+          <select id="participantSelect" class="select-input"></select>
+        </div>
         <div class="prediction-controls card">
-          <div class="control-group">
-            <label for="participantSelect" class="control-label">Select Participant</label>
-            <select id="participantSelect" class="select-input"></select>
-          </div>
           <div class="leader-extra">
             <div id="leaderSnippet" class="leader-snippet"></div>
             <div id="leaderStats" class="leader-stats"></div>
@@ -409,6 +409,8 @@
           let up=2, down=2;
           if(idx===0){ up=0; down=4; }
           else if(idx===1){ up=1; down=3; }
+          else if(idx===16){ up=4; down=0; }
+
 
           const start=Math.max(0, idx-up);
           const end=Math.min(leaderboard.length-1, idx+down);
