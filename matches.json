@@ -459,7 +459,7 @@
     "matchId": "W52",
     "dateTime": "2025-07-01T03:00:00+02:00",
     "homeTeam": "MCI",
-    "awayTeam": null,
+    "awayTeam": -,
     "phase": "ro16",
     "displayName": "1G vs 2H"
   },
@@ -490,7 +490,7 @@
   {
     "matchId": "W56",
     "dateTime": "2025-07-01T21:00:00+02:00",
-    "homeTeam": null,
+    "homeTeam": -,
     "awayTeam": "JUV",
     "phase": "ro16",
     "displayName": "1H vs 2G"
