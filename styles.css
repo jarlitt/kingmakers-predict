@@ -1231,6 +1231,7 @@ body {
   align-items:center;
   gap:6px;
   margin-top:4px;
+  margin-bottom:12px;
 }
 @media (max-width:768px){
   .phase-badges-row{flex-wrap:wrap;}
