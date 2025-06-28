@@ -254,20 +254,80 @@
         groupStandings = computeAllPredictedGroupStandings(matchesArray, predictions, teamsArray);
 
         // Calculamos puntos totales por participante
-        const pointsByUser = {};
-        predictions.forEach(pred => {
-          const res = resultsArray.find(r => r.matchId === pred.matchId);
-          let pts = 0;
-          if (res && res.homeGoals !== null && res.awayGoals !== null) {
-            const diffRes = res.homeGoals - res.awayGoals;
-            const diffPred = pred.predHome - pred.predAway;
-            if (pred.predHome === res.homeGoals && pred.predAway === res.awayGoals) {
-              pts = 5;
-            } else if ((diffRes === 0 && diffPred === 0) || (diffRes > 0 && diffPred > 0) || (diffRes < 0 && diffPred < 0)) {
-              pts = 3;
+        // Mapa acumulador de puntos por usuario
+
+        // Helper para resolver tokens según predicciones de cada usuario
+        function resolveUserTokenFor(uid, token){
+          if(teamIdToName[token]) return teamIdToName[token];
+          if(/^[12][A-H]$/i.test(token)){
+            const pos=parseInt(token[0],10);
+            const grp=token[1].toUpperCase();
+            const arr=(groupStandings[uid]||{})[grp];
+            if(arr){
+              const found=arr.find(t=>t.position===pos);
+              if(found) return found.teamName;
+              if(arr[pos-1]) return arr[pos-1].teamName;
             }
           }
-          pointsByUser[pred.userId] = (pointsByUser[pred.userId] || 0) + pts;
+          if(/^W\d+$/i.test(token)){
+            const winnerId=getPredictedWinner(uid, token);
+            if(winnerId && teamIdToName[winnerId]) return teamIdToName[winnerId];
+          }
+          return token;
+        }
+
+        function resolveRealToken(token){
+          if(teamIdToName[token]) return teamIdToName[token];
+          if(/^W\d+$/i.test(token)){
+            const m=matchesById[token];
+            const r=resultsById[token];
+            if(m && r && r.homeGoals!==null && r.awayGoals!==null){
+              let winnerId=null;
+              if(r.homeGoals>r.awayGoals) winnerId=m.homeTeam;
+              else if(r.awayGoals>r.homeGoals) winnerId=m.awayTeam;
+              else if(r.penalties && r.penalties.homePenaltyGoals!==null && r.penalties.awayPenaltyGoals!==null){
+                winnerId = r.penalties.homePenaltyGoals>r.penalties.awayPenaltyGoals ? m.homeTeam : m.awayTeam;
+              }
+              if(winnerId && teamIdToName[winnerId]) return teamIdToName[winnerId];
+            }
+          }
+          if(/^[12][A-H]$/i.test(token)){
+            const pos=parseInt(token[0],10);
+            const grp=token[1].toUpperCase();
+            const arr=realGroupStandings[grp];
+            const groupFinished = arr && arr.every(t=>t.matchesPlayed===3);
+            if(groupFinished && arr[pos-1]) return arr[pos-1].teamName;
+          }
+          return token;
+        }
+
+        const pointsByUser = {};
+        predictions.forEach(pred=>{
+            const res = resultsById[pred.matchId];
+            if(!(res && res.homeGoals!==null && res.awayGoals!==null)) return; // partido no jugado
+            const matchInfo = matchesById[pred.matchId];
+            let pts=0;
+            if(matchInfo.phase==='group'){
+                const diffRes=res.homeGoals-res.awayGoals;
+                const diffPred=pred.predHome-pred.predAway;
+                if(pred.predHome===res.homeGoals && pred.predAway===res.awayGoals){ pts=5; }
+                else if((diffRes===0 && diffPred===0)||(diffRes>0 && diffPred>0)||(diffRes<0 && diffPred<0)){ pts=3; }
+            } else {
+                // KO: verificar equipos
+                const realHomeName=resolveRealToken(matchInfo.homeTeam);
+                const realAwayName=resolveRealToken(matchInfo.awayTeam);
+                const parts = matchInfo.displayName.split(' vs ').map(s=>s.trim());
+                let predHomeTok=parts[0], predAwayTok=parts[1];
+                const predHomeName=resolveUserTokenFor(pred.userId, predHomeTok);
+                const predAwayName=resolveUserTokenFor(pred.userId, predAwayTok);
+                if(predHomeName===realHomeName && predAwayName===realAwayName){
+                    const diffRes=res.homeGoals-res.awayGoals;
+                    const diffPred=pred.predHome-pred.predAway;
+                    if(pred.predHome===res.homeGoals && pred.predAway===res.awayGoals) pts=5;
+                    else if((diffRes===0 && diffPred===0)||(diffRes>0 && diffPred>0)||(diffRes<0 && diffPred<0)) pts=3;
+                }
+            }
+            pointsByUser[pred.userId]=(pointsByUser[pred.userId]||0)+pts;
         });
 
         // Añadimos puntos de clasificación de grupos
@@ -660,6 +720,94 @@
         if(res && res.homeGoals!==null){
           const diff=res.homeGoals-res.awayGoals;
           const predDiff=pred.predHome-pred.predAway;
+          
+          // Para fase de knockout, verificar que los equipos predichos coincidan con los reales
+          const matchInfo = matchesById[pred.matchId];
+          if(matchInfo && matchInfo.phase !== 'group'){
+            console.log('calcPointsFn - Verificando equipos para partido KO:', pred.matchId);
+            
+            // Obtener equipos predichos
+            const resolveUserToken=(tok)=>{
+              if(teamIdToName[tok]) return teamIdToName[tok];
+              if(/^[12][A-H]$/i.test(tok)){
+                const pos=parseInt(tok[0],10);
+                const grp=tok[1].toUpperCase();
+                const arr=currentPredStandings[grp];
+                if(arr){
+                  const found=arr.find(t=>t.position===pos);
+                  if(found) return found.teamName;
+                  if(arr[pos-1]) return arr[pos-1].teamName;
+                }
+              }
+              if(/^W\d+$/i.test(tok)){
+                const winnerId=getPredictedWinner(participantSelect.value, tok);
+                if(winnerId && teamIdToName[winnerId]) return teamIdToName[winnerId];
+              }
+              return tok;
+            };
+            
+            // Obtener equipos reales
+            const resolveTeamToken = (token) => {
+               if (teamIdToName[token]) return teamIdToName[token];
+               if (/^W\d+$/i.test(token)) {
+                 const match = matchesById[token];
+                 const res = resultsById[token];
+                 if(match && res && res.homeGoals!==null && res.awayGoals!==null){
+                    let winnerId=null;
+                    if(res.homeGoals>res.awayGoals){ winnerId=match.homeTeam; }
+                    else if(res.awayGoals>res.homeGoals){ winnerId=match.awayTeam; }
+                    else if(res.penalties && res.penalties.homePenaltyGoals!==null && res.penalties.awayPenaltyGoals!==null){
+                       if(res.penalties.homePenaltyGoals>res.penalties.awayPenaltyGoals){ winnerId=match.homeTeam; }
+                       else if(res.penalties.awayPenaltyGoals>res.penalties.homePenaltyGoals){ winnerId=match.awayTeam; }
+                    }
+                    if(winnerId && teamIdToName[winnerId]) return teamIdToName[winnerId];
+                 }
+               }
+               if (/^[12][A-H]$/i.test(token)) {
+                 const pos = parseInt(token[0], 10);
+                 const group = token[1].toUpperCase();
+                 const standingsArr = realGroupStandings[group];
+                 const groupFinished = standingsArr && standingsArr.every(t => t.matchesPlayed === 3);
+                 if (groupFinished && standingsArr[pos - 1]) {
+                   return standingsArr[pos - 1].teamName;
+                 }
+               }
+               return token;
+            };
+            
+            // Obtener placeholders originales del displayName
+            const parts = matchInfo.displayName.split(' vs ').map(s => s.trim());
+            let predHomeTok, predAwayTok;
+            if(parts.length === 2){
+              predHomeTok = parts[0];
+              predAwayTok = parts[1];
+            } else {
+              predHomeTok = matchInfo.homeTeam;
+              predAwayTok = matchInfo.awayTeam;
+            }
+            
+            const realTokHome = matchInfo.homeTeam;
+            const realTokAway = matchInfo.awayTeam;
+            
+            // Resolver nombres de equipos
+            const predHomeName = resolveUserToken(predHomeTok);
+            const predAwayName = resolveUserToken(predAwayTok);
+            const realHomeName = resolveTeamToken(realTokHome);
+            const realAwayName = resolveTeamToken(realTokAway);
+            
+            console.log('calcPointsFn - Equipos predichos:', predHomeName, 'vs', predAwayName);
+            console.log('calcPointsFn - Equipos reales:', realHomeName, 'vs', realAwayName);
+            
+            // Verificar que los equipos coincidan
+            if(predHomeName !== realHomeName || predAwayName !== realAwayName){
+                console.log('calcPointsFn - Equipos NO coinciden - 0 puntos');
+                return 0; // No hay puntos si los equipos no coinciden
+            }
+            
+            console.log('calcPointsFn - Equipos coinciden - calculando puntos');
+          }
+          
+          // Si llegamos aquí, los equipos coinciden (o es fase de grupos)
           if(pred.predHome===res.homeGoals && pred.predAway===res.awayGoals){return 5;}
           if((diff===0 && predDiff===0)||(diff>0 && predDiff>0)||(diff<0 && predDiff<0)){return 3;}
         }
@@ -827,8 +975,96 @@
             if(res && res.homeGoals!==null){
                 const diff=res.homeGoals-res.awayGoals;
                 const predDiff=pred.predHome-pred.predAway;
-                if(pred.predHome===res.homeGoals && pred.predAway===res.awayGoals){return 5;}
-                if((diff===0 && predDiff===0)||(diff>0 && predDiff>0)||(diff<0 && predDiff<0)){return 3;}
+                
+                // Para fase de knockout, verificar que los equipos predichos coincidan con los reales
+                const matchInfo = matchesById[pred.matchId];
+                if(matchInfo && matchInfo.phase !== 'group'){
+                    console.log('Verificando equipos para partido KO:', pred.matchId);
+                    
+                    // Obtener equipos predichos
+                    const resolveUserToken=(tok)=>{
+                      if(teamIdToName[tok]) return teamIdToName[tok];
+                      if(/^[12][A-H]$/i.test(tok)){
+                        const pos=parseInt(tok[0],10);
+                        const grp=tok[1].toUpperCase();
+                        const arr=currentPredStandings[grp];
+                        if(arr){
+                          const found=arr.find(t=>t.position===pos);
+                          if(found) return found.teamName;
+                          if(arr[pos-1]) return arr[pos-1].teamName;
+                        }
+                      }
+                      if(/^W\d+$/i.test(tok)){
+                        const winnerId=getPredictedWinner(participantSelect.value, tok);
+                        if(winnerId && teamIdToName[winnerId]) return teamIdToName[winnerId];
+                      }
+                      return tok;
+                    };
+                    
+                    // Obtener equipos reales
+                    const resolveTeamToken = (token) => {
+                       if (teamIdToName[token]) return teamIdToName[token];
+                       if (/^W\d+$/i.test(token)) {
+                         const match = matchesById[token];
+                         const res = resultsById[token];
+                         if(match && res && res.homeGoals!==null && res.awayGoals!==null){
+                            let winnerId=null;
+                            if(res.homeGoals>res.awayGoals){ winnerId=match.homeTeam; }
+                            else if(res.awayGoals>res.homeGoals){ winnerId=match.awayTeam; }
+                            else if(res.penalties && res.penalties.homePenaltyGoals!==null && res.penalties.awayPenaltyGoals!==null){
+                               if(res.penalties.homePenaltyGoals>res.penalties.awayPenaltyGoals){ winnerId=match.homeTeam; }
+                               else if(res.penalties.awayPenaltyGoals>res.penalties.homePenaltyGoals){ winnerId=match.awayTeam; }
+                            }
+                            if(winnerId && teamIdToName[winnerId]) return teamIdToName[winnerId];
+                         }
+                       }
+                       if (/^[12][A-H]$/i.test(token)) {
+                         const pos = parseInt(token[0], 10);
+                         const group = token[1].toUpperCase();
+                         const standingsArr = realGroupStandings[group];
+                         const groupFinished = standingsArr && standingsArr.every(t => t.matchesPlayed === 3);
+                         if (groupFinished && standingsArr[pos - 1]) {
+                           return standingsArr[pos - 1].teamName;
+                         }
+                       }
+                       return token;
+                    };
+                    
+                    // Obtener placeholders originales del displayName
+                    const parts = matchInfo.displayName.split(' vs ').map(s => s.trim());
+                    let predHomeTok, predAwayTok;
+                    if(parts.length === 2){
+                      predHomeTok = parts[0];
+                      predAwayTok = parts[1];
+                    } else {
+                      predHomeTok = matchInfo.homeTeam;
+                      predAwayTok = matchInfo.awayTeam;
+                    }
+                    
+                    const realTokHome = matchInfo.homeTeam;
+                    const realTokAway = matchInfo.awayTeam;
+                    
+                    // Resolver nombres de equipos
+                    const predHomeName = resolveUserToken(predHomeTok);
+                    const predAwayName = resolveUserToken(predAwayTok);
+                    const realHomeName = resolveTeamToken(realTokHome);
+                    const realAwayName = resolveTeamToken(realTokAway);
+                    
+                    console.log('Equipos predichos:', predHomeName, 'vs', predAwayName);
+                    console.log('Equipos reales:', realHomeName, 'vs', realAwayName);
+                    
+                    // Verificar que los equipos coincidan
+                    if(predHomeName !== realHomeName || predAwayName !== realAwayName){
+                        console.log('Equipos NO coinciden - 0 puntos');
+                        return 0; // No hay puntos si los equipos no coinciden
+                    }
+                    
+                    console.log('Equipos coinciden - calculando puntos');
+                }
+                
+                // Si llegamos aquí, los equipos coinciden (o es fase de grupos)
+                if(pred.predHome===res.homeGoals && pred.predAway===res.awayGoals) return 5;
+                if((diff===0 && predDiff===0)||(diff>0 && predDiff>0)||(diff<0 && predDiff<0)) return 3;
             }
             return 0;
         };
@@ -1011,10 +1247,7 @@
                 let points=0;
                 const played = (resultsById[pred.matchId] && resultsById[pred.matchId].homeGoals!==null);
                 if(played){
-                    const diff=resultsById[pred.matchId].homeGoals-resultsById[pred.matchId].awayGoals;
-                    const predDiff=pred.predHome-pred.predAway;
-                    if(pred.predHome===resultsById[pred.matchId].homeGoals && pred.predAway===resultsById[pred.matchId].awayGoals){points=5;}
-                    else if((diff===0 && predDiff===0)||(diff>0 && predDiff>0)||(diff<0 && predDiff<0)){points=3;}
+                    points = calcPoints(pred); // Usa función central con verificación de equipos
                 }
 
                 // Determinar texto y clase para badge de puntos
@@ -1309,6 +1542,94 @@
           if(res && res.homeGoals!==null){
             const diff=res.homeGoals-res.awayGoals;
             const predDiff=pred.predHome-pred.predAway;
+            
+            // Para fase de knockout, verificar que los equipos predichos coincidan con los reales
+            const matchInfo = matchesById[pred.matchId];
+            if(matchInfo && matchInfo.phase !== 'group'){
+              console.log('calcPtsMatch - Verificando equipos para partido KO:', pred.matchId);
+              
+              // Obtener equipos predichos
+              const resolveUserToken=(tok)=>{
+                if(teamIdToName[tok]) return teamIdToName[tok];
+                if(/^[12][A-H]$/i.test(tok)){
+                  const pos=parseInt(tok[0],10);
+                  const grp=tok[1].toUpperCase();
+                  const arr=currentPredStandings[grp];
+                  if(arr){
+                    const found=arr.find(t=>t.position===pos);
+                    if(found) return found.teamName;
+                    if(arr[pos-1]) return arr[pos-1].teamName;
+                  }
+                }
+                if(/^W\d+$/i.test(tok)){
+                  const winnerId=getPredictedWinner(participantSelect.value, tok);
+                  if(winnerId && teamIdToName[winnerId]) return teamIdToName[winnerId];
+                }
+                return tok;
+              };
+              
+              // Obtener equipos reales
+              const resolveTeamToken = (token) => {
+                 if (teamIdToName[token]) return teamIdToName[token];
+                 if (/^W\d+$/i.test(token)) {
+                   const match = matchesById[token];
+                   const res = resultsById[token];
+                   if(match && res && res.homeGoals!==null && res.awayGoals!==null){
+                      let winnerId=null;
+                      if(res.homeGoals>res.awayGoals){ winnerId=match.homeTeam; }
+                      else if(res.awayGoals>res.homeGoals){ winnerId=match.awayTeam; }
+                      else if(res.penalties && res.penalties.homePenaltyGoals!==null && res.penalties.awayPenaltyGoals!==null){
+                         if(res.penalties.homePenaltyGoals>res.penalties.awayPenaltyGoals){ winnerId=match.homeTeam; }
+                         else if(res.penalties.awayPenaltyGoals>res.penalties.homePenaltyGoals){ winnerId=match.awayTeam; }
+                      }
+                      if(winnerId && teamIdToName[winnerId]) return teamIdToName[winnerId];
+                   }
+                 }
+                 if (/^[12][A-H]$/i.test(token)) {
+                   const pos = parseInt(token[0], 10);
+                   const group = token[1].toUpperCase();
+                   const standingsArr = realGroupStandings[group];
+                   const groupFinished = standingsArr && standingsArr.every(t => t.matchesPlayed === 3);
+                   if (groupFinished && standingsArr[pos - 1]) {
+                     return standingsArr[pos - 1].teamName;
+                   }
+                 }
+                 return token;
+              };
+              
+              // Obtener placeholders originales del displayName
+              const parts = matchInfo.displayName.split(' vs ').map(s => s.trim());
+              let predHomeTok, predAwayTok;
+              if(parts.length === 2){
+                predHomeTok = parts[0];
+                predAwayTok = parts[1];
+              } else {
+                predHomeTok = matchInfo.homeTeam;
+                predAwayTok = matchInfo.awayTeam;
+              }
+              
+              const realTokHome = matchInfo.homeTeam;
+              const realTokAway = matchInfo.awayTeam;
+              
+              // Resolver nombres de equipos
+              const predHomeName = resolveUserToken(predHomeTok);
+              const predAwayName = resolveUserToken(predAwayTok);
+              const realHomeName = resolveTeamToken(realTokHome);
+              const realAwayName = resolveTeamToken(realTokAway);
+              
+              console.log('calcPtsMatch - Equipos predichos:', predHomeName, 'vs', predAwayName);
+              console.log('calcPtsMatch - Equipos reales:', realHomeName, 'vs', realAwayName);
+              
+              // Verificar que los equipos coincidan
+              if(predHomeName !== realHomeName || predAwayName !== realAwayName){
+                  console.log('calcPtsMatch - Equipos NO coinciden - 0 puntos');
+                  return 0; // No hay puntos si los equipos no coinciden
+              }
+              
+              console.log('calcPtsMatch - Equipos coinciden - calculando puntos');
+            }
+            
+            // Si llegamos aquí, los equipos coinciden (o es fase de grupos)
             if(pred.predHome===res.homeGoals && pred.predAway===res.awayGoals) return 5;
             if((diff===0 && predDiff===0)||(diff>0 && predDiff>0)||(diff<0 && predDiff<0)) return 3;
           }
@@ -1974,6 +2295,94 @@
             if(res && res.homeGoals!==null){
                 const diff=res.homeGoals-res.awayGoals;
                 const predDiff=pred.predHome-pred.predAway;
+                
+                // Para fase de knockout, verificar que los equipos predichos coincidan con los reales
+                const matchInfo = matchesById[pred.matchId];
+                if(matchInfo && matchInfo.phase !== 'group'){
+                    console.log('renderPredTablePhase - Verificando equipos para partido KO:', pred.matchId);
+                    
+                    // Obtener equipos predichos
+                    const resolveUserToken=(tok)=>{
+                      if(teamIdToName[tok]) return teamIdToName[tok];
+                      if(/^[12][A-H]$/i.test(tok)){
+                        const pos=parseInt(tok[0],10);
+                        const grp=tok[1].toUpperCase();
+                        const arr=currentPredStandings[grp];
+                        if(arr){
+                          const found=arr.find(t=>t.position===pos);
+                          if(found) return found.teamName;
+                          if(arr[pos-1]) return arr[pos-1].teamName;
+                        }
+                      }
+                      if(/^W\d+$/i.test(tok)){
+                        const winnerId=getPredictedWinner(participantSelect.value, tok);
+                        if(winnerId && teamIdToName[winnerId]) return teamIdToName[winnerId];
+                      }
+                      return tok;
+                    };
+                    
+                    // Obtener equipos reales
+                    const resolveTeamToken = (token) => {
+                       if (teamIdToName[token]) return teamIdToName[token];
+                       if (/^W\d+$/i.test(token)) {
+                         const match = matchesById[token];
+                         const res = resultsById[token];
+                         if(match && res && res.homeGoals!==null && res.awayGoals!==null){
+                            let winnerId=null;
+                            if(res.homeGoals>res.awayGoals){ winnerId=match.homeTeam; }
+                            else if(res.awayGoals>res.homeGoals){ winnerId=match.awayTeam; }
+                            else if(res.penalties && res.penalties.homePenaltyGoals!==null && res.penalties.awayPenaltyGoals!==null){
+                               if(res.penalties.homePenaltyGoals>res.penalties.awayPenaltyGoals){ winnerId=match.homeTeam; }
+                               else if(res.penalties.awayPenaltyGoals>res.penalties.homePenaltyGoals){ winnerId=match.awayTeam; }
+                            }
+                            if(winnerId && teamIdToName[winnerId]) return teamIdToName[winnerId];
+                         }
+                       }
+                       if (/^[12][A-H]$/i.test(token)) {
+                         const pos = parseInt(token[0], 10);
+                         const group = token[1].toUpperCase();
+                         const standingsArr = realGroupStandings[group];
+                         const groupFinished = standingsArr && standingsArr.every(t => t.matchesPlayed === 3);
+                         if (groupFinished && standingsArr[pos - 1]) {
+                           return standingsArr[pos - 1].teamName;
+                         }
+                       }
+                       return token;
+                    };
+                    
+                    // Obtener placeholders originales del displayName
+                    const parts = matchInfo.displayName.split(' vs ').map(s => s.trim());
+                    let predHomeTok, predAwayTok;
+                    if(parts.length === 2){
+                      predHomeTok = parts[0];
+                      predAwayTok = parts[1];
+                    } else {
+                      predHomeTok = matchInfo.homeTeam;
+                      predAwayTok = matchInfo.awayTeam;
+                    }
+                    
+                    const realTokHome = matchInfo.homeTeam;
+                    const realTokAway = matchInfo.awayTeam;
+                    
+                    // Resolver nombres de equipos
+                    const predHomeName = resolveUserToken(predHomeTok);
+                    const predAwayName = resolveUserToken(predAwayTok);
+                    const realHomeName = resolveTeamToken(realTokHome);
+                    const realAwayName = resolveTeamToken(realTokAway);
+                    
+                    console.log('renderPredTablePhase - Equipos predichos:', predHomeName, 'vs', predAwayName);
+                    console.log('renderPredTablePhase - Equipos reales:', realHomeName, 'vs', realAwayName);
+                    
+                    // Verificar que los equipos coincidan
+                    if(predHomeName !== realHomeName || predAwayName !== realAwayName){
+                        console.log('renderPredTablePhase - Equipos NO coinciden - 0 puntos');
+                        return 0; // No hay puntos si los equipos no coinciden
+                    }
+                    
+                    console.log('renderPredTablePhase - Equipos coinciden - calculando puntos');
+                }
+                
+                // Si llegamos aquí, los equipos coinciden (o es fase de grupos)
                 if(pred.predHome===res.homeGoals && pred.predAway===res.awayGoals) return 5;
                 if((diff===0 && predDiff===0)||(diff>0 && predDiff>0)||(diff<0 && predDiff<0)) return 3;
             }
