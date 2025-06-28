@@ -325,8 +325,8 @@
                     const diffPred=pred.predHome-pred.predAway;
                     if(pred.predHome===res.homeGoals && pred.predAway===res.awayGoals) pts=5;
                     else if((diffRes===0 && diffPred===0)||(diffRes>0 && diffPred>0)||(diffRes<0 && diffPred<0)) pts=3;
-                }
             }
+          }
             pointsByUser[pred.userId]=(pointsByUser[pred.userId]||0)+pts;
         });
 
