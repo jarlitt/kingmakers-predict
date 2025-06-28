@@ -433,8 +433,8 @@
   },
   {
     "matchId": "W49",
-    "homeGoals": null,
-    "awayGoals": null,
+    "homeGoals": 1,
+    "awayGoals": 0,
     "penalties": {
       "homePenaltyGoals": null,
       "awayPenaltyGoals": null
