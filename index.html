@@ -53,7 +53,6 @@
           </div>
           <div class="table-container">
             <table id="groupPredictionsTable" class="predictions-table">
-              <!-- Cabecera eliminada; cada día añade su propia sub-header -->
               <tbody id="groupPredictionsBody"></tbody>
             </table>
           </div>
@@ -76,7 +75,6 @@
           </div>
           <div class="table-container">
             <table id="koPredictionsTable" class="predictions-table">
-              <!-- Cabecera eliminada; cada día añade su propia sub-header -->
               <tbody id="koPredictionsBody"></tbody>
             </table>
           </div>
@@ -106,6 +104,7 @@
     </main>
   </div>
 
+  <script src="scoring.js"></script>
   <script>
     const participantSelect = document.getElementById('participantSelect');
     const btnPred=document.getElementById('btnPred');
@@ -302,31 +301,9 @@
         }
 
         const pointsByUser = {};
-        predictions.forEach(pred=>{
-            const res = resultsById[pred.matchId];
-            if(!(res && res.homeGoals!==null && res.awayGoals!==null)) return; // partido no jugado
-            const matchInfo = matchesById[pred.matchId];
-            let pts=0;
-            if(matchInfo.phase==='group'){
-                const diffRes=res.homeGoals-res.awayGoals;
-                const diffPred=pred.predHome-pred.predAway;
-                if(pred.predHome===res.homeGoals && pred.predAway===res.awayGoals){ pts=5; }
-                else if((diffRes===0 && diffPred===0)||(diffRes>0 && diffPred>0)||(diffRes<0 && diffPred<0)){ pts=3; }
-            } else {
-                // KO: verificar equipos
-                const realHomeName=resolveRealToken(matchInfo.homeTeam);
-                const realAwayName=resolveRealToken(matchInfo.awayTeam);
-                const parts = matchInfo.displayName.split(' vs ').map(s=>s.trim());
-                let predHomeTok=parts[0], predAwayTok=parts[1];
-                const predHomeName=resolveUserTokenFor(pred.userId, predHomeTok);
-                const predAwayName=resolveUserTokenFor(pred.userId, predAwayTok);
-                if(predHomeName===realHomeName && predAwayName===realAwayName){
-                    const diffRes=res.homeGoals-res.awayGoals;
-                    const diffPred=pred.predHome-pred.predAway;
-                    if(pred.predHome===res.homeGoals && pred.predAway===res.awayGoals) pts=5;
-                    else if((diffRes===0 && diffPred===0)||(diffRes>0 && diffPred>0)||(diffRes<0 && diffPred<0)) pts=3;
-            }
-          }
+        // Calcular puntos por predicciones de partidos
+        predictions.forEach(pred => {
+            const pts = calculateMatchPoints(pred);
             pointsByUser[pred.userId]=(pointsByUser[pred.userId]||0)+pts;
         });
 
@@ -577,8 +554,6 @@
             badgesRow.style.marginTop='8px';
             headerWrap.appendChild(badgesRow);
 
-            groupCard.appendChild(headerWrap);
-
             const tablesContainer = document.createElement('div');
             tablesContainer.className = 'group-tables';
 
@@ -715,106 +690,8 @@
 
       // Calcular puntos por sección
       let groupStagePts=0, koStagePts=0;
-      const calcPointsFn=(pred)=>{
-        const res=resultsById[pred.matchId];
-        if(res && res.homeGoals!==null){
-          const diff=res.homeGoals-res.awayGoals;
-          const predDiff=pred.predHome-pred.predAway;
-          
-          // Para fase de knockout, verificar que los equipos predichos coincidan con los reales
-          const matchInfo = matchesById[pred.matchId];
-          if(matchInfo && matchInfo.phase !== 'group'){
-            console.log('calcPointsFn - Verificando equipos para partido KO:', pred.matchId);
-            
-            // Obtener equipos predichos
-            const resolveUserToken=(tok)=>{
-              if(teamIdToName[tok]) return teamIdToName[tok];
-              if(/^[12][A-H]$/i.test(tok)){
-                const pos=parseInt(tok[0],10);
-                const grp=tok[1].toUpperCase();
-                const arr=currentPredStandings[grp];
-                if(arr){
-                  const found=arr.find(t=>t.position===pos);
-                  if(found) return found.teamName;
-                  if(arr[pos-1]) return arr[pos-1].teamName;
-                }
-              }
-              if(/^W\d+$/i.test(tok)){
-                const winnerId=getPredictedWinner(participantSelect.value, tok);
-                if(winnerId && teamIdToName[winnerId]) return teamIdToName[winnerId];
-              }
-              return tok;
-            };
-            
-            // Obtener equipos reales
-            const resolveTeamToken = (token) => {
-               if (teamIdToName[token]) return teamIdToName[token];
-               if (/^W\d+$/i.test(token)) {
-                 const match = matchesById[token];
-                 const res = resultsById[token];
-                 if(match && res && res.homeGoals!==null && res.awayGoals!==null){
-                    let winnerId=null;
-                    if(res.homeGoals>res.awayGoals){ winnerId=match.homeTeam; }
-                    else if(res.awayGoals>res.homeGoals){ winnerId=match.awayTeam; }
-                    else if(res.penalties && res.penalties.homePenaltyGoals!==null && res.penalties.awayPenaltyGoals!==null){
-                       if(res.penalties.homePenaltyGoals>res.penalties.awayPenaltyGoals){ winnerId=match.homeTeam; }
-                       else if(res.penalties.awayPenaltyGoals>res.penalties.homePenaltyGoals){ winnerId=match.awayTeam; }
-                    }
-                    if(winnerId && teamIdToName[winnerId]) return teamIdToName[winnerId];
-                 }
-               }
-               if (/^[12][A-H]$/i.test(token)) {
-                 const pos = parseInt(token[0], 10);
-                 const group = token[1].toUpperCase();
-                 const standingsArr = realGroupStandings[group];
-                 const groupFinished = standingsArr && standingsArr.every(t => t.matchesPlayed === 3);
-                 if (groupFinished && standingsArr[pos - 1]) {
-                   return standingsArr[pos - 1].teamName;
-                 }
-               }
-               return token;
-            };
-            
-            // Obtener placeholders originales del displayName
-            const parts = matchInfo.displayName.split(' vs ').map(s => s.trim());
-            let predHomeTok, predAwayTok;
-            if(parts.length === 2){
-              predHomeTok = parts[0];
-              predAwayTok = parts[1];
-            } else {
-              predHomeTok = matchInfo.homeTeam;
-              predAwayTok = matchInfo.awayTeam;
-            }
-            
-            const realTokHome = matchInfo.homeTeam;
-            const realTokAway = matchInfo.awayTeam;
-            
-            // Resolver nombres de equipos
-            const predHomeName = resolveUserToken(predHomeTok);
-            const predAwayName = resolveUserToken(predAwayTok);
-            const realHomeName = resolveTeamToken(realTokHome);
-            const realAwayName = resolveTeamToken(realTokAway);
-            
-            console.log('calcPointsFn - Equipos predichos:', predHomeName, 'vs', predAwayName);
-            console.log('calcPointsFn - Equipos reales:', realHomeName, 'vs', realAwayName);
-            
-            // Verificar que los equipos coincidan
-            if(predHomeName !== realHomeName || predAwayName !== realAwayName){
-                console.log('calcPointsFn - Equipos NO coinciden - 0 puntos');
-                return 0; // No hay puntos si los equipos no coinciden
-            }
-            
-            console.log('calcPointsFn - Equipos coinciden - calculando puntos');
-          }
-          
-          // Si llegamos aquí, los equipos coinciden (o es fase de grupos)
-          if(pred.predHome===res.homeGoals && pred.predAway===res.awayGoals){return 5;}
-          if((diff===0 && predDiff===0)||(diff>0 && predDiff>0)||(diff<0 && predDiff<0)){return 3;}
-        }
-        return 0;
-      };
-      groupPreds.forEach(p=>{ groupStagePts+=calcPointsFn(p); });
-      koPreds.forEach(p=>{ koStagePts+=calcPointsFn(p); });
+      groupPreds.forEach(p=>{ groupStagePts+=calculateMatchPoints(p); });
+      koPreds.forEach(p=>{ koStagePts+=calculateMatchPoints(p); });
       // Clasificación puntos
       let classifPts=0;
       if(userStandings){
@@ -856,21 +733,11 @@
       if(statsEl){
         // Aciertos exactos y signo
         let exact=0, sign=0, played=0, totalPtsPlayed=0;
-        const calcPtsMatch=(pred)=>{
-          const res=resultsById[pred.matchId];
-          if(res && res.homeGoals!==null){
-            const diff=res.homeGoals-res.awayGoals;
-            const predDiff=pred.predHome-pred.predAway;
-            if(pred.predHome===res.homeGoals && pred.predAway===res.awayGoals) return 5;
-            if((diff===0 && predDiff===0)||(diff>0 && predDiff>0)||(diff<0 && predDiff<0)) return 3;
-          }
-          return 0;
-        };
         userPreds.forEach(pred=>{
           const res=resultsById[pred.matchId];
           if(res && res.homeGoals!==null){
             played++;
-            const pts=calcPtsMatch(pred);
+            const pts=calculateMatchPoints(pred);
             totalPtsPlayed+=pts;
             if(pts===5) exact++; else if(pts===3) sign++;
           }
@@ -975,18 +842,25 @@
             if(res && res.homeGoals!==null){
                 const diff=res.homeGoals-res.awayGoals;
                 const predDiff=pred.predHome-pred.predAway;
+                const matchInfo = matchesById[pred.matchId];
                 
                 // Para fase de knockout, verificar que los equipos predichos coincidan con los reales
-                const matchInfo = matchesById[pred.matchId];
                 if(matchInfo && matchInfo.phase !== 'group'){
-                    console.log('Verificando equipos para partido KO:', pred.matchId);
-                    
                     // Obtener equipos predichos
                     const resolveUserToken=(tok)=>{
                       if(teamIdToName[tok]) return teamIdToName[tok];
                       if(/^[12][A-H]$/i.test(tok)){
                         const pos=parseInt(tok[0],10);
                         const grp=tok[1].toUpperCase();
+                        
+                        // Primero intentar usar clasificación real si está disponible
+                        const realArr = realGroupStandings[grp];
+                        const groupFinished = realArr && realArr.every(t => t.matchesPlayed === 3);
+                        if(groupFinished && realArr[pos-1]){
+                          return realArr[pos-1].teamName;
+                        }
+                        
+                        // Si no hay clasificación real o no está completa, usar la predicha
                         const arr=currentPredStandings[grp];
                         if(arr){
                           const found=arr.find(t=>t.position===pos);
@@ -1011,9 +885,26 @@
                             let winnerId=null;
                             if(res.homeGoals>res.awayGoals){ winnerId=match.homeTeam; }
                             else if(res.awayGoals>res.homeGoals){ winnerId=match.awayTeam; }
-                            else if(res.penalties && res.penalties.homePenaltyGoals!==null && res.penalties.awayPenaltyGoals!==null){
-                               if(res.penalties.homePenaltyGoals>res.penalties.awayPenaltyGoals){ winnerId=match.homeTeam; }
-                               else if(res.penalties.awayPenaltyGoals>res.penalties.homePenaltyGoals){ winnerId=match.awayTeam; }
+                            else {
+                              // Empate en 90m - verificar E.T. y penalties
+                              if(res.extraTime && res.extraTime.homeExtraTimeGoals!==null && res.extraTime.awayExtraTimeGoals!==null){
+                                const totalHome = res.homeGoals + res.extraTime.homeExtraTimeGoals;
+                                const totalAway = res.awayGoals + res.extraTime.awayExtraTimeGoals;
+                                
+                                if(totalHome > totalAway){ winnerId=match.homeTeam; }
+                                else if(totalAway > totalHome){ winnerId=match.awayTeam; }
+                                else {
+                                  // Empate en E.T. - verificar penalties
+                                  if(res.penalties && res.penalties.homePenaltyGoals!==null && res.penalties.awayPenaltyGoals!==null){
+                                    if(res.penalties.homePenaltyGoals>res.penalties.awayPenaltyGoals){ winnerId=match.homeTeam; }
+                                    else if(res.penalties.awayPenaltyGoals>res.penalties.homePenaltyGoals){ winnerId=match.awayTeam; }
+                                  }
+                                }
+                              } else if(res.penalties && res.penalties.homePenaltyGoals!==null && res.penalties.awayPenaltyGoals!==null){
+                                // No hay E.T. pero sí penalties
+                                if(res.penalties.homePenaltyGoals>res.penalties.awayPenaltyGoals){ winnerId=match.homeTeam; }
+                                else if(res.penalties.awayPenaltyGoals>res.penalties.homePenaltyGoals){ winnerId=match.awayTeam; }
+                              }
                             }
                             if(winnerId && teamIdToName[winnerId]) return teamIdToName[winnerId];
                          }
@@ -1050,28 +941,69 @@
                     const realHomeName = resolveTeamToken(realTokHome);
                     const realAwayName = resolveTeamToken(realTokAway);
                     
-                    console.log('Equipos predichos:', predHomeName, 'vs', predAwayName);
-                    console.log('Equipos reales:', realHomeName, 'vs', realAwayName);
-                    
                     // Verificar que los equipos coincidan
                     if(predHomeName !== realHomeName || predAwayName !== realAwayName){
-                        console.log('Equipos NO coinciden - 0 puntos');
                         return 0; // No hay puntos si los equipos no coinciden
                     }
-                    
-                    console.log('Equipos coinciden - calculando puntos');
                 }
                 
                 // Si llegamos aquí, los equipos coinciden (o es fase de grupos)
                 if(pred.predHome===res.homeGoals && pred.predAway===res.awayGoals) return 5;
-                if((diff===0 && predDiff===0)||(diff>0 && predDiff>0)||(diff<0 && predDiff<0)) return 3;
+                
+                // Para fase de grupos: comparar solo 90m
+                if(matchInfo && matchInfo.phase === 'group'){
+                    if((diff===0 && predDiff===0)||(diff>0 && predDiff>0)||(diff<0 && predDiff<0)) return 3;
+                } else {
+                    // Para fase de knockout: comparar ganador final (incluyendo E.T. y penalties)
+                    // Los equipos ya han sido verificados arriba
+                    // Determinar ganador predicho
+                    let predWinner = null;
+                    if(pred.predHome > pred.predAway) predWinner = 'home';
+                    else if(pred.predAway > pred.predHome) predWinner = 'away';
+                    else {
+                        // Empate en predicción - usar penalties si existen
+                        if(pred.predPenalties){
+                            if(pred.predPenalties.home > pred.predPenalties.away) predWinner = 'home';
+                            else if(pred.predPenalties.away > pred.predPenalties.home) predWinner = 'away';
+                        }
+                    }
+                    
+                    // Determinar ganador real
+                    let realWinner = null;
+                    if(res.homeGoals > res.awayGoals) realWinner = 'home';
+                    else if(res.awayGoals > res.homeGoals) realWinner = 'away';
+                    else {
+                        // Empate en 90m - verificar E.T.
+                        if(res.extraTime && res.extraTime.homeExtraTimeGoals !== null && res.extraTime.awayExtraTimeGoals !== null){
+                            const totalHome = res.homeGoals + res.extraTime.homeExtraTimeGoals;
+                            const totalAway = res.awayGoals + res.extraTime.awayExtraTimeGoals;
+                            
+                            if(totalHome > totalAway) realWinner = 'home';
+                            else if(totalAway > totalHome) realWinner = 'away';
+                            else {
+                                // Empate en E.T. - verificar penalties
+                                if(res.penalties && res.penalties.homePenaltyGoals !== null && res.penalties.awayPenaltyGoals !== null){
+                                    if(res.penalties.homePenaltyGoals > res.penalties.awayPenaltyGoals) realWinner = 'home';
+                                    else if(res.penalties.awayPenaltyGoals > res.penalties.homePenaltyGoals) realWinner = 'away';
+                                }
+                            }
+                        } else if(res.penalties && res.penalties.homePenaltyGoals !== null && res.penalties.awayPenaltyGoals !== null){
+                            // No hay E.T. pero sí penalties
+                            if(res.penalties.homePenaltyGoals > res.penalties.awayPenaltyGoals) realWinner = 'home';
+                            else if(res.penalties.awayPenaltyGoals > res.penalties.homePenaltyGoals) realWinner = 'away';
+                        }
+                    }
+                    
+                    // Si ambos ganadores están definidos y coinciden, dar 3 puntos
+                    if(predWinner && realWinner && predWinner === realWinner) return 3;
+                }
             }
             return 0;
         };
 
         const dayPointsMap = {};
         dateKeys.forEach(k=>{
-            dayPointsMap[k]=groups[k].reduce((sum,p)=> sum+calcPoints(p),0);
+            dayPointsMap[k]=groups[k].reduce((sum,p)=> sum+calculateMatchPoints(p),0);
         });
 
         // NUEVO: determinar días a mostrar abiertos (último día completo + próximos 24h)
@@ -1240,14 +1172,99 @@
                    penHome=` (${pred.predPenalties.home})`;
                    penAway=` (${pred.predPenalties.away})`;
                 }
-                const predScoreHtml = `<span class="home-score">${pred.predHome}${penHome}</span><span class="score-sep">-</span><span class="away-score">${pred.predAway}${penAway}</span>`;
-                const realScoreHtml = (resultsById[pred.matchId] && resultsById[pred.matchId].homeGoals!==null)
-                  ? `<span class="home-score">${resultsById[pred.matchId].homeGoals}</span><span class="score-sep">-</span><span class="away-score">${resultsById[pred.matchId].awayGoals}</span>`
-                  : `<span class="home-score">-</span><span class="score-sep">-</span><span class="away-score">-</span>`;
+                // Construir predicción para KO con 90m y Pen.
+                let predScoreHtml = '';
+                if (isKO) {
+                    // 90m siempre
+                    predScoreHtml = `<div class=\"score-group\">
+                        <div class=\"score-group-label\">90m.</div>
+                        <div class=\"score-group-main\">
+                            <span class=\"home-score\">${pred.predHome}</span>
+                            <span class=\"away-score\">${pred.predAway}</span>
+                        </div>
+                    </div>`;
+                    // Penalties si hay predicción de empate y penaltis
+                    if (pred.predHome === pred.predAway && pred.predPenalties && pred.predPenalties.home !== null && pred.predPenalties.away !== null) {
+                        predScoreHtml += `<div class=\"penalties-group\">
+                            <div class=\"score-group-label\">Pen.</div>
+                            <div class=\"score-group-main\">
+                                <span class=\"home-score\">${pred.predPenalties.home}</span>
+                                <span class=\"away-score\">${pred.predPenalties.away}</span>
+                            </div>
+                        </div>`;
+                    }
+                    predScoreHtml = `<div class=\"result-container\">${predScoreHtml}</div>`;
+                } else {
+                    // Fase de grupos: solo mostrar goles de 90m verticalmente sin etiqueta
+                    predScoreHtml = `<div class=\"score-group-main\">
+                        <span class=\"home-score\">${pred.predHome}</span>
+                        <span class=\"away-score\">${pred.predAway}</span>
+                    </div>`;
+                }
+                
+                // Construir resultado real con tiempo extra y penalties
+                let realScoreHtml = '';
+                if (resultsById[pred.matchId] && resultsById[pred.matchId].homeGoals !== null) {
+                    const result = resultsById[pred.matchId];
+                    const homeGoals = result.homeGoals;
+                    const awayGoals = result.awayGoals;
+                    
+                    // Para fase de grupos: solo mostrar goles de 90m verticalmente sin etiqueta
+                    if (matchInfo.phase === 'group') {
+                        realScoreHtml = `<div class="score-group-main">
+                            <span class="home-score">${homeGoals}</span>
+                            <span class="away-score">${awayGoals}</span>
+                        </div>`;
+                    } else {
+                        // Para fase de KO: mostrar grupos completos con etiquetas
+                        // Grupo 90m (siempre visible)
+                        let scoreHtml = `<div class="score-group">
+                            <div class="score-group-label">90m.</div>
+                            <div class="score-group-main">
+                                <span class="home-score">${homeGoals}</span>
+                                <span class="away-score">${awayGoals}</span>
+                            </div>
+                        </div>`;
+                        
+                        // Grupo E.T. (solo si hay empate en 90m y hay tiempo extra)
+                        let extraTimeHtml = '';
+                        if (homeGoals === awayGoals && result.extraTime && result.extraTime.homeExtraTimeGoals !== null && result.extraTime.awayExtraTimeGoals !== null) {
+                            const totalHomeGoals = homeGoals + result.extraTime.homeExtraTimeGoals;
+                            const totalAwayGoals = awayGoals + result.extraTime.awayExtraTimeGoals;
+                            extraTimeHtml = `<div class="extra-time-group">
+                                <div class="score-group-label">E.T.</div>
+                                <div class="score-group-main">
+                                    <span class="home-score">${totalHomeGoals}</span>
+                                    <span class="away-score">${totalAwayGoals}</span>
+                                </div>
+                            </div>`;
+                        }
+                        
+                        // Grupo Pen. (solo si hay empate en E.T. y hay penalties)
+                        let penaltiesHtml = '';
+                        if (result.extraTime && result.extraTime.homeExtraTimeGoals !== null && result.extraTime.awayExtraTimeGoals !== null) {
+                            const totalHomeGoals = homeGoals + result.extraTime.homeExtraTimeGoals;
+                            const totalAwayGoals = awayGoals + result.extraTime.awayExtraTimeGoals;
+                            if (totalHomeGoals === totalAwayGoals && result.penalties && result.penalties.homePenaltyGoals !== null && result.penalties.awayPenaltyGoals !== null) {
+                                penaltiesHtml = `<div class="penalties-group">
+                                    <div class="score-group-label">Pen.</div>
+                                    <div class="score-group-main">
+                                        <span class="home-score">${result.penalties.homePenaltyGoals}</span>
+                                        <span class="away-score">${result.penalties.awayPenaltyGoals}</span>
+                                    </div>
+                                </div>`;
+                            }
+                        }
+                        
+                        realScoreHtml = `<div class="result-container">${scoreHtml}${extraTimeHtml}${penaltiesHtml}</div>`;
+                    }
+                } else {
+                    realScoreHtml = `<span class="home-score">-</span><span class="score-sep">-</span><span class="away-score">-</span>`;
+                }
                 let points=0;
                 const played = (resultsById[pred.matchId] && resultsById[pred.matchId].homeGoals!==null);
                 if(played){
-                    points = calcPoints(pred); // Usa función central con verificación de equipos
+                    points = calculateMatchPoints(pred); // Usa función central con verificación de equipos
                 }
 
                 // Determinar texto y clase para badge de puntos
@@ -1389,9 +1406,26 @@
             let winnerId=null;
             if(res.homeGoals>res.awayGoals){ winnerId=match.homeTeam; }
             else if(res.awayGoals>res.homeGoals){ winnerId=match.awayTeam; }
-            else if(res.penalties && res.penalties.homePenaltyGoals!==null && res.penalties.awayPenaltyGoals!==null){
-               if(res.penalties.homePenaltyGoals>res.penalties.awayPenaltyGoals){ winnerId=match.homeTeam; }
-               else if(res.penalties.awayPenaltyGoals>res.penalties.homePenaltyGoals){ winnerId=match.awayTeam; }
+            else {
+              // Empate en 90m - verificar E.T. y penalties
+              if(res.extraTime && res.extraTime.homeExtraTimeGoals!==null && res.extraTime.awayExtraTimeGoals!==null){
+                const totalHome = res.homeGoals + res.extraTime.homeExtraTimeGoals;
+                const totalAway = res.awayGoals + res.extraTime.awayExtraTimeGoals;
+                
+                if(totalHome > totalAway){ winnerId=match.homeTeam; }
+                else if(totalAway > totalHome){ winnerId=match.awayTeam; }
+                else {
+                  // Empate en E.T. - verificar penalties
+                  if(res.penalties && res.penalties.homePenaltyGoals!==null && res.penalties.awayPenaltyGoals!==null){
+                    if(res.penalties.homePenaltyGoals>res.penalties.awayPenaltyGoals){ winnerId=match.homeTeam; }
+                    else if(res.penalties.awayPenaltyGoals>res.penalties.homePenaltyGoals){ winnerId=match.awayTeam; }
+                  }
+                }
+              } else if(res.penalties && res.penalties.homePenaltyGoals!==null && res.penalties.awayPenaltyGoals!==null){
+                // No hay E.T. pero sí penalties
+                if(res.penalties.homePenaltyGoals>res.penalties.awayPenaltyGoals){ winnerId=match.homeTeam; }
+                else if(res.penalties.awayPenaltyGoals>res.penalties.homePenaltyGoals){ winnerId=match.awayTeam; }
+              }
             }
             if(winnerId && teamIdToName[winnerId]) return teamIdToName[winnerId];
          }
@@ -1537,110 +1571,11 @@
 
         const progressDates = ongoingKey ? allDateKeys.filter(dk=> dk<ongoingKey) : allDateKeys;
 
-        const calcPtsMatch=(pred)=>{
-          const res=resultsById[pred.matchId];
-          if(res && res.homeGoals!==null){
-            const diff=res.homeGoals-res.awayGoals;
-            const predDiff=pred.predHome-pred.predAway;
-            
-            // Para fase de knockout, verificar que los equipos predichos coincidan con los reales
-            const matchInfo = matchesById[pred.matchId];
-            if(matchInfo && matchInfo.phase !== 'group'){
-              console.log('calcPtsMatch - Verificando equipos para partido KO:', pred.matchId);
-              
-              // Obtener equipos predichos
-              const resolveUserToken=(tok)=>{
-                if(teamIdToName[tok]) return teamIdToName[tok];
-                if(/^[12][A-H]$/i.test(tok)){
-                  const pos=parseInt(tok[0],10);
-                  const grp=tok[1].toUpperCase();
-                  const arr=currentPredStandings[grp];
-                  if(arr){
-                    const found=arr.find(t=>t.position===pos);
-                    if(found) return found.teamName;
-                    if(arr[pos-1]) return arr[pos-1].teamName;
-                  }
-                }
-                if(/^W\d+$/i.test(tok)){
-                  const winnerId=getPredictedWinner(participantSelect.value, tok);
-                  if(winnerId && teamIdToName[winnerId]) return teamIdToName[winnerId];
-                }
-                return tok;
-              };
-              
-              // Obtener equipos reales
-              const resolveTeamToken = (token) => {
-                 if (teamIdToName[token]) return teamIdToName[token];
-                 if (/^W\d+$/i.test(token)) {
-                   const match = matchesById[token];
-                   const res = resultsById[token];
-                   if(match && res && res.homeGoals!==null && res.awayGoals!==null){
-                      let winnerId=null;
-                      if(res.homeGoals>res.awayGoals){ winnerId=match.homeTeam; }
-                      else if(res.awayGoals>res.homeGoals){ winnerId=match.awayTeam; }
-                      else if(res.penalties && res.penalties.homePenaltyGoals!==null && res.penalties.awayPenaltyGoals!==null){
-                         if(res.penalties.homePenaltyGoals>res.penalties.awayPenaltyGoals){ winnerId=match.homeTeam; }
-                         else if(res.penalties.awayPenaltyGoals>res.penalties.homePenaltyGoals){ winnerId=match.awayTeam; }
-                      }
-                      if(winnerId && teamIdToName[winnerId]) return teamIdToName[winnerId];
-                   }
-                 }
-                 if (/^[12][A-H]$/i.test(token)) {
-                   const pos = parseInt(token[0], 10);
-                   const group = token[1].toUpperCase();
-                   const standingsArr = realGroupStandings[group];
-                   const groupFinished = standingsArr && standingsArr.every(t => t.matchesPlayed === 3);
-                   if (groupFinished && standingsArr[pos - 1]) {
-                     return standingsArr[pos - 1].teamName;
-                   }
-                 }
-                 return token;
-              };
-              
-              // Obtener placeholders originales del displayName
-              const parts = matchInfo.displayName.split(' vs ').map(s => s.trim());
-              let predHomeTok, predAwayTok;
-              if(parts.length === 2){
-                predHomeTok = parts[0];
-                predAwayTok = parts[1];
-              } else {
-                predHomeTok = matchInfo.homeTeam;
-                predAwayTok = matchInfo.awayTeam;
-              }
-              
-              const realTokHome = matchInfo.homeTeam;
-              const realTokAway = matchInfo.awayTeam;
-              
-              // Resolver nombres de equipos
-              const predHomeName = resolveUserToken(predHomeTok);
-              const predAwayName = resolveUserToken(predAwayTok);
-              const realHomeName = resolveTeamToken(realTokHome);
-              const realAwayName = resolveTeamToken(realTokAway);
-              
-              console.log('calcPtsMatch - Equipos predichos:', predHomeName, 'vs', predAwayName);
-              console.log('calcPtsMatch - Equipos reales:', realHomeName, 'vs', realAwayName);
-              
-              // Verificar que los equipos coincidan
-              if(predHomeName !== realHomeName || predAwayName !== realAwayName){
-                  console.log('calcPtsMatch - Equipos NO coinciden - 0 puntos');
-                  return 0; // No hay puntos si los equipos no coinciden
-              }
-              
-              console.log('calcPtsMatch - Equipos coinciden - calculando puntos');
-            }
-            
-            // Si llegamos aquí, los equipos coinciden (o es fase de grupos)
-            if(pred.predHome===res.homeGoals && pred.predAway===res.awayGoals) return 5;
-            if((diff===0 && predDiff===0)||(diff>0 && predDiff>0)||(diff<0 && predDiff<0)) return 3;
-          }
-          return 0;
-        };
-
         progressDates.forEach(dk=>{
           predictions.forEach(pred=>{
             const match=matchesById[pred.matchId];
             if(match && match.dateTime.split('T')[0]===dk){
-              const pts=calcPtsMatch(pred);
+              const pts=calculateMatchPoints(pred);
               if(pts>0){ cumulativePoints[pred.userId]=(cumulativePoints[pred.userId]||0)+pts; }
             }
           });
@@ -1757,16 +1692,6 @@
         if(globalStatsEl){
           // Precomputar métricas por usuario
           const metricsByUser = {};
-          const calcPtsMatch = (pred) => {
-            const res = resultsById[pred.matchId];
-            if(res && res.homeGoals!==null){
-              const diff = res.homeGoals - res.awayGoals;
-              const predDiff = pred.predHome - pred.predAway;
-              if(pred.predHome===res.homeGoals && pred.predAway===res.awayGoals) return 5;
-              if((diff===0 && predDiff===0) || (diff>0 && predDiff>0) || (diff<0 && predDiff<0)) return 3;
-            }
-            return 0;
-          };
 
           const completedGroups = Object.keys(realGroupStandings).filter(g=> isGroupComplete(realGroupStandings[g]));
 
@@ -1778,7 +1703,7 @@
               const res = resultsById[pr.matchId];
               if(res && res.homeGoals!==null){
                 played++;
-                const pts = calcPtsMatch(pr);
+                const pts = calculateMatchPoints(pr);
                 totalPtsPlayed += pts;
                 if(pts===5) exact++; else if(pts===3) sign++;
               }
@@ -1851,8 +1776,8 @@
     }
 
     /** ----------------------------------------------------------
-     *  NUEVA FUNCIÓN: calcular clasificación real a partir de resultados
-     *  (reglas simplificadas: puntos, diferencia de goles, goles a favor)
+     * NUEVA FUNCIÓN: calcular clasificación real a partir de resultados
+     * (reglas simplificadas: puntos, diferencia de goles, goles a favor)
      * ---------------------------------------------------------*/
     function computeRealGroupStandings(matchesArr, resultsArr, teamsArr){
       const teamIdToName = Object.fromEntries(teamsArr.map(t=>[t.teamId, t.name]));
@@ -1964,7 +1889,7 @@
     }
 
     /** ----------------------------------------------------------
-     *  NUEVO: calcular clasificación PRONOSTICADA de cada usuario
+     * NUEVO: calcular clasificación PRONOSTICADA de cada usuario
      * ---------------------------------------------------------*/
     function computePredictedGroupStandingsForUser(userPredictions, matchesArr, teamsArr) {
       // Filtrar solo los partidos de fase de grupos con predicción
@@ -2103,8 +2028,161 @@
             if(res && res.homeGoals!==null){
                 const diff=res.homeGoals-res.awayGoals;
                 const predDiff=pred.predHome-pred.predAway;
-                if(pred.predHome===res.homeGoals && pred.predAway===res.awayGoals){return 5;}
-                if((diff===0 && predDiff===0)||(diff>0 && predDiff>0)||(diff<0 && predDiff<0)){return 3;}
+                const matchInfo = matchesById[pred.matchId];
+                
+                // Para fase de knockout, verificar que los equipos predichos coincidan con los reales
+                if(matchInfo && matchInfo.phase !== 'group'){
+                    // Obtener equipos predichos
+                    const resolveUserToken=(tok)=>{
+                      if(teamIdToName[tok]) return teamIdToName[tok];
+                      if(/^[12][A-H]$/i.test(tok)){
+                        const pos=parseInt(tok[0],10);
+                        const grp=tok[1].toUpperCase();
+                        
+                        // Primero intentar usar clasificación real si está disponible
+                        const realArr = realGroupStandings[grp];
+                        const groupFinished = realArr && realArr.every(t => t.matchesPlayed === 3);
+                        if(groupFinished && realArr[pos-1]){
+                          return realArr[pos-1].teamName;
+                        }
+                        
+                        // Si no hay clasificación real o no está completa, usar la predicha
+                        const arr=currentPredStandings[grp];
+                        if(arr){
+                          const found=arr.find(t=>t.position===pos);
+                          if(found) return found.teamName;
+                          if(arr[pos-1]) return arr[pos-1].teamName;
+                        }
+                      }
+                      if(/^W\d+$/i.test(tok)){
+                        const winnerId=getPredictedWinner(participantSelect.value, tok);
+                        if(winnerId && teamIdToName[winnerId]) return teamIdToName[winnerId];
+                      }
+                      return tok;
+                    };
+                    
+                    // Obtener equipos reales
+                    const resolveTeamToken = (token) => {
+                       if (teamIdToName[token]) return teamIdToName[token];
+                       if (/^W\d+$/i.test(token)) {
+                         const match = matchesById[token];
+                         const res = resultsById[token];
+                         if(match && res && res.homeGoals!==null && res.awayGoals!==null){
+                            let winnerId=null;
+                            if(res.homeGoals>res.awayGoals){ winnerId=match.homeTeam; }
+                            else if(res.awayGoals>res.homeGoals){ winnerId=match.awayTeam; }
+                            else {
+                              // Empate en 90m - verificar E.T. y penalties
+                              if(res.extraTime && res.extraTime.homeExtraTimeGoals!==null && res.extraTime.awayExtraTimeGoals!==null){
+                                const totalHome = res.homeGoals + res.extraTime.homeExtraTimeGoals;
+                                const totalAway = res.awayGoals + res.extraTime.awayExtraTimeGoals;
+                                
+                                if(totalHome > totalAway){ winnerId=match.homeTeam; }
+                                else if(totalAway > totalHome){ winnerId=match.awayTeam; }
+                                else {
+                                  // Empate en E.T. - verificar penalties
+                                  if(res.penalties && res.penalties.homePenaltyGoals!==null && res.penalties.awayPenaltyGoals!==null){
+                                    if(res.penalties.homePenaltyGoals>res.penalties.awayPenaltyGoals){ winnerId=match.homeTeam; }
+                                    else if(res.penalties.awayPenaltyGoals>res.penalties.homePenaltyGoals){ winnerId=match.awayTeam; }
+                                  }
+                                }
+                              } else if(res.penalties && res.penalties.homePenaltyGoals!==null && res.penalties.awayPenaltyGoals!==null){
+                                // No hay E.T. pero sí penalties
+                                if(res.penalties.homePenaltyGoals>res.penalties.awayPenaltyGoals){ winnerId=match.homeTeam; }
+                                else if(res.penalties.awayPenaltyGoals>res.penalties.homePenaltyGoals){ winnerId=match.awayTeam; }
+                              }
+                            }
+                            if(winnerId && teamIdToName[winnerId]) return teamIdToName[winnerId];
+                         }
+                       }
+                       if (/^[12][A-H]$/i.test(token)) {
+                         const pos = parseInt(token[0], 10);
+                         const group = token[1].toUpperCase();
+                         const standingsArr = realGroupStandings[group];
+                         const groupFinished = standingsArr && standingsArr.every(t => t.matchesPlayed === 3);
+                         if (groupFinished && standingsArr[pos - 1]) {
+                           return standingsArr[pos - 1].teamName;
+                         }
+                       }
+                       return token;
+                    };
+                    
+                    // Obtener placeholders originales del displayName
+                    const parts = matchInfo.displayName.split(' vs ').map(s => s.trim());
+                    let predHomeTok, predAwayTok;
+                    if(parts.length === 2){
+                      predHomeTok = parts[0];
+                      predAwayTok = parts[1];
+                    } else {
+                      predHomeTok = matchInfo.homeTeam;
+                      predAwayTok = matchInfo.awayTeam;
+                    }
+                    
+                    const realTokHome = matchInfo.homeTeam;
+                    const realTokAway = matchInfo.awayTeam;
+                    
+                    // Resolver nombres de equipos
+                    const predHomeName = resolveUserToken(predHomeTok);
+                    const predAwayName = resolveUserToken(predAwayTok);
+                    const realHomeName = resolveTeamToken(realTokHome);
+                    const realAwayName = resolveTeamToken(realTokAway);
+                    
+                    // Verificar que los equipos coincidan
+                    if(predHomeName !== realHomeName || predAwayName !== realAwayName){
+                        return 0; // No hay puntos si los equipos no coinciden
+                    }
+                }
+                
+                // Si llegamos aquí, los equipos coinciden (o es fase de grupos)
+                if(pred.predHome===res.homeGoals && pred.predAway===res.awayGoals) return 5;
+                
+                // Para fase de grupos: comparar solo 90m
+                if(matchInfo && matchInfo.phase === 'group'){
+                    if((diff===0 && predDiff===0)||(diff>0 && predDiff>0)||(diff<0 && predDiff<0)) return 3;
+                } else {
+                    // Para fase de knockout: comparar ganador final (incluyendo E.T. y penalties)
+                    // Los equipos ya han sido verificados arriba
+                    // Determinar ganador predicho
+                    let predWinner = null;
+                    if(pred.predHome > pred.predAway) predWinner = 'home';
+                    else if(pred.predAway > pred.predHome) predWinner = 'away';
+                    else {
+                        // Empate en predicción - usar penalties si existen
+                        if(pred.predPenalties){
+                            if(pred.predPenalties.home > pred.predPenalties.away) predWinner = 'home';
+                            else if(pred.predPenalties.away > pred.predPenalties.home) predWinner = 'away';
+                        }
+                    }
+                    
+                    // Determinar ganador real
+                    let realWinner = null;
+                    if(res.homeGoals > res.awayGoals) realWinner = 'home';
+                    else if(res.awayGoals > res.homeGoals) realWinner = 'away';
+                    else {
+                        // Empate en 90m - verificar E.T.
+                        if(res.extraTime && res.extraTime.homeExtraTimeGoals !== null && res.extraTime.awayExtraTimeGoals !== null){
+                            const totalHome = res.homeGoals + res.extraTime.homeExtraTimeGoals;
+                            const totalAway = res.awayGoals + res.extraTime.awayExtraTimeGoals;
+                            
+                            if(totalHome > totalAway) realWinner = 'home';
+                            else if(totalAway > totalHome) realWinner = 'away';
+                            else {
+                                // Empate en E.T. - verificar penalties
+                                if(res.penalties && res.penalties.homePenaltyGoals !== null && res.penalties.awayPenaltyGoals !== null){
+                                    if(res.penalties.homePenaltyGoals > res.penalties.awayPenaltyGoals) realWinner = 'home';
+                                    else if(res.penalties.awayPenaltyGoals > res.penalties.homePenaltyGoals) realWinner = 'away';
+                                }
+                            }
+                        } else if(res.penalties && res.penalties.homePenaltyGoals !== null && res.penalties.awayPenaltyGoals !== null){
+                            // No hay E.T. pero sí penalties
+                            if(res.penalties.homePenaltyGoals > res.penalties.awayPenaltyGoals) realWinner = 'home';
+                            else if(res.penalties.awayPenaltyGoals > res.penalties.homePenaltyGoals) realWinner = 'away';
+                        }
+                    }
+                    
+                    // Si ambos ganadores están definidos y coinciden, dar 3 puntos
+                    if(predWinner && realWinner && predWinner === realWinner) return 3;
+                }
             }
             return 0;
         };
@@ -2126,7 +2204,7 @@
 
             const isInitiallyOpen = FORCE_OPEN_GROUPS.includes(gKey) || liveGroupKeys.includes(gKey);
             const arrow = isInitiallyOpen ? '▼' : '▶';
-            const ptsTotal = items.reduce((sum,p)=> sum+calcPoints(p),0);
+            const ptsTotal = items.reduce((sum,p)=> sum+calculateMatchPoints(p),0);
             const anyPlayedGroup = items.some(pred=>{
                 const res=resultsById[pred.matchId];
                 return res && res.homeGoals!==null && res.awayGoals!==null;
@@ -2172,18 +2250,77 @@
 
                 const predScoreHtml = `<span class="home-score">${pred.predHome}</span><span class="score-sep">-</span><span class="away-score">${pred.predAway}</span>`;
                 const res=resultsById[pred.matchId];
-                const realScoreHtml = (res && res.homeGoals!==null)
-                  ? `<span class="home-score">${res.homeGoals}</span><span class="score-sep">-</span><span class="away-score">${res.awayGoals}</span>`
-                  : `<span class="home-score">-</span><span class="score-sep">-</span><span class="away-score">-</span>`;
-
-                // Calcular puntos
-                const points=calcPoints(pred);
-                let ptsClass='none';
-                let ptsText='-';
+                
+                // Construir resultado real con tiempo extra y penalties
+                let realScoreHtml = '';
+                if (res && res.homeGoals !== null) {
+                    const homeGoals = res.homeGoals;
+                    const awayGoals = res.awayGoals;
+                    
+                    // Para fase de grupos: solo mostrar goles de 90m verticalmente sin etiqueta
+                    if (matchInfo.phase === 'group') {
+                        realScoreHtml = `<div class="score-group-main">
+                            <span class="home-score">${homeGoals}</span>
+                            <span class="away-score">${awayGoals}</span>
+                        </div>`;
+                    } else {
+                        // Para fase de KO: mostrar grupos completos con etiquetas
+                        // Grupo 90m (siempre visible)
+                        let scoreHtml = `<div class="score-group">
+                            <div class="score-group-label">90m.</div>
+                            <div class="score-group-main">
+                                <span class="home-score">${homeGoals}</span>
+                                <span class="away-score">${awayGoals}</span>
+                            </div>
+                        </div>`;
+                        
+                        // Grupo E.T. (solo si hay empate en 90m y hay tiempo extra)
+                        let extraTimeHtml = '';
+                        if (homeGoals === awayGoals && res.extraTime && res.extraTime.homeExtraTimeGoals !== null && res.extraTime.awayExtraTimeGoals !== null) {
+                            const totalHomeGoals = homeGoals + res.extraTime.homeExtraTimeGoals;
+                            const totalAwayGoals = awayGoals + res.extraTime.awayExtraTimeGoals;
+                            extraTimeHtml = `<div class="extra-time-group">
+                                <div class="score-group-label">E.T.</div>
+                                <div class="score-group-main">
+                                    <span class="home-score">${totalHomeGoals}</span>
+                                    <span class="away-score">${totalAwayGoals}</span>
+                                </div>
+                            </div>`;
+                        }
+                        
+                        // Grupo Pen. (solo si hay empate en E.T. y hay penalties)
+                        let penaltiesHtml = '';
+                        if (res.extraTime && res.extraTime.homeExtraTimeGoals !== null && res.extraTime.awayExtraTimeGoals !== null) {
+                            const totalHomeGoals = homeGoals + res.extraTime.homeExtraTimeGoals;
+                            const totalAwayGoals = awayGoals + res.extraTime.awayExtraTimeGoals;
+                            if (totalHomeGoals === totalAwayGoals && res.penalties && res.penalties.homePenaltyGoals !== null && res.penalties.awayPenaltyGoals !== null) {
+                                penaltiesHtml = `<div class="penalties-group">
+                                    <div class="score-group-label">Pen.</div>
+                                    <div class="score-group-main">
+                                        <span class="home-score">${res.penalties.homePenaltyGoals}</span>
+                                        <span class="away-score">${res.penalties.awayPenaltyGoals}</span>
+                                    </div>
+                                </div>`;
+                            }
+                        }
+                        
+                        realScoreHtml = `<div class="result-container">${scoreHtml}${extraTimeHtml}${penaltiesHtml}</div>`;
+                    }
+                } else {
+                    realScoreHtml = '<span class="home-score">-</span><span class="score-sep">-</span><span class="away-score">-</span>';
+                }
+                let points=0;
                 const played = res && res.homeGoals!==null;
                 if(played){
-                    ptsText=points.toString();
-                    ptsClass = points>0? 'earned':'zero';
+                    points = calculateMatchPoints(pred); // Usa función central con verificación de equipos
+                }
+
+                // Determinar texto y clase para badge de puntos
+                let ptsClass='none';
+                let ptsText='-';
+                if(played){
+                  ptsText=points.toString();
+                  ptsClass = points>0? 'earned' : 'zero';
                 }
 
                 // Nombre de display
@@ -2299,14 +2436,21 @@
                 // Para fase de knockout, verificar que los equipos predichos coincidan con los reales
                 const matchInfo = matchesById[pred.matchId];
                 if(matchInfo && matchInfo.phase !== 'group'){
-                    console.log('renderPredTablePhase - Verificando equipos para partido KO:', pred.matchId);
-                    
                     // Obtener equipos predichos
                     const resolveUserToken=(tok)=>{
                       if(teamIdToName[tok]) return teamIdToName[tok];
                       if(/^[12][A-H]$/i.test(tok)){
                         const pos=parseInt(tok[0],10);
                         const grp=tok[1].toUpperCase();
+                        
+                        // Primero intentar usar clasificación real si está disponible
+                        const realArr = realGroupStandings[grp];
+                        const groupFinished = realArr && realArr.every(t => t.matchesPlayed === 3);
+                        if(groupFinished && realArr[pos-1]){
+                          return realArr[pos-1].teamName;
+                        }
+                        
+                        // Si no hay clasificación real o no está completa, usar la predicha
                         const arr=currentPredStandings[grp];
                         if(arr){
                           const found=arr.find(t=>t.position===pos);
@@ -2331,9 +2475,26 @@
                             let winnerId=null;
                             if(res.homeGoals>res.awayGoals){ winnerId=match.homeTeam; }
                             else if(res.awayGoals>res.homeGoals){ winnerId=match.awayTeam; }
-                            else if(res.penalties && res.penalties.homePenaltyGoals!==null && res.penalties.awayPenaltyGoals!==null){
-                               if(res.penalties.homePenaltyGoals>res.penalties.awayPenaltyGoals){ winnerId=match.homeTeam; }
-                               else if(res.penalties.awayPenaltyGoals>res.penalties.homePenaltyGoals){ winnerId=match.awayTeam; }
+                            else {
+                              // Empate en 90m - verificar E.T. y penalties
+                              if(res.extraTime && res.extraTime.homeExtraTimeGoals!==null && res.extraTime.awayExtraTimeGoals!==null){
+                                const totalHome = res.homeGoals + res.extraTime.homeExtraTimeGoals;
+                                const totalAway = res.awayGoals + res.extraTime.awayExtraTimeGoals;
+                                
+                                if(totalHome > totalAway){ winnerId=match.homeTeam; }
+                                else if(totalAway > totalHome){ winnerId=match.awayTeam; }
+                                else {
+                                  // Empate en E.T. - verificar penalties
+                                  if(res.penalties && res.penalties.homePenaltyGoals!==null && res.penalties.awayPenaltyGoals!==null){
+                                    if(res.penalties.homePenaltyGoals>res.penalties.awayPenaltyGoals){ winnerId=match.homeTeam; }
+                                    else if(res.penalties.awayPenaltyGoals>res.penalties.homePenaltyGoals){ winnerId=match.awayTeam; }
+                                  }
+                                }
+                              } else if(res.penalties && res.penalties.homePenaltyGoals!==null && res.penalties.awayPenaltyGoals!==null){
+                                // No hay E.T. pero sí penalties
+                                if(res.penalties.homePenaltyGoals>res.penalties.awayPenaltyGoals){ winnerId=match.homeTeam; }
+                                else if(res.penalties.awayPenaltyGoals>res.penalties.homePenaltyGoals){ winnerId=match.awayTeam; }
+                              }
                             }
                             if(winnerId && teamIdToName[winnerId]) return teamIdToName[winnerId];
                          }
@@ -2370,16 +2531,10 @@
                     const realHomeName = resolveTeamToken(realTokHome);
                     const realAwayName = resolveTeamToken(realTokAway);
                     
-                    console.log('renderPredTablePhase - Equipos predichos:', predHomeName, 'vs', predAwayName);
-                    console.log('renderPredTablePhase - Equipos reales:', realHomeName, 'vs', realAwayName);
-                    
                     // Verificar que los equipos coincidan
                     if(predHomeName !== realHomeName || predAwayName !== realAwayName){
-                        console.log('renderPredTablePhase - Equipos NO coinciden - 0 puntos');
                         return 0; // No hay puntos si los equipos no coinciden
                     }
-                    
-                    console.log('renderPredTablePhase - Equipos coinciden - calculando puntos');
                 }
                 
                 // Si llegamos aquí, los equipos coinciden (o es fase de grupos)
@@ -2392,7 +2547,7 @@
         order.forEach(ph=>{
             if(!groups[ph]) return;
             const items=groups[ph].sort((a,b)=> new Date(matchesById[a.matchId].dateTime)-new Date(matchesById[b.matchId].dateTime));
-            const ptsTotal=items.reduce((s,p)=>s+calcPoints(p),0);
+            const ptsTotal=items.reduce((s,p)=>s+calculateMatchPoints(p),0);
             // Build team/unknown badges for phase header (similar a vista "By Date")
             const badgeArr=[];
             const pushBadge=(tok)=>{
@@ -2437,8 +2592,66 @@
                 const time=date.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',hour12:false});
                 const predScore=`${pred.predHome}-${pred.predAway}`;
                 const res=resultsById[pred.matchId];
-                const realScore=res && res.homeGoals!==null?`${res.homeGoals}-${res.awayGoals}`:'-';
-                const points=calcPoints(pred);
+                
+                // Construir resultado real con tiempo extra y penalties
+                let realScore = '';
+                if (res && res.homeGoals !== null) {
+                    const homeGoals = res.homeGoals;
+                    const awayGoals = res.awayGoals;
+                    
+                    // Para fase de grupos: solo mostrar goles de 90m verticalmente sin etiqueta
+                    if (matchInfo.phase === 'group') {
+                        realScore = `<div class="score-group-main">
+                            <span class="home-score">${homeGoals}</span>
+                            <span class="away-score">${awayGoals}</span>
+                        </div>`;
+                    } else {
+                        // Para fase de KO: mostrar grupos completos con etiquetas
+                        // Grupo 90m (siempre visible)
+                        let scoreHtml = `<div class="score-group">
+                            <div class="score-group-label">90m.</div>
+                            <div class="score-group-main">
+                                <span class="home-score">${homeGoals}</span>
+                                <span class="away-score">${awayGoals}</span>
+                            </div>
+                        </div>`;
+                        
+                        // Grupo E.T. (solo si hay empate en 90m y hay tiempo extra)
+                        let extraTimeHtml = '';
+                        if (homeGoals === awayGoals && res.extraTime && res.extraTime.homeExtraTimeGoals !== null && res.extraTime.awayExtraTimeGoals !== null) {
+                            const totalHomeGoals = homeGoals + res.extraTime.homeExtraTimeGoals;
+                            const totalAwayGoals = awayGoals + res.extraTime.awayExtraTimeGoals;
+                            extraTimeHtml = `<div class="extra-time-group">
+                                <div class="score-group-label">E.T.</div>
+                                <div class="score-group-main">
+                                    <span class="home-score">${totalHomeGoals}</span>
+                                    <span class="away-score">${totalAwayGoals}</span>
+                                </div>
+                            </div>`;
+                        }
+                        
+                        // Grupo Pen. (solo si hay empate en E.T. y hay penalties)
+                        let penaltiesHtml = '';
+                        if (res.extraTime && res.extraTime.homeExtraTimeGoals !== null && res.extraTime.awayExtraTimeGoals !== null) {
+                            const totalHomeGoals = homeGoals + res.extraTime.homeExtraTimeGoals;
+                            const totalAwayGoals = awayGoals + res.extraTime.awayExtraTimeGoals;
+                            if (totalHomeGoals === totalAwayGoals && res.penalties && res.penalties.homePenaltyGoals !== null && res.penalties.awayPenaltyGoals !== null) {
+                                penaltiesHtml = `<div class="penalties-group">
+                                    <div class="score-group-label">Pen.</div>
+                                    <div class="score-group-main">
+                                        <span class="home-score">${res.penalties.homePenaltyGoals}</span>
+                                        <span class="away-score">${res.penalties.awayPenaltyGoals}</span>
+                                    </div>
+                                </div>`;
+                            }
+                        }
+                        
+                        realScore = `<div class="result-container">${scoreHtml}${extraTimeHtml}${penaltiesHtml}</div>`;
+                    }
+                } else {
+                    realScore = '-';
+                }
+                const points=calculateMatchPoints(pred);
                 const ptsClass=!res? 'none': points>0?'earned':'zero';
                 const ptsText=res? points: '-';
                 const row=document.createElement('tr');
@@ -2566,17 +2779,94 @@
       if(!match){ userWinnerCache[key]=null; return null; }
       const pred=predictions.find(p=>p.userId===userId && p.matchId===matchId);
       if(!pred){ userWinnerCache[key]=null; return null; }
+      
+      // Obtener resultado real para comparar
+      const realResult=resultsById[matchId];
+      
       let winnerTok=null;
-      if(pred.predHome>pred.predAway){ winnerTok=match.homeTeam; }
-      else if(pred.predAway>pred.predHome){ winnerTok=match.awayTeam; }
-      else {
-        // Empate: decidir por penaltis si existen
-        if(pred.predPenalties){
-           if(pred.predPenalties.home>pred.predPenalties.away){ winnerTok=match.homeTeam; }
-           else if(pred.predPenalties.away>pred.predPenalties.home){ winnerTok=match.awayTeam; }
-           else { winnerTok=match.homeTeam; }
-        } else { winnerTok=match.homeTeam; }
+      
+      // Si hay ganador claro en la predicción de 90m
+      if(pred.predHome>pred.predAway){ 
+        winnerTok=match.homeTeam; 
       }
+      else if(pred.predAway>pred.predHome){ 
+        winnerTok=match.awayTeam; 
+      }
+      else {
+        // Empate en 90m predicho
+        // Si hay resultado real, verificar si hay E.T. o penalties
+        if(realResult && realResult.homeGoals!==null && realResult.awayGoals!==null){
+          // Si hay empate en 90m real y hay E.T.
+          if(realResult.homeGoals===realResult.awayGoals && realResult.extraTime && 
+             realResult.extraTime.homeExtraTimeGoals!==null && realResult.extraTime.awayExtraTimeGoals!==null){
+            
+            const totalHomeReal = realResult.homeGoals + realResult.extraTime.homeExtraTimeGoals;
+            const totalAwayReal = realResult.awayGoals + realResult.extraTime.awayExtraTimeGoals;
+            
+            // Si hay empate en E.T. y hay penalties
+            if(totalHomeReal === totalAwayReal && realResult.penalties && 
+               realResult.penalties.homePenaltyGoals!==null && realResult.penalties.awayPenaltyGoals!==null){
+              
+              // Usar predicción de penalties si existe
+              if(pred.predPenalties){
+                if(pred.predPenalties.home>pred.predPenalties.away){ winnerTok=match.homeTeam; }
+                else if(pred.predPenalties.away>pred.predPenalties.home){ winnerTok=match.awayTeam; }
+                else { winnerTok=match.homeTeam; } // Empate en penalties -> equipo local
+              } else {
+                // No hay predicción de penalties, usar equipo local por defecto
+                winnerTok=match.homeTeam;
+              }
+            } else {
+              // Hay E.T. pero no penalties, o E.T. no empata
+              // Como no hay predicción de E.T., asumimos que el ganador predicho es el mismo que el real
+              if(totalHomeReal > totalAwayReal){ winnerTok=match.homeTeam; }
+              else if(totalAwayReal > totalHomeReal){ winnerTok=match.awayTeam; }
+              else { winnerTok=match.homeTeam; } // Empate total -> equipo local
+            }
+          } else {
+            // No hay E.T. o no hay empate en 90m real
+            // Usar predicción de penalties si existe
+            if(pred.predPenalties){
+              if(pred.predPenalties.home>pred.predPenalties.away){ winnerTok=match.homeTeam; }
+              else if(pred.predPenalties.away>pred.predPenalties.home){ winnerTok=match.awayTeam; }
+              else { winnerTok=match.homeTeam; }
+            } else { winnerTok=match.homeTeam; }
+          }
+        } else {
+          // No hay resultado real aún, usar predicción de penalties si existe
+          if(pred.predPenalties){
+            if(pred.predPenalties.home>pred.predPenalties.away){ winnerTok=match.homeTeam; }
+            else if(pred.predPenalties.away>pred.predPenalties.home){ winnerTok=match.awayTeam; }
+            else { winnerTok=match.homeTeam; }
+          } else { winnerTok=match.homeTeam; }
+        }
+      }
+      
+      // CASO ESPECIAL: Si la predicción NO es empate pero el resultado real SÍ es empate en 90m
+      // y hay E.T., entonces el ganador predicho debe ser el ganador real del E.T.
+      if(realResult && realResult.homeGoals!==null && realResult.awayGoals!==null && 
+         realResult.homeGoals===realResult.awayGoals && realResult.extraTime && 
+         realResult.extraTime.homeExtraTimeGoals!==null && realResult.extraTime.awayExtraTimeGoals!==null){
+        
+        const totalHomeReal = realResult.homeGoals + realResult.extraTime.homeExtraTimeGoals;
+        const totalAwayReal = realResult.awayGoals + realResult.extraTime.awayExtraTimeGoals;
+        
+        // Si hay ganador en E.T. (sin penalties)
+        if(totalHomeReal !== totalAwayReal && (!realResult.penalties || 
+           realResult.penalties.homePenaltyGoals===null || realResult.penalties.awayPenaltyGoals===null)){
+          
+          if(totalHomeReal > totalAwayReal){ winnerTok=match.homeTeam; }
+          else { winnerTok=match.awayTeam; }
+        }
+        // Si hay empate en E.T. y hay penalties
+        else if(totalHomeReal === totalAwayReal && realResult.penalties && 
+                realResult.penalties.homePenaltyGoals!==null && realResult.penalties.awayPenaltyGoals!==null){
+          
+          if(realResult.penalties.homePenaltyGoals > realResult.penalties.awayPenaltyGoals){ winnerTok=match.homeTeam; }
+          else { winnerTok=match.awayTeam; }
+        }
+      }
+      
       // Resolver recursivamente si es otro placeholder
       if(/^W\d+$/i.test(winnerTok)){
         winnerTok=getPredictedWinner(userId, winnerTok);
@@ -2663,6 +2953,179 @@
 
     refreshHeaderLiveIcons();
     updateKnockoutHeaders();
+
+    // Función global para calcular puntos de partidos (reemplaza todas las funciones calcPoints)
+    function getRealWinner(res){
+        if(res.homeGoals !== res.awayGoals) return res.homeGoals > res.awayGoals ? 'home':'away';
+        // Empate a 90' → mirar prórroga
+        if(res.extraTime && res.extraTime.homeExtraTimeGoals!=null){
+            const tHome = res.homeGoals + res.extraTime.homeExtraTimeGoals;
+            const tAway = res.awayGoals + res.extraTime.awayExtraTimeGoals;
+            if(tHome !== tAway) return tHome > tAway ? 'home':'away';
+        }
+        // Seguimos empatados → penalties
+        if(res.penalties && res.penalties.homePenaltyGoals!=null)
+            return res.penalties.homePenaltyGoals > res.penalties.awayPenaltyGoals ? 'home':'away';
+        return null;      // partido aún sin terminar
+    }
+
+    function getPredWinner(pred){
+        if(pred.predHome !== pred.predAway) return pred.predHome > pred.predAway ? 'home':'away';
+        if(pred.predPenalties) {
+            const {home,away}=pred.predPenalties;
+            if(home!==away) return home>away?'home':'away';
+        }
+        return null;      // No indicó ganador
+    }
+
+    function teamsCoinciden(userId, match){
+        // Obtener equipos predichos
+        const resolveUserToken=(tok)=>{
+            if(teamIdToName[tok]) return teamIdToName[tok];
+            if(/^[12][A-H]$/i.test(tok)){
+                const pos=parseInt(tok[0],10);
+                const grp=tok[1].toUpperCase();
+                
+                // Primero intentar usar clasificación real si está disponible
+                const realArr = realGroupStandings[grp];
+                const groupFinished = realArr && realArr.every(t => t.matchesPlayed === 3);
+                if(groupFinished && realArr[pos-1]){
+                    return realArr[pos-1].teamName;
+                }
+                
+                // Si no hay clasificación real o no está completa, usar la predicha
+                const arr=currentPredStandings[grp];
+                if(arr){
+                    const found=arr.find(t=>t.position===pos);
+                    if(found) return found.teamName;
+                    if(arr[pos-1]) return arr[pos-1].teamName;
+                }
+            }
+            if(/^W\d+$/i.test(tok)){
+                const winnerId=getPredictedWinner(userId, tok);
+                if(winnerId && teamIdToName[winnerId]) return teamIdToName[winnerId];
+            }
+            return tok;
+        };
+        
+        // Obtener equipos reales
+        const resolveTeamToken = (token) => {
+            if (teamIdToName[token]) return teamIdToName[token];
+            if (/^W\d+$/i.test(token)) {
+                const match = matchesById[token];
+                const res = resultsById[token];
+                if(match && res && res.homeGoals!==null && res.awayGoals!==null){
+                    let winnerId=null;
+                    if(res.homeGoals>res.awayGoals){ winnerId=match.homeTeam; }
+                    else if(res.awayGoals>res.homeGoals){ winnerId=match.awayTeam; }
+                    else {
+                        // Empate en 90m - verificar E.T. y penalties
+                        if(res.extraTime && res.extraTime.homeExtraTimeGoals!==null && res.extraTime.awayExtraTimeGoals!==null){
+                            const totalHome = res.homeGoals + res.extraTime.homeExtraTimeGoals;
+                            const totalAway = res.awayGoals + res.extraTime.awayExtraTimeGoals;
+                            
+                            if(totalHome > totalAway){ winnerId=match.homeTeam; }
+                            else if(totalAway > totalHome){ winnerId=match.awayTeam; }
+                            else {
+                                // Empate en E.T. - verificar penalties
+                                if(res.penalties && res.penalties.homePenaltyGoals!==null && res.penalties.awayPenaltyGoals!==null){
+                                    if(res.penalties.homePenaltyGoals>res.penalties.awayPenaltyGoals){ winnerId=match.homeTeam; }
+                                    else if(res.penalties.awayPenaltyGoals>res.penalties.homePenaltyGoals){ winnerId=match.awayTeam; }
+                                }
+                            }
+                        } else if(res.penalties && res.penalties.homePenaltyGoals!==null && res.penalties.awayPenaltyGoals!==null){
+                            // No hay E.T. pero sí penalties
+                            if(res.penalties.homePenaltyGoals>res.penalties.awayPenaltyGoals){ winnerId=match.homeTeam; }
+                            else if(res.penalties.awayPenaltyGoals>res.penalties.homePenaltyGoals){ winnerId=match.awayTeam; }
+                        }
+                    }
+                    if(winnerId && teamIdToName[winnerId]) return teamIdToName[winnerId];
+                }
+            }
+            if (/^[12][A-H]$/i.test(token)) {
+                const pos = parseInt(token[0], 10);
+                const group = token[1].toUpperCase();
+                const standingsArr = realGroupStandings[group];
+                const groupFinished = standingsArr && standingsArr.every(t => t.matchesPlayed === 3);
+                if (groupFinished && standingsArr[pos - 1]) {
+                    return standingsArr[pos - 1].teamName;
+                }
+            }
+            return token;
+        };
+        
+        // Obtener placeholders originales del displayName
+        const parts = match.displayName.split(' vs ').map(s => s.trim());
+        let predHomeTok, predAwayTok;
+        if(parts.length === 2){
+            predHomeTok = parts[0];
+            predAwayTok = parts[1];
+        } else {
+            predHomeTok = match.homeTeam;
+            predAwayTok = match.awayTeam;
+        }
+        
+        const realTokHome = match.homeTeam;
+        const realTokAway = match.awayTeam;
+        
+        // Resolver nombres de equipos
+        const predHomeName = resolveUserToken(predHomeTok);
+        const predAwayName = resolveUserToken(predAwayTok);
+        const realHomeName = resolveTeamToken(realTokHome);
+        const realAwayName = resolveTeamToken(realTokAway);
+        
+        // Verificar que los equipos coincidan
+        return predHomeName === realHomeName && predAwayName === realAwayName;
+    }
+
+    /**
+     * Calcula los puntos de un partido, diferenciando entre fase de grupos y eliminatorias.
+     * Esta es la función central y corregida para la puntuación.
+     */
+    function calculateMatchPoints(pred) {
+        const res = resultsById[pred.matchId];
+        // Si el partido no tiene resultado, no hay puntos.
+        if (!res || res.homeGoals == null) return 0;
+
+        const match = matchesById[pred.matchId];
+        const isKO = match.phase !== 'group';
+
+        /* REGLA KO: PRIMERO VERIFICAR SI LOS EQUIPOS COINCIDEN */
+        // Si es un partido de eliminatoria, los equipos que juegan deben ser los que el usuario predijo.
+        // Si no, no se otorgan puntos para este partido. Esto cumple la regla 1.1.
+        if (isKO && !teamsCoinciden(pred.userId, match)) {
+            return 0;
+        }
+
+        /* REGLA 5 PUNTOS: MARCADOR EXACTO A LOS 90 MINUTOS */
+        // Se aplica tanto a grupos como a KO (si los equipos coincidieron). Cumple la regla 1.2.
+        if (pred.predHome === res.homeGoals && pred.predAway === res.awayGoals) {
+            return 5;
+        }
+
+        /* REGLA 3 PUNTOS: ACERTAR EL RESULTADO/GANADOR */
+        if (!isKO) {
+            // Lógica para FASE DE GRUPOS: acertar signo (1X2). Cumple la regla 2.1.
+            const diff = res.homeGoals - res.awayGoals;
+            const predDiff = pred.predHome - pred.predAway;
+            if ((diff === 0 && predDiff === 0) || (diff > 0 && predDiff > 0) || (diff < 0 && predDiff < 0)) {
+                return 3;
+            }
+        } else {
+            // Lógica para FASE DE ELIMINATORIAS: acertar ganador final (90', prórroga o penaltis).
+            // Cumple las reglas 2.2.a y 2.2.b.
+            const realW = getRealWinner(res);
+            const predW = getPredWinner(pred);
+
+            // ¡VERSIÓN CORREGIDA! Compara el ganador real con el predicho.
+            if (realW && predW && realW === predW) {
+                return 3;
+            }
+        }
+
+        // Si no se cumplió ninguna regla, no se otorgan puntos.
+        return 0;
+    }
   </script>
 </body>
 </html>
