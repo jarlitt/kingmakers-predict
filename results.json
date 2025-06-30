@@ -677,8 +677,8 @@
   },
   {
     "matchId": "W53",
-    "homeGoals": null,
-    "awayGoals": null,
+    "homeGoals": 0,
+    "awayGoals": 2,
     "extraTime": {
       "homeExtraTimeGoals": null,
       "awayExtraTimeGoals": null
