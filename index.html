@@ -104,7 +104,6 @@
     </main>
   </div>
 
-  <script src="scoring.js"></script>
   <script>
     const participantSelect = document.getElementById('participantSelect');
     const btnPred=document.getElementById('btnPred');
@@ -554,6 +553,8 @@
             badgesRow.style.marginTop='8px';
             headerWrap.appendChild(badgesRow);
 
+            groupCard.appendChild(headerWrap);
+
             const tablesContainer = document.createElement('div');
             tablesContainer.className = 'group-tables';
 
@@ -672,16 +673,26 @@
               insertStatusBadge(checkImg);
             }
 
-            // Estado inicial colapsado/expandido
-            const initiallyCollapsed = !(FORCE_OPEN_GROUPS.includes(groupKey)) && isCompleteGroup && !isLiveGroup;
-            if(initiallyCollapsed){
-              tablesContainer.style.display='none';
-              badgesRow.style.display='';
-              arrowGrp.textContent='▶';
-              headerWrap.style.marginBottom='0';
+            // ----- Estado inicial colapsado/expandido (clasificaciones) -----
+            // Guardamos preferencia del usuario en localStorage para cada grupo.
+            const storageKey = `classifCollapsed_${groupKey}`;
+            const storedState = localStorage.getItem(storageKey);
+            const initiallyCollapsed = storedState === 'true'; // solo colapsado si usuario lo decidió
+
+            if (initiallyCollapsed) {
+              tablesContainer.style.display = 'none';
+              badgesRow.style.display = '';
+              arrowGrp.textContent = '▶';
+              headerWrap.style.marginBottom = '0';
             } else {
-              badgesRow.style.display='none';
+              badgesRow.style.display = 'none';
             }
+
+            // Actualizar almacenamiento al colapsar/expandir
+            headerTop.addEventListener('click', () => {
+              const willCollapse = tablesContainer.style.display !== 'none';
+              localStorage.setItem(storageKey, willCollapse ? 'true' : 'false');
+            });
         });
         predTab.style.display = 'block';
       } else {
@@ -909,7 +920,7 @@
                             if(winnerId && teamIdToName[winnerId]) return teamIdToName[winnerId];
                          }
                        }
-                       if (/^[12][A-H]$/i.test(token)) {
+                       if (/^[12][A-H]$/i.test(tok)) {
                          const pos = parseInt(token[0], 10);
                          const group = token[1].toUpperCase();
                          const standingsArr = realGroupStandings[group];
@@ -1073,7 +1084,17 @@
               const badgeArr=[];
               const pushBadge=(tok)=>{
                 let idTok=null;
-                if(teamIdToBadge[tok]){ idTok=tok; }
+                if(teamIdToBadge[tok]){ 
+                  idTok=tok; 
+                }
+                else if(/^[12][A-H]$/i.test(tok)){
+                  const pos = parseInt(tok[0], 10);
+                  const grp = tok[1].toUpperCase();
+                  if (realGroupStandings[grp] && isGroupComplete(realGroupStandings[grp])) {
+                    const team = realGroupStandings[grp].find(t => t.position === pos);
+                    idTok = team ? team.teamId : null;
+                  }
+                }
                 else if(/^W\d+$/i.test(tok)){
                    const m=matchesById[tok]; const r=resultsById[tok];
                    if(m && r && r.homeGoals!==null && r.awayGoals!==null){
@@ -1232,7 +1253,7 @@
                             const totalHomeGoals = homeGoals + result.extraTime.homeExtraTimeGoals;
                             const totalAwayGoals = awayGoals + result.extraTime.awayExtraTimeGoals;
                             extraTimeHtml = `<div class="extra-time-group">
-                                <div class="score-group-label">E.T.</div>
+                                <div class="score-group-label">120M.</div>
                                 <div class="score-group-main">
                                     <span class="home-score">${totalHomeGoals}</span>
                                     <span class="away-score">${totalAwayGoals}</span>
@@ -1278,55 +1299,36 @@
                 let rowHtml='';
                 if(isKO){
                     const resolveUserToken=(tok)=>{
-                      if(teamIdToName[tok]) return teamIdToName[tok];
-                      if(/^[12][A-H]$/i.test(tok)){
-                        const pos=parseInt(tok[0],10);
-                        const grp=tok[1].toUpperCase();
-                        const arr=currentPredStandings[grp];
-                        if(arr){
-                          const found=arr.find(t=>t.position===pos);
-                          if(found) return found.teamName;
-                          if(arr[pos-1]) return arr[pos-1].teamName;
-                        }
-                      }
-                      // NUEVO: resolver ganador de partidos KO anteriores
-                      if(/^W\d+$/i.test(tok)){
-                        const winnerId=getPredictedWinner(participantSelect.value, tok);
-                        if(winnerId && teamIdToName[winnerId]) return teamIdToName[winnerId];
-                      }
-                      return tok;
+                      const id = resolvePredictedTeamId(participantSelect.value, tok);
+                      return teamIdToName[id] || tok;
                     };
-                    // NUEVO: obtenemos los placeholders originales del displayName
-                    const parts = matchInfo.displayName.split(' vs ').map(s => s.trim());
-                    let predHomeTok, predAwayTok;
-                    if(parts.length === 2){
-                      predHomeTok = parts[0];
-                      predAwayTok = parts[1];
-                    } else {
-                      predHomeTok = matchInfo.homeTeam;
-                      predAwayTok = matchInfo.awayTeam;
-                    }
+                    const resolveRealTokenName=(tok)=>{
+                      const id = resolveRealTeamId(tok);
+                      return teamIdToName[id] || tok;
+                    };
+
                     const realTokHome = matchInfo.homeTeam;
                     const realTokAway = matchInfo.awayTeam;
-                    const buildSpan=(tok, resolved, isReal=false)=>{
-                      let id=getIdFromToken(tok);
-                      // Si es columna Real y token es placeholder, intentamos badge del resolved
-                      if(id==null && resolved!==tok){ id=getIdFromToken(resolved); }
-                      let src='';
-                      if(id && teamIdToBadge[id]){ src=teamIdToBadge[id]; }
-                      else if(isReal){ src='badges/unknownTeam.png'; }
-                      const badge=src?`<img src="${src}" class="team-badge" alt="${resolved} badge"/>`:'';
-                      const idText=id||tok;
-                      return `${badge}<span class="team-id">${idText}</span><span class="team-name-full">${resolved}</span>`; };
 
-                    const predictedSpanHome = buildSpan(predHomeTok, resolveUserToken(predHomeTok));
-                    const predictedSpanAway = buildSpan(predAwayTok, resolveUserToken(predAwayTok));
+                    const buildSpan=(tok, resolvedName, isReal=false)=>{
+                      let resolvedId = isReal ? resolveRealTeamId(tok) : resolvePredictedTeamId(participantSelect.value, tok);
+                      let src = (resolvedId && teamIdToBadge[resolvedId]) ? teamIdToBadge[resolvedId] : 'badges/unknownTeam.png';
+
+                      const badge=src?`<img src="${src}" class="team-badge" alt="${resolvedName} badge"/>`:'';
+                      return `${badge}<span class="team-id">${tok}</span><span class="team-name-full">${resolvedName}</span>`;
+                    };
+
+                    // Tokens basados en el displayName (mantienen placeholders 1A, W49, ...)
+                    const displayParts = matchInfo.displayName.split(' vs ').map(s => s.trim());
+                    const predTokHome = displayParts.length === 2 ? displayParts[0] : matchInfo.homeTeam;
+                    const predTokAway = displayParts.length === 2 ? displayParts[1] : matchInfo.awayTeam;
+
+                    const predictedSpanHome = buildSpan(predTokHome, resolveUserToken(predTokHome), false);
+                    const predictedSpanAway = buildSpan(predTokAway, resolveUserToken(predTokAway), false);
                     const predictedHtml = `<span class=\"home-team\">${predictedSpanHome}</span><span class=\"vs-sep\">vs</span><span class=\"away-team\">${predictedSpanAway}</span>`;
 
-                    const realResolvedHome = resolveTeamToken(realTokHome);
-                    const realResolvedAway = resolveTeamToken(realTokAway);
-                    const realSpanHome = buildSpan(realTokHome, realResolvedHome, true);
-                    const realSpanAway = buildSpan(realTokAway, realResolvedAway, true);
+                    const realSpanHome = buildSpan(realTokHome, resolveRealTokenName(realTokHome), true);
+                    const realSpanAway = buildSpan(realTokAway, resolveRealTokenName(realTokAway), true);
                     const realHtml = `<span class=\"home-team\">${realSpanHome}</span><span class=\"vs-sep\">vs</span><span class=\"away-team\">${realSpanAway}</span>`;
                     rowHtml=`<td class=\"time-cell\">${matchDate}</td><td class=\"round-cell\">${roundHtml}</td><td class=\"match-cell\">${predictedHtml}</td><td class=\"match-cell\">${realHtml}</td><td class=\"score-cell prediction\">${predScoreHtml}</td><td class=\"score-cell result\">${realScoreHtml}</td><td class=\"points-cell\"><span class=\"points-badge ${ptsClass}\">${ptsText}</span></td>`;
                 } else {
@@ -2095,7 +2097,7 @@
                             if(winnerId && teamIdToName[winnerId]) return teamIdToName[winnerId];
                          }
                        }
-                       if (/^[12][A-H]$/i.test(token)) {
+                       if (/^[12][A-H]$/i.test(tok)) {
                          const pos = parseInt(token[0], 10);
                          const group = token[1].toUpperCase();
                          const standingsArr = realGroupStandings[group];
@@ -2280,7 +2282,7 @@
                             const totalHomeGoals = homeGoals + res.extraTime.homeExtraTimeGoals;
                             const totalAwayGoals = awayGoals + res.extraTime.awayExtraTimeGoals;
                             extraTimeHtml = `<div class="extra-time-group">
-                                <div class="score-group-label">E.T.</div>
+                                <div class="score-group-label">120M.</div>
                                 <div class="score-group-main">
                                     <span class="home-score">${totalHomeGoals}</span>
                                     <span class="away-score">${totalAwayGoals}</span>
@@ -2499,7 +2501,7 @@
                             if(winnerId && teamIdToName[winnerId]) return teamIdToName[winnerId];
                          }
                        }
-                       if (/^[12][A-H]$/i.test(token)) {
+                       if (/^[12][A-H]$/i.test(tok)) {
                          const pos = parseInt(token[0], 10);
                          const group = token[1].toUpperCase();
                          const standingsArr = realGroupStandings[group];
@@ -2550,23 +2552,30 @@
             const ptsTotal=items.reduce((s,p)=>s+calculateMatchPoints(p),0);
             // Build team/unknown badges for phase header (similar a vista "By Date")
             const badgeArr=[];
-            const pushBadge=(tok)=>{
-                let idTok=null;
-                if(teamIdToBadge[tok]){ idTok=tok; }
-                else if(/^W\d+$/i.test(tok)){
-                   const m=matchesById[tok]; const r=resultsById[tok];
-                   if(m && r && r.homeGoals!==null && r.awayGoals!==null){
-                      if(r.homeGoals>r.awayGoals){ idTok=m.homeTeam; }
-                      else if(r.awayGoals>r.homeGoals){ idTok=m.awayTeam; }
-                      else if(r.penalties && r.penalties.homePenaltyGoals!==null && r.penalties.awayPenaltyGoals!==null){
-                         idTok = r.penalties.homePenaltyGoals>r.penalties.awayPenaltyGoals ? m.homeTeam : m.awayTeam;
-                      }
-                   }
+            
+            // Función para obtener el escudo real de un equipo (misma lógica que buildCell cuando isReal=true)
+            const getRealTeamBadge = (tok) => {
+                let id = null;
+                
+                // Si es un ID directo de equipo, usarlo
+                if(teamIdToBadge[tok]){ 
+                    id = tok; 
                 }
-                let src='badges/unknownTeam.png';
-                if(idTok && teamIdToBadge[idTok]) src=teamIdToBadge[idTok];
+                // Si es un placeholder (1A/2B/Wxx), forzar unknown como hace buildCell cuando isReal=true
+                else if(/^[12][A-H]$/i.test(tok) || /^W\d+$/i.test(tok)){
+                    id = null; // Forzar unknown para placeholders
+                }
+                
+                let src = 'badges/unknownTeam.png';
+                if(id && teamIdToBadge[id]) src = teamIdToBadge[id];
+                return src;
+            };
+            
+            const pushBadge=(tok)=>{
+                const src = getRealTeamBadge(tok);
                 badgeArr.push(`<img src="${src}" class="team-badge" alt="team"/>`);
             };
+            
             items.forEach(p=>{
                 const m = matchesById[p.matchId];
                 pushBadge(m.homeTeam);
@@ -2622,7 +2631,7 @@
                             const totalHomeGoals = homeGoals + res.extraTime.homeExtraTimeGoals;
                             const totalAwayGoals = awayGoals + res.extraTime.awayExtraTimeGoals;
                             extraTimeHtml = `<div class="extra-time-group">
-                                <div class="score-group-label">E.T.</div>
+                                <div class="score-group-label">120M.</div>
                                 <div class="score-group-main">
                                     <span class="home-score">${totalHomeGoals}</span>
                                     <span class="away-score">${totalAwayGoals}</span>
@@ -2978,154 +2987,182 @@
         return null;      // No indicó ganador
     }
 
-    function teamsCoinciden(userId, match){
-        // Obtener equipos predichos
-        const resolveUserToken=(tok)=>{
-            if(teamIdToName[tok]) return teamIdToName[tok];
-            if(/^[12][A-H]$/i.test(tok)){
-                const pos=parseInt(tok[0],10);
-                const grp=tok[1].toUpperCase();
-                
-                // Primero intentar usar clasificación real si está disponible
-                const realArr = realGroupStandings[grp];
-                const groupFinished = realArr && realArr.every(t => t.matchesPlayed === 3);
-                if(groupFinished && realArr[pos-1]){
-                    return realArr[pos-1].teamName;
-                }
-                
-                // Si no hay clasificación real o no está completa, usar la predicha
-                const arr=currentPredStandings[grp];
-                if(arr){
-                    const found=arr.find(t=>t.position===pos);
-                    if(found) return found.teamName;
-                    if(arr[pos-1]) return arr[pos-1].teamName;
-                }
+    /***********************************************************
+     * SECCIÓN DE PUNTUACIÓN Y LÓGICA DE PARTIDOS - CORREGIDA
+     ***********************************************************/
+
+    /**
+     * Resuelve un token de equipo (ej: '1A', 'W49') al ID del equipo REAL que corresponde.
+     * @param {string} token - El placeholder del equipo.
+     * @returns {string|null} - El ID del equipo o null si no se puede resolver.
+     */
+    function resolveRealTeamId(token) {
+        if (teamIdToName[token]) return token; // Ya es un ID
+
+        // Resolver placeholder de grupo (e.g., '1A', '2H')
+        if (/^[12][A-H]$/i.test(token)) {
+            const pos = parseInt(token[0], 10);
+            const grp = token[1].toUpperCase();
+            if (realGroupStandings[grp] && isGroupComplete(realGroupStandings[grp])) {
+                const team = realGroupStandings[grp].find(t => t.position === pos);
+                return team ? team.teamId : null;
             }
-            if(/^W\d+$/i.test(tok)){
-                const winnerId=getPredictedWinner(userId, tok);
-                if(winnerId && teamIdToName[winnerId]) return teamIdToName[winnerId];
-            }
-            return tok;
-        };
-        
-        // Obtener equipos reales
-        const resolveTeamToken = (token) => {
-            if (teamIdToName[token]) return teamIdToName[token];
-            if (/^W\d+$/i.test(token)) {
-                const match = matchesById[token];
-                const res = resultsById[token];
-                if(match && res && res.homeGoals!==null && res.awayGoals!==null){
-                    let winnerId=null;
-                    if(res.homeGoals>res.awayGoals){ winnerId=match.homeTeam; }
-                    else if(res.awayGoals>res.homeGoals){ winnerId=match.awayTeam; }
-                    else {
-                        // Empate en 90m - verificar E.T. y penalties
-                        if(res.extraTime && res.extraTime.homeExtraTimeGoals!==null && res.extraTime.awayExtraTimeGoals!==null){
-                            const totalHome = res.homeGoals + res.extraTime.homeExtraTimeGoals;
-                            const totalAway = res.awayGoals + res.extraTime.awayExtraTimeGoals;
-                            
-                            if(totalHome > totalAway){ winnerId=match.homeTeam; }
-                            else if(totalAway > totalHome){ winnerId=match.awayTeam; }
-                            else {
-                                // Empate en E.T. - verificar penalties
-                                if(res.penalties && res.penalties.homePenaltyGoals!==null && res.penalties.awayPenaltyGoals!==null){
-                                    if(res.penalties.homePenaltyGoals>res.penalties.awayPenaltyGoals){ winnerId=match.homeTeam; }
-                                    else if(res.penalties.awayPenaltyGoals>res.penalties.homePenaltyGoals){ winnerId=match.awayTeam; }
-                                }
-                            }
-                        } else if(res.penalties && res.penalties.homePenaltyGoals!==null && res.penalties.awayPenaltyGoals!==null){
-                            // No hay E.T. pero sí penalties
-                            if(res.penalties.homePenaltyGoals>res.penalties.awayPenaltyGoals){ winnerId=match.homeTeam; }
-                            else if(res.penalties.awayPenaltyGoals>res.penalties.homePenaltyGoals){ winnerId=match.awayTeam; }
-                        }
-                    }
-                    if(winnerId && teamIdToName[winnerId]) return teamIdToName[winnerId];
-                }
-            }
-            if (/^[12][A-H]$/i.test(token)) {
-                const pos = parseInt(token[0], 10);
-                const group = token[1].toUpperCase();
-                const standingsArr = realGroupStandings[group];
-                const groupFinished = standingsArr && standingsArr.every(t => t.matchesPlayed === 3);
-                if (groupFinished && standingsArr[pos - 1]) {
-                    return standingsArr[pos - 1].teamName;
-                }
-            }
-            return token;
-        };
-        
-        // Obtener placeholders originales del displayName
-        const parts = match.displayName.split(' vs ').map(s => s.trim());
-        let predHomeTok, predAwayTok;
-        if(parts.length === 2){
-            predHomeTok = parts[0];
-            predAwayTok = parts[1];
-        } else {
-            predHomeTok = match.homeTeam;
-            predAwayTok = match.awayTeam;
+            return null; // El grupo no ha terminado, no se puede resolver
         }
-        
-        const realTokHome = match.homeTeam;
-        const realTokAway = match.awayTeam;
-        
-        // Resolver nombres de equipos
-        const predHomeName = resolveUserToken(predHomeTok);
-        const predAwayName = resolveUserToken(predAwayTok);
-        const realHomeName = resolveTeamToken(realTokHome);
-        const realAwayName = resolveTeamToken(realTokAway);
-        
-        // Verificar que los equipos coincidan
-        return predHomeName === realHomeName && predAwayName === realAwayName;
+
+        // Resolver placeholder de ganador de partido (e.g., 'W49')
+        if (/^W\d+$/i.test(token)) {
+            const res = resultsById[token];
+            if (!res || res.homeGoals === null) return null; // Partido no jugado
+
+            const match = matchesById[token];
+            const winnerSide = getRealWinner(res);
+            if (!winnerSide) return null;
+
+            const winnerToken = winnerSide === 'home' ? match.homeTeam : match.awayTeam;
+            // Llamada recursiva por si el ganador viene de otro placeholder
+            return resolveRealTeamId(winnerToken);
+        }
+
+        return null;
     }
 
     /**
-     * Calcula los puntos de un partido, diferenciando entre fase de grupos y eliminatorias.
-     * Esta es la función central y corregida para la puntuación.
+     * Resuelve un token de equipo (ej: '1A', 'W49') al ID del equipo que un USUARIO PREDIGO.
+     * @param {string} userId - ID del participante.
+     * @param {string} token - El placeholder del equipo.
+     * @returns {string|null} - El ID del equipo predicho o null.
+     */
+    function resolvePredictedTeamId(userId, token) {
+        if (teamIdToName[token]) return token; // Ya es un ID
+
+        const userStandings = groupStandings[userId];
+
+        if (/^[12][A-H]$/i.test(token)) {
+            const pos = parseInt(token[0], 10);
+            const grp = token[1].toUpperCase();
+            if (userStandings && userStandings[grp]) {
+                const team = userStandings[grp].find(t => t.position === pos);
+                return team ? team.teamId : null;
+            }
+            return null;
+        }
+
+        if (/^W\d+$/i.test(token)) {
+            const pred = predictions.find(p => p.userId === userId && p.matchId === token);
+            if (!pred) return null;
+
+            const match = matchesById[token];
+            const winnerSide = getPredWinner(pred);
+            if (!winnerSide) return null;
+
+            const winnerToken = winnerSide === 'home' ? match.homeTeam : match.awayTeam;
+            return resolvePredictedTeamId(userId, winnerToken);
+        }
+
+        return null;
+    }
+
+
+    /**
+     * VERIFICACIÓN KO: Comprueba si los equipos que un usuario predijo para un partido
+     * de eliminatoria coinciden con los equipos que realmente jugaron.
+     * @param {string} userId - ID del participante.
+     * @param {object} match - El objeto del partido.
+     * @returns {boolean} - True si los equipos coinciden, false si no.
+     */
+    function teamsCoinciden(userId, match) {
+        const realHomeId = resolveRealTeamId(match.homeTeam);
+        const realAwayId = resolveRealTeamId(match.awayTeam);
+
+        const predHomeId = resolvePredictedTeamId(userId, match.homeTeam);
+        const predAwayId = resolvePredictedTeamId(userId, match.awayTeam);
+
+        //console.log('[DEBUG teamsCoinciden]', {
+           // matchId: match.matchId,
+           // homeTeam: match.homeTeam,
+           // awayTeam: match.awayTeam,
+           // realHomeId,
+           // realAwayId,
+           // predHomeId,
+           // predAwayId,
+           // realHomeName: realHomeId ? teamIdToName[realHomeId] : 'null',
+           // realAwayName: realAwayId ? teamIdToName[realAwayId] : 'null',
+           // predHomeName: predHomeId ? teamIdToName[predHomeId] : 'null',
+           // predAwayName: predAwayId ? teamIdToName[predAwayId] : 'null'
+        //}); //
+
+        // Si algún equipo real aún no está definido (porque los partidos previos no han terminado),
+        // no penalizamos (esperamos a que se resuelva)
+        if (!realHomeId || !realAwayId) {
+            //console.log('[DEBUG] Equipos reales no definidos, retornando true');
+            return true;
+        }
+        // Si algún equipo predicho no está definido, NO puede coincidir
+        if (!predHomeId || !predAwayId) {
+            //console.log('[DEBUG] Equipos predichos no definidos, retornando false');
+            return false;
+        }
+        // Si los IDs reales y predichos están definidos, la comparación debe ser exacta.
+        const coinciden = realHomeId === predHomeId && realAwayId === predAwayId;
+        //console.log('[DEBUG] Comparación final:', coinciden);
+        return coinciden;
+    }
+
+
+    /**
+     * FUNCIÓN CENTRAL DE PUNTUACIÓN
+     * Calcula los puntos de un partido, usando la lógica corregida.
      */
     function calculateMatchPoints(pred) {
         const res = resultsById[pred.matchId];
-        // Si el partido no tiene resultado, no hay puntos.
-        if (!res || res.homeGoals == null) return 0;
-
         const match = matchesById[pred.matchId];
-        const isKO = match.phase !== 'group';
+        const isKO = match && match.phase !== 'group';
+        let realW = null, predW = null;
+        if (res) realW = getRealWinner(res);
+        if (pred) predW = getPredWinner(pred);
+        //console.log('[KO DEBUG]', {
+            //userId: pred.userId,
+            //matchId: pred.matchId,
+            //pred,
+            //res,
+            //  isKO,
+            //realW,
+            //predW,
+            //teamsCoinciden: isKO ? teamsCoinciden(pred.userId, match) : 'N/A'
+        //    }); //  
+        if (!res || res.homeGoals === null) return 0;
 
-        /* REGLA KO: PRIMERO VERIFICAR SI LOS EQUIPOS COINCIDEN */
-        // Si es un partido de eliminatoria, los equipos que juegan deben ser los que el usuario predijo.
-        // Si no, no se otorgan puntos para este partido. Esto cumple la regla 1.1.
+        // Regla KO 1.1: ¿Coinciden los equipos?
         if (isKO && !teamsCoinciden(pred.userId, match)) {
-            return 0;
+            return 0; // Si no coinciden, 0 puntos y no se evalúa más.
         }
 
-        /* REGLA 5 PUNTOS: MARCADOR EXACTO A LOS 90 MINUTOS */
-        // Se aplica tanto a grupos como a KO (si los equipos coincidieron). Cumple la regla 1.2.
+        // Regla 1 (y 1.2): 5 puntos por marcador exacto en 90m
         if (pred.predHome === res.homeGoals && pred.predAway === res.awayGoals) {
             return 5;
         }
 
-        /* REGLA 3 PUNTOS: ACERTAR EL RESULTADO/GANADOR */
+        // Regla 2: 3 puntos por acertar el ganador/resultado
         if (!isKO) {
-            // Lógica para FASE DE GRUPOS: acertar signo (1X2). Cumple la regla 2.1.
+            // Fase de grupos (Regla 2.1)
             const diff = res.homeGoals - res.awayGoals;
             const predDiff = pred.predHome - pred.predAway;
             if ((diff === 0 && predDiff === 0) || (diff > 0 && predDiff > 0) || (diff < 0 && predDiff < 0)) {
                 return 3;
             }
         } else {
-            // Lógica para FASE DE ELIMINATORIAS: acertar ganador final (90', prórroga o penaltis).
-            // Cumple las reglas 2.2.a y 2.2.b.
+            // Fase KO (Regla 2.2)
             const realW = getRealWinner(res);
             const predW = getPredWinner(pred);
-
-            // ¡VERSIÓN CORREGIDA! Compara el ganador real con el predicho.
             if (realW && predW && realW === predW) {
                 return 3;
             }
         }
-
-        // Si no se cumplió ninguna regla, no se otorgan puntos.
+        
         return 0;
     }
+
   </script>
 </body>
 </html>

@@ -385,7 +385,7 @@ body {
 
 .points-cell {
   font-weight: 600;
-  text-align: left;
+  text-align: right;
   width: 60px;
 }
 
@@ -766,7 +766,7 @@ body {
 
   /* Ajuste de alineaciones globales */
   .match-cell { text-align: left !important; }
-  .points-cell { text-align: left !important; }
+  .points-cell { text-align: right !important; }
 
   /* Ajustar alineación del round-cell */
   .round-cell { text-align: center !important; }
@@ -1132,7 +1132,7 @@ body {
   .predictions-table .points-cell { text-align: right; }
 }
 @media (max-width: 768px){
-  .group-table .points-cell { text-align: left !important; }
+  .group-table .points-cell { text-align: right !important; }
 }
 
 .collapsible-header{cursor:pointer;display:flex;align-items:center;gap:8px;}
@@ -1180,10 +1180,9 @@ body {
 .pts-header-cell { text-transform: none !important; }
 
 .group-title .points-badge{margin-left:8px;font-size:12px;padding:2px 6px;font-weight:600 !important;}
-
 .group-header{margin-bottom:20px;}
 .header-top{display:flex;align-items:center;justify-content:space-between;}
-.group-title{margin:0;}
+.group-title{margin:0 0 0 0 !important;}
 .group-header .points-description{text-align:right;font-size:12px;color:var(--text-secondary);}
 
 .day-total.points-badge{font-size:11px;padding:4px;}
@@ -1217,7 +1216,7 @@ body {
 .team-id{display:none;font-weight:400;}
 .team-name-full{display:inline;}
 @media (max-width:768px){
-  .team-id{display:inline;}
+  .team-id{display:none;}
   .team-name-full{display:none;}
 }
 
@@ -1233,6 +1232,12 @@ body {
   margin-top:4px;
   margin-bottom:12px;
 }
+
+/* Ocultar phase-badges-row en knockout stage */
+#koPredictionsTable .phase-badges-row {
+  display: none;
+}
+
 @media (max-width:768px){
   .phase-badges-row{flex-wrap:wrap;}
 }
@@ -1381,6 +1386,107 @@ body {
   }
 }
 
-@media (min-width:725px) and (max-width:1072px){
-  .leader-stats{flex-direction:row;}
+/* Estilos para tiempo extra y penalties */
+.result-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.score-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 40px;
+}
+
+.score-group-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.score-group-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.score-group-main .home-score,
+.score-group-main .away-score {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.extra-time-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 40px;
+}
+
+.extra-time-group .score-group-label {
+  color: #4a9eff;
+}
+
+.extra-time-group .home-score,
+.extra-time-group .away-score {
+  color: #4a9eff;
+  font-size: 14px;
+}
+
+.penalties-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 40px;
+}
+
+.penalties-group .score-group-label {
+  color: #4a9eff;
+}
+
+.penalties-group .home-score,
+.penalties-group .away-score {
+  color: #4a9eff;
+  font-size: 14px;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .result-container {
+    gap: 8px;
+    justify-content: center;
+  }
+  
+  .score-group,
+  .extra-time-group,
+  .penalties-group {
+    min-width: 35px;
+  }
+  
+  .score-group-label {
+    font-size: 9px;
+  }
+  
+  .score-group-main .home-score,
+  .score-group-main .away-score {
+    font-size: 13px;
+  }
+  
+  .extra-time-group .home-score,
+  .extra-time-group .away-score,
+  .penalties-group .home-score,
+  .penalties-group .away-score {
+    font-size: 14px;
+  }
 }
