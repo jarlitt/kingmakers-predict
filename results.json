@@ -690,11 +690,11 @@
   },
   {
     "matchId": "W54",
-    "homeGoals": null,
-    "awayGoals": null,
+    "homeGoals": 2,
+    "awayGoals": 2,
     "extraTime": {
-      "homeExtraTimeGoals": null,
-      "awayExtraTimeGoals": null
+      "homeExtraTimeGoals": 1,
+      "awayExtraTimeGoals": 2
     },
     "penalties": {
       "homePenaltyGoals": null,
