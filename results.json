@@ -703,8 +703,8 @@
   },
   {
     "matchId": "W55",
-    "homeGoals": null,
-    "awayGoals": null,
+    "homeGoals": 1,
+    "awayGoals": 0,
     "extraTime": {
       "homeExtraTimeGoals": null,
       "awayExtraTimeGoals": null
