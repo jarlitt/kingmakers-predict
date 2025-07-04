@@ -331,26 +331,16 @@
         }
 
         populateSelect();
-        // Valor recordado
-        const savedParticipant = localStorage.getItem('lastParticipant') || '';
-        if(participantSelect.querySelector(`option[value="${savedParticipant}"]`)){
-          participantSelect.value = savedParticipant;
-        }
-        participantSelect.addEventListener('change', () => {
-          localStorage.setItem('lastParticipant', participantSelect.value);
-          // Forzar que la próxima carga abra la pestaña de Predicciones
-          localStorage.setItem('lastTab','pred');
-          // Soft reload
-          location.reload();
-        });
-
-        // Seleccionar pestaña guardada
-        const savedTab = localStorage.getItem('lastTab') || 'clasif';
-        showTab(savedTab);
-
+        
         // Configurar vista inicial de fase de grupos (por fecha / por grupo)
         const savedView = localStorage.getItem('groupPredView') || 'date';
         setGroupPredView(savedView);
+
+        // Restaurar estado completo de la aplicación
+        restoreApplicationState();
+        
+        // Configurar listeners para persistir cambios
+        setupStatePersistence();
       } catch (err) {
         console.error('Error cargando datos:', err);
         alert('Hubo un problema cargando los datos. Revisa la consola para más detalles.');
@@ -1096,12 +1086,16 @@
                   }
                 }
                 else if(/^W\d+$/i.test(tok)){
-                   const m=matchesById[tok]; const r=resultsById[tok];
-                   if(m && r && r.homeGoals!==null && r.awayGoals!==null){
-                      if(r.homeGoals>r.awayGoals){ idTok=m.homeTeam; }
-                      else if(r.awayGoals>r.homeGoals){ idTok=m.awayTeam; }
-                      else if(r.penalties && r.penalties.homePenaltyGoals!==null && r.penalties.awayPenaltyGoals!==null){
-                         idTok = r.penalties.homePenaltyGoals>r.penalties.awayPenaltyGoals ? m.homeTeam : m.awayTeam;
+                   const r=resultsById[tok];
+                   if(r && r.homeGoals!==null){
+                      const m=matchesById[tok];
+                      const winnerSide = getRealWinner(r);
+                      if(winnerSide){
+                         const winnerToken = winnerSide === 'home' ? m.homeTeam : m.awayTeam;
+                         // Resolución recursiva usando la misma función
+                         const recursiveSrc = getRealTeamBadge ? getRealTeamBadge(winnerToken) : 'badges/unknownTeam.png';
+                         badgeArr.push(`<img src="${recursiveSrc}" class="team-badge" alt="team"/>`);
+                         return; // Salir temprano para evitar duplicar
                       }
                    }
                 }
@@ -1126,6 +1120,9 @@
               if(isInitiallyOpen){
                   const rowBadges=headerTr.querySelector('.phase-badges-row');
                   if(rowBadges) rowBadges.style.display='none';
+              } else {
+                  const rowBadges=headerTr.querySelector('.phase-badges-row');
+                  if(rowBadges) rowBadges.style.display='flex';
               }
             } else {
               headerTr.innerHTML=`<td colspan="${colSpan}"><div class="day-header-content"><span class="arrow">${arrow}</span><span class="date-text">${formattedDate}</span>${liveBadge}${completedBadge}<span class="points-badge">${ptsDisplay}</span></div></td>`;
@@ -1482,8 +1479,77 @@
         }
     }
 
-    btnPred.addEventListener('click',()=>{ localStorage.setItem('lastTab','pred'); showTab('pred'); });
-    btnClasif.addEventListener('click',()=>{ localStorage.setItem('lastTab','clasif'); showTab('clasif'); });
+    // Los listeners de tabs ahora se configuran en setupStatePersistence()
+
+    // Funciones para manejar persistencia del estado de la aplicación
+    function restoreApplicationState() {
+        // Restaurar participante seleccionado primero
+        const savedParticipant = localStorage.getItem('lastParticipant') || '';
+        let participantRestored = false;
+        
+        if(savedParticipant && participantSelect.querySelector(`option[value="${savedParticipant}"]`)){
+            participantSelect.value = savedParticipant;
+            participantRestored = true;
+            console.log('Estado restaurado - Participante:', savedParticipant);
+        }
+        
+        // Restaurar pestaña activa
+        const savedTab = localStorage.getItem('lastTab') || 'clasif';
+        
+        // Lógica de restauración de tabs:
+        // 1. Respetar siempre el tab guardado
+        // 2. Si es 'pred' pero no hay participante → ir a Leaderboard
+        if(savedTab === 'pred' && !participantRestored) {
+            // Si se intentaba mostrar Predictions pero no hay participante, ir a Leaderboard
+            showTab('clasif');
+            console.log('Estado restaurado - Tab: Leaderboard (no hay participante seleccionado)');
+        } else {
+            showTab(savedTab);
+            console.log('Estado restaurado - Tab:', savedTab);
+        }
+
+        // Restaurar vista de grupo
+        const savedView = localStorage.getItem('groupPredView') || 'date';
+        console.log('Estado restaurado - Vista de grupo:', savedView);
+    }
+
+    function setupStatePersistence() {
+        // Guardar cambios de participante
+        participantSelect.addEventListener('change', () => {
+            const selectedValue = participantSelect.value;
+            if(selectedValue) {
+                localStorage.setItem('lastParticipant', selectedValue);
+                console.log('Estado guardado - Participante:', selectedValue);
+                
+                // Solo cambiar a Predictions si no estamos ya en Leaderboard
+                if(!btnClasif.classList.contains('tab-active')) {
+                    localStorage.setItem('lastTab', 'pred');
+                    showTab('pred');
+                } else {
+                    // Si estamos en Leaderboard, mantenernos ahí pero refrescar contenido si es necesario
+                    console.log('Manteniendo tab Leaderboard activo');
+                }
+            } else {
+                localStorage.removeItem('lastParticipant');
+                localStorage.setItem('lastTab', 'clasif');
+                console.log('Estado guardado - Participante eliminado');
+                showTab('clasif');
+            }
+        });
+
+        // Configurar listeners de tabs con logging
+        btnPred.addEventListener('click', () => {
+            localStorage.setItem('lastTab','pred');
+            console.log('Estado guardado - Tab: Predictions');
+            showTab('pred');
+        });
+        
+        btnClasif.addEventListener('click', () => {
+            localStorage.setItem('lastTab','clasif'); 
+            console.log('Estado guardado - Tab: Leaderboard');
+            showTab('clasif');
+        });
+    }
 
     function renderLeaderboard(){
         const tbody=document.querySelector('#leaderboardTable tbody');
@@ -1996,6 +2062,7 @@
     function setGroupPredView(view){
       groupPredView = (view==='group')?'group':'date';
       localStorage.setItem('groupPredView', groupPredView);
+      console.log('Estado guardado - Vista de grupo:', groupPredView);
       const btnDate=document.getElementById('btnViewDate');
       const btnGroup=document.getElementById('btnViewGroup');
       if(btnDate){ btnDate.classList.toggle('active', groupPredView==='date'); }
@@ -2553,7 +2620,7 @@
             // Build team/unknown badges for phase header (similar a vista "By Date")
             const badgeArr=[];
             
-            // Función para obtener el escudo real de un equipo (misma lógica que buildCell cuando isReal=true)
+            // Función para obtener el escudo real de un equipo usando la misma lógica que las celdas
             const getRealTeamBadge = (tok) => {
                 let id = null;
                 
@@ -2561,9 +2628,27 @@
                 if(teamIdToBadge[tok]){ 
                     id = tok; 
                 }
-                // Si es un placeholder (1A/2B/Wxx), forzar unknown como hace buildCell cuando isReal=true
-                else if(/^[12][A-H]$/i.test(tok) || /^W\d+$/i.test(tok)){
-                    id = null; // Forzar unknown para placeholders
+                // Resolver placeholders de grupo (1A/2B)
+                else if(/^[12][A-H]$/i.test(tok)){
+                    const pos = parseInt(tok[0], 10);
+                    const grp = tok[1].toUpperCase();
+                    if (realGroupStandings[grp] && isGroupComplete(realGroupStandings[grp])) {
+                        const team = realGroupStandings[grp].find(t => t.position === pos);
+                        id = team ? team.teamId : null;
+                    }
+                }
+                // Resolver placeholders de ganador (W49, W50, etc.)
+                else if(/^W\d+$/i.test(tok)){
+                    const res = resultsById[tok];
+                    if (res && res.homeGoals !== null) {
+                        const match = matchesById[tok];
+                        const winnerSide = getRealWinner(res);
+                        if (winnerSide) {
+                            const winnerToken = winnerSide === 'home' ? match.homeTeam : match.awayTeam;
+                            // Resolución recursiva
+                            return getRealTeamBadge(winnerToken);
+                        }
+                    }
                 }
                 
                 let src = 'badges/unknownTeam.png';
@@ -2952,7 +3037,7 @@
            if(!ts){ ts=Date.now(); localStorage.setItem(key,ts); }
            keepOpenCompleted = Date.now()-ts < DAY_MS;
         }
-        const shouldOpen = anyLive || keepOpenCompleted || h===nextToPlayHeader;
+        const shouldOpen = anyLive; // Solo mantener abierto si hay partidos en directo
         setOpen(h, shouldOpen);
       });
     }
@@ -2985,6 +3070,45 @@
             if(home!==away) return home>away?'home':'away';
         }
         return null;      // No indicó ganador
+    }
+
+    /**
+     * Función global para obtener el src del escudo de un equipo real
+     * Resuelve placeholders (1A, W49, etc.) a equipos reales cuando sea posible
+     */
+    function getRealTeamBadge(tok) {
+        let id = null;
+        
+        // Si es un ID directo de equipo, usarlo
+        if(teamIdToBadge[tok]){ 
+            id = tok; 
+        }
+        // Resolver placeholders de grupo (1A/2B)
+        else if(/^[12][A-H]$/i.test(tok)){
+            const pos = parseInt(tok[0], 10);
+            const grp = tok[1].toUpperCase();
+            if (realGroupStandings[grp] && isGroupComplete(realGroupStandings[grp])) {
+                const team = realGroupStandings[grp].find(t => t.position === pos);
+                id = team ? team.teamId : null;
+            }
+        }
+        // Resolver placeholders de ganador (W49, W50, etc.)
+        else if(/^W\d+$/i.test(tok)){
+            const res = resultsById[tok];
+            if (res && res.homeGoals !== null) {
+                const match = matchesById[tok];
+                const winnerSide = getRealWinner(res);
+                if (winnerSide) {
+                    const winnerToken = winnerSide === 'home' ? match.homeTeam : match.awayTeam;
+                    // Resolución recursiva
+                    return getRealTeamBadge(winnerToken);
+                }
+            }
+        }
+        
+        let src = 'badges/unknownTeam.png';
+        if(id && teamIdToBadge[id]) src = teamIdToBadge[id];
+        return src;
     }
 
     /***********************************************************
@@ -3111,6 +3235,50 @@
 
 
     /**
+     * Obtiene el equipo ganador real de la final (ID del equipo)
+     */
+    function getFinalWinnerTeamId(match, res) {
+        const winnerSide = getRealWinner(res);
+        if (!winnerSide) return null;
+        
+        const winnerToken = winnerSide === 'home' ? match.homeTeam : match.awayTeam;
+        return resolveRealTeamId(winnerToken);
+    }
+
+    /**
+     * Obtiene el equipo perdedor real de la final (ID del equipo)
+     */
+    function getFinalLoserTeamId(match, res) {
+        const winnerSide = getRealWinner(res);
+        if (!winnerSide) return null;
+        
+        const loserToken = winnerSide === 'home' ? match.awayTeam : match.homeTeam;
+        return resolveRealTeamId(loserToken);
+    }
+
+    /**
+     * Obtiene el equipo ganador predicho de la final (ID del equipo)
+     */
+    function getFinalPredictedWinnerTeamId(userId, match, pred) {
+        const predWinnerSide = getPredWinner(pred);
+        if (!predWinnerSide) return null;
+        
+        const predWinnerToken = predWinnerSide === 'home' ? match.homeTeam : match.awayTeam;
+        return resolvePredictedTeamId(userId, predWinnerToken);
+    }
+
+    /**
+     * Obtiene el equipo perdedor predicho de la final (ID del equipo)
+     */
+    function getFinalPredictedLoserTeamId(userId, match, pred) {
+        const predWinnerSide = getPredWinner(pred);
+        if (!predWinnerSide) return null;
+        
+        const predLoserToken = predWinnerSide === 'home' ? match.awayTeam : match.homeTeam;
+        return resolvePredictedTeamId(userId, predLoserToken);
+    }
+
+    /**
      * FUNCIÓN CENTRAL DE PUNTUACIÓN
      * Calcula los puntos de un partido, usando la lógica corregida.
      */
@@ -3118,24 +3286,52 @@
         const res = resultsById[pred.matchId];
         const match = matchesById[pred.matchId];
         const isKO = match && match.phase !== 'group';
-        let realW = null, predW = null;
-        if (res) realW = getRealWinner(res);
-        if (pred) predW = getPredWinner(pred);
-        //console.log('[KO DEBUG]', {
-            //userId: pred.userId,
-            //matchId: pred.matchId,
-            //pred,
-            //res,
-            //  isKO,
-            //realW,
-            //predW,
-            //teamsCoinciden: isKO ? teamsCoinciden(pred.userId, match) : 'N/A'
-        //    }); //  
+        const isFinal = match && match.phase === 'final';
+        
         if (!res || res.homeGoals === null) return 0;
 
-        // Regla KO 1.1: ¿Coinciden los equipos?
-        if (isKO && !teamsCoinciden(pred.userId, match)) {
+        // Regla KO 1.1: ¿Coinciden los equipos? (excepto para reglas especiales de final)
+        if (isKO && !isFinal && !teamsCoinciden(pred.userId, match)) {
             return 0; // Si no coinciden, 0 puntos y no se evalúa más.
+        }
+
+        // REGLAS ESPECIALES PARA LA FINAL
+        if (isFinal) {
+            let totalPoints = 0;
+            const teamsMatch = teamsCoinciden(pred.userId, match);
+            
+            // Regla mantenida: 5 puntos si el resultado en los 90 minutos es correcto 
+            // siempre y cuando ambos equipos predichos coincidan con los equipos reales
+            if (teamsMatch && pred.predHome === res.homeGoals && pred.predAway === res.awayGoals) {
+                totalPoints += 5;
+            }
+            
+            // Nueva regla A: Si el equipo ganador predicho coincide con el equipo ganador real, 
+            // independientemente del rival en la final: 10 puntos
+            const realWinnerTeamId = getFinalWinnerTeamId(match, res);
+            const predWinnerTeamId = getFinalPredictedWinnerTeamId(pred.userId, match, pred);
+            
+            if (realWinnerTeamId && predWinnerTeamId && realWinnerTeamId === predWinnerTeamId) {
+                totalPoints += 10;
+            }
+            
+            // Nueva regla B: Si el equipo perdedor predicho coincide con el equipo perdedor real,
+            // independientemente del rival en la final: 8 puntos
+            const realLoserTeamId = getFinalLoserTeamId(match, res);
+            const predLoserTeamId = getFinalPredictedLoserTeamId(pred.userId, match, pred);
+            
+            if (realLoserTeamId && predLoserTeamId && realLoserTeamId === predLoserTeamId) {
+                totalPoints += 8;
+            }
+            
+            return totalPoints;
+        }
+
+        // REGLAS NORMALES PARA OTROS PARTIDOS
+        
+        // Para partidos KO no finales, verificar que coincidan los equipos
+        if (isKO && !teamsCoinciden(pred.userId, match)) {
+            return 0;
         }
 
         // Regla 1 (y 1.2): 5 puntos por marcador exacto en 90m
