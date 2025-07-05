@@ -768,8 +768,8 @@
   },
   {
     "matchId": "W60",
-    "homeGoals": 3,
-    "awayGoals": 2,
+    "homeGoals": null,
+    "awayGoals": null,
     "extraTime": {
       "homeExtraTimeGoals": null,
       "awayExtraTimeGoals": null
