@@ -755,8 +755,8 @@
   },
   {
     "matchId": "W59",
-    "homeGoals": null,
-    "awayGoals": null,
+    "homeGoals": 2,
+    "awayGoals": 0,
     "extraTime": {
      "homeExtraTimeGoals": null,
       "awayExtraTimeGoals": null
@@ -768,8 +768,8 @@
   },
   {
     "matchId": "W60",
-    "homeGoals": null,
-    "awayGoals": null,
+    "homeGoals": 3,
+    "awayGoals": 2,
     "extraTime": {
       "homeExtraTimeGoals": null,
       "awayExtraTimeGoals": null
